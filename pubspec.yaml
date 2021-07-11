@@ -1,0 +1,63 @@
+name: majorica
+version: 1.0.0+1
+publish_to: none
+description: A new application for majorica marina hotel
+environment: 
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  animated_bottom_navigation_bar: ^0.3.2
+  bdaya_custom_splash:
+    git:
+      url: https://github.com/Bdaya-Dev/custom-splash.git
+      ref: master
+  cached_network_image: ^3.0.0
+  carousel_slider: ^4.0.0-nullsafety.0
+  circular_countdown_timer: ^0.2.0
+  cupertino_icons: ^1.0.2
+  dio: ^4.0.0
+  fdottedline:
+    git:
+      url: git@github.com:t4ulabs/fdottedline.git
+      ref: master
+  file_picker: ^3.0.2+2
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.9.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_screenutil: ^5.0.0+2
+  flutter_staggered_animations: ^1.0.0
+  get: 4.1.4
+  lottie: ^1.0.1
+  pin_code_text_field: ^1.8.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/appIconTransparent.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/lottie/
+
+  fonts:
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/Almarai-Regular.ttf
+        - asset: assets/fonts/Almarai-Light.ttf
+        - asset: assets/fonts/Almarai-ExtraBold.ttf
+        - asset: assets/fonts/Almarai-Bold.ttf
+
+
+flutter_intl:
+  enabled: true
+  main_locale: ar
