@@ -37,7 +37,7 @@ class Badge extends StatelessWidget {
               elevation: 5.0,
               shape: const CircleBorder(),
               child: CircleAvatar(
-                radius: radius ?? 25.w,
+                radius: radius ?? 25.sp,
                 backgroundColor: backgroundColor ?? ColorUtil.errorColor,
                 child: FittedBox(
                   child: Text(

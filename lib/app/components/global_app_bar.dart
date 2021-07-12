@@ -13,6 +13,8 @@ class GlobalAppBar extends AppBar {
     double elevation = 0.0,
     bool centerTitle = true,
     bool enableBack = false,
+    PreferredSizeWidget? bottom,
+    Function()? onCancel,
   }) : super(
           backgroundColor: backgroundColor ?? Colors.transparent,
           elevation: elevation,
@@ -33,7 +35,10 @@ class GlobalAppBar extends AppBar {
           leading: enableBack
               ? IconButton(
                   padding: const EdgeInsets.all(10.0),
-                  onPressed: () => Get.back(),
+                  onPressed: () {
+                    Get.back();
+                    onCancel!.call();
+                  },
                   icon: Icon(
                     Icons.arrow_back_ios_rounded,
                     color: backgroundColor == ColorUtil.primaryColor
@@ -44,5 +49,6 @@ class GlobalAppBar extends AppBar {
               : leading,
           actions: actions ?? <Widget>[],
           automaticallyImplyLeading: enableBack,
+          bottom: bottom,
         );
 }

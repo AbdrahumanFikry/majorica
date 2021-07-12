@@ -1426,6 +1426,196 @@ class S {
       args: [],
     );
   }
+
+  /// `تم إضافه حجزك الى المعلقه`
+  String get pendingDoneDesc {
+    return Intl.message(
+      'تم إضافه حجزك الى المعلقه',
+      name: 'pendingDoneDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أذهب الى المعلقه`
+  String get goToPending {
+    return Intl.message(
+      'أذهب الى المعلقه',
+      name: 'goToPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `جميع الحجوزات`
+  String get allReservations {
+    return Intl.message(
+      'جميع الحجوزات',
+      name: 'allReservations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فائته`
+  String get past {
+    return Intl.message(
+      'فائته',
+      name: 'past',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `قادمه`
+  String get upComing {
+    return Intl.message(
+      'قادمه',
+      name: 'upComing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الأجمالى`
+  String get total {
+    return Intl.message(
+      'الأجمالى',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عرض`
+  String get offer {
+    return Intl.message(
+      'عرض',
+      name: 'offer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نقاط`
+  String get points {
+    return Intl.message(
+      'نقاط',
+      name: 'points',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تغيير كلمه المرور`
+  String get changePassword {
+    return Intl.message(
+      'تغيير كلمه المرور',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `دعوه أصدقاء`
+  String get inviteFriends {
+    return Intl.message(
+      'دعوه أصدقاء',
+      name: 'inviteFriends',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تواصل معانا`
+  String get contactUs {
+    return Intl.message(
+      'تواصل معانا',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `قيمنا فى المتجر`
+  String get rateUsOnStore {
+    return Intl.message(
+      'قيمنا فى المتجر',
+      name: 'rateUsOnStore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `شروط الخدمه`
+  String get termsOfService {
+    return Intl.message(
+      'شروط الخدمه',
+      name: 'termsOfService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `فى انتظار التأكيد`
+  String get pending {
+    return Intl.message(
+      'فى انتظار التأكيد',
+      name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كوبون الخصم`
+  String get discountCoupon {
+    return Intl.message(
+      'كوبون الخصم',
+      name: 'discountCoupon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدخل كوبون الخصم`
+  String get enterDiscountCoupon {
+    return Intl.message(
+      'أدخل كوبون الخصم',
+      name: 'enterDiscountCoupon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تأكيد الحجز`
+  String get confirmReservation {
+    return Intl.message(
+      'تأكيد الحجز',
+      name: 'confirmReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `خصم`
+  String get discount {
+    return Intl.message(
+      'خصم',
+      name: 'discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الدفع`
+  String get payment {
+    return Intl.message(
+      'الدفع',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -46,7 +46,7 @@ class PeriodComponent extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10 + 25.sp, vertical: 5.0),
           child: FDottedLine(
             color: ColorUtil.mediumGrey,
-            height: 90.sp,
+            height: 75.sp,
             strokeWidth: 2.0,
             dottedLength: 15.sp,
             space: 2.0,

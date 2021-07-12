@@ -59,6 +59,8 @@ class RoomDetailsView extends GetView<RoomDetailsController> {
                   RoomParticipants(),
                   RoomCount(),
                   AppButton(
+                    isBusy: controller.isBusy.value,
+                    onTap: controller.reserve,
                     height: 200.sp,
                     borderRadius: AppUtil.borderRadius25,
                     margin: const EdgeInsets.symmetric(
