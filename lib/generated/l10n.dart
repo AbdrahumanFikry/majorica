@@ -1616,6 +1616,76 @@ class S {
       args: [],
     );
   }
+
+  /// `تفاصيل الدفع`
+  String get reservationDetails {
+    return Intl.message(
+      'تفاصيل الدفع',
+      name: 'reservationDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إالغاء الحجز`
+  String get cancelReservation {
+    return Intl.message(
+      'إالغاء الحجز',
+      name: 'cancelReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تفاصيل الدفع`
+  String get paymentDetails {
+    return Intl.message(
+      'تفاصيل الدفع',
+      name: 'paymentDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` رقم العمليه`
+  String get id {
+    return Intl.message(
+      ' رقم العمليه',
+      name: 'id',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `المبلغ`
+  String get amount {
+    return Intl.message(
+      'المبلغ',
+      name: 'amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `رقم المراجعه`
+  String get refID {
+    return Intl.message(
+      'رقم المراجعه',
+      name: 'refID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مدفوع ل`
+  String get paidFor {
+    return Intl.message(
+      'مدفوع ل',
+      name: 'paidFor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

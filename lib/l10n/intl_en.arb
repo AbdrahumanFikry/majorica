@@ -155,5 +155,12 @@
   "enterDiscountCoupon": "Enter discount coupon",
   "confirmReservation": "Confirm reservation",
   "discount": "Discount",
-  "payment": "Payment"
+  "payment": "Payment",
+  "reservationDetails": "Reservation details",
+  "cancelReservation": "Cancel reservation",
+  "paymentDetails": "Payment details",
+  "id": "ID",
+  "amount": "Amount",
+  "refID": "Ref ID",
+  "paidFor": "Paid for"
 }

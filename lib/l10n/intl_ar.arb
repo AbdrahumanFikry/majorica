@@ -155,5 +155,12 @@
   "enterDiscountCoupon": "أدخل كوبون الخصم",
   "confirmReservation": "تأكيد الحجز",
   "discount": "خصم",
-  "payment": "الدفع"
+  "payment": "الدفع",
+  "reservationDetails": "تفاصيل الدفع",
+  "cancelReservation": "إالغاء الحجز",
+  "paymentDetails": "تفاصيل الدفع",
+  "id": " رقم العمليه",
+  "amount": "المبلغ",
+  "refID": "رقم المراجعه",
+  "paidFor": "مدفوع ل"
 }

@@ -11,6 +11,8 @@ import 'package:majorica/app/modules/home/bindings/home_binding.dart';
 import 'package:majorica/app/modules/home/views/home_view.dart';
 import 'package:majorica/app/modules/pendings/bindings/pendings_binding.dart';
 import 'package:majorica/app/modules/pendings/views/pendings_view.dart';
+import 'package:majorica/app/modules/reservation_details/bindings/reservation_details_binding.dart';
+import 'package:majorica/app/modules/reservation_details/views/reservation_details_view.dart';
 import 'package:majorica/app/modules/reservations/bindings/reservations_binding.dart';
 import 'package:majorica/app/modules/reservations/views/reservations_view.dart';
 import 'package:majorica/app/modules/room_details/bindings/room_details_binding.dart';
@@ -88,6 +90,11 @@ class AppPages {
       name: _Paths.PENDINGS,
       page: () => PendingsView(),
       binding: PendingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESERVATION_DETAILS,
+      page: () => ReservationDetailsView(),
+      binding: ReservationDetailsBinding(),
     ),
   ];
 }
