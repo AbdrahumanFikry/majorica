@@ -37,7 +37,7 @@ class GlobalAppBar extends AppBar {
                   padding: const EdgeInsets.all(10.0),
                   onPressed: () {
                     Get.back();
-                    onCancel!.call();
+                    onCancel?.call();
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_rounded,

@@ -22,12 +22,13 @@ class GlobalPending extends StatelessWidget {
         child,
         if (Get.currentRoute != '/pendings')
           Positioned(
-            top: 150.sp,
+            top: 140.sp,
             right: AppUtil.isLtr ? 0.0 : null,
             left: !AppUtil.isLtr ? 0.0 : null,
             child: GlobalCard(
               color: Colors.white,
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
+              elevation: 5,
+              margin: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Badge(
                 top: 0.0,
                 title: '1',

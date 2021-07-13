@@ -12,6 +12,7 @@ import 'package:majorica/app/modules/room_details/components/participants.dart';
 import 'package:majorica/app/modules/room_details/components/room_main_data.dart';
 import 'package:majorica/app/modules/room_details/components/room_packages.dart';
 import 'package:majorica/app/modules/room_details/components/rooms_count.dart';
+import 'package:majorica/app/modules/room_details/views/images_view.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:majorica/app/utilities/path_util.dart';
@@ -33,7 +34,7 @@ class RoomDetailsView extends GetView<RoomDetailsController> {
             top: 0.0,
             right: 0.0,
             left: 0.0,
-            child: ImagesView(),
+            child: ImagesSlider(),
           ),
           Positioned(
             top: 0.0,
@@ -45,8 +46,17 @@ class RoomDetailsView extends GetView<RoomDetailsController> {
                 shrinkWrap: true,
                 disableGlow: true,
                 children: [
-                  SizedBox(
-                    height: Get.height * 0.35,
+                  GestureDetector(
+                    onTap: () => Get.to(
+                      () => RoomImagesView(
+                        galleryItems: controller.imgList,
+                      ),
+                    ),
+                    child: Container(
+                      color: Colors.transparent,
+                      height: Get.height * 0.35,
+                      width: Get.width,
+                    ),
                   ),
                   Lottie.asset(
                     PathUtil.upLottie,
@@ -97,7 +107,7 @@ class RoomDetailsView extends GetView<RoomDetailsController> {
             ),
           ),
           Positioned(
-            top: 150.sp,
+            top: 140.sp,
             right: !AppUtil.isLtr ? 0.0 : null,
             left: AppUtil.isLtr ? 0.0 : null,
             child: GlobalCard(

@@ -264,6 +264,18 @@ class AppUtil {
     );
   }
 
+  static Future<void> cacheImages(List<String> paths) async {
+    for (final String path in paths) {
+      await precacheImage(
+        NetworkImage(
+          path,
+        ),
+        Get.context!,
+      );
+      print('images cached ');
+    }
+  }
+
   static Future<String?> languageSelection() async {
     return Get.bottomSheet<String?>(
       WillPopScope(
