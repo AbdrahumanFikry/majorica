@@ -2,9 +2,11 @@ import 'package:bdaya_custom_splash/bdaya_custom_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:majorica/app/services/cache_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:majorica/app/utilities/path_util.dart';
+import 'package:majorica/generated/l10n.dart';
 
 import '../controllers/splash_controller.dart';
 
@@ -31,20 +33,15 @@ class SplashView extends GetView<SplashController> {
         );
       },
       onNavigateTo: (result) async {
-        // String? currentLang = CacheService.to.settingsRepo.cachedLang;
-        // if (currentLang == 'null' && currentLang.isEmpty) {
-        //   await S.load(const Locale('ar'));
-        //   currentLang = await AppUtil.languageSelection();
-        //   await CacheService.to.settingsRepo.setCachedLang(currentLang ?? 'ar');
-        // } else {
-        //   print(CacheService.to.settingsRepo.isDarkMode);
-        //   Get.changeTheme(
-        //     CacheService.to.settingsRepo.isDarkMode
-        //         ? AppUtil.appDarkTheme
-        //         : AppUtil.appLightTheme,
-        //   );
-        //   await S.load(Locale(currentLang));
-        // }
+        String? currentLang = CacheService.to.settingsRepo.cachedLang;
+        print(currentLang);
+        if (currentLang == 'null' || currentLang.isEmpty) {
+          await S.load(const Locale('ar'));
+          currentLang = await AppUtil.languageSelection();
+          await CacheService.to.settingsRepo.setCachedLang(currentLang ?? 'ar');
+        } else {
+          await S.load(Locale(currentLang));
+        }
         Get.offAllNamed(result.toString());
       },
     );

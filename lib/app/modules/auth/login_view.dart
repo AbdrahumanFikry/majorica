@@ -50,9 +50,9 @@ class LoginView extends GetView<AuthService> {
                     flex: 2,
                   ),
                   AppTextField(
-                    controller.accountId,
-                    keyBoardType: TextInputType.number,
-                    labelText: S.of(context).accountId,
+                    controller.phone,
+                    keyBoardType: TextInputType.phone,
+                    labelText: S.of(context).phoneNumber,
                     margin: const EdgeInsets.symmetric(
                       horizontal: 15.0,
                       vertical: 5.0,

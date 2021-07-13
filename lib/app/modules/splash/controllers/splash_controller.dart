@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/routes/app_pages.dart';
+import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/services/cache_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/generated/l10n.dart';
@@ -16,10 +17,12 @@ class SplashController extends GetxController {
     try {
       //TODO init fireBase here
       await _initCache();
-      // final authLogicRes = await CacheService.to.userRepo.initAuthLogic();
-      // final String authRoute =
-      //     authLogicRes == true ? Routes.ROOT : Routes.LOGIN;
-      return Routes.ROOT;
+      Get.put<AuthService>(AuthService());
+      final authLogicRes = await CacheService.to.userRepo.initAuthLogic();
+      // if (authLogicRes) await AuthService.to.loadApp();
+      final String authRoute =
+          authLogicRes == true ? Routes.ROOT : Routes.ACCOUNT;
+      return authRoute;
     } catch (e) {
       AppUtil.showAlertDialog(
         title: S.current.alert,

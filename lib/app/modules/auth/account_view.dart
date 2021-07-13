@@ -36,73 +36,55 @@ class AccountView extends GetView<AuthService> {
                     width: 500.sp,
                   ),
                   const Spacer(),
-                  if (controller.forgetPassword.value)
-                    AppTextField(
-                      controller.accountId,
-                      keyBoardType: TextInputType.number,
-                      borderColor: ColorUtil.primaryColor,
-                      labelText: S.of(context).accountId,
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 10.0,
-                      ),
-                      prefixWidget: Icon(
-                        Icons.person,
-                        color: ColorUtil.primaryColor,
-                        size: 20.0,
-                      ),
-                      validator: const QuickTextValidator(),
-                    )
-                  else ...[
-                    Align(
-                      alignment: AppUtil.isLtr
-                          ? Alignment.bottomLeft
-                          : Alignment.bottomRight,
-                      child: Text(
-                        S.of(context).enterOwnPhone,
-                        style: AppUtil.textStyle(
-                          color: ColorUtil.darkBlue,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 54.sp,
-                        ),
+                  Align(
+                    alignment: AppUtil.isLtr
+                        ? Alignment.bottomLeft
+                        : Alignment.bottomRight,
+                    child: Text(
+                      S.of(context).enterOwnPhone,
+                      style: AppUtil.textStyle(
+                        color: ColorUtil.darkBlue,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 54.sp,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    Align(
-                      alignment: AppUtil.isLtr
-                          ? Alignment.bottomLeft
-                          : Alignment.bottomRight,
-                      child: Text(
-                        S.of(context).phoneHint,
-                        style: AppUtil.textStyle(
-                          color: ColorUtil.mediumGrey,
-                          letterSpacing: 1.5,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 43.sp,
-                          height: 1.5,
-                        ),
-                      ),
-                    ),
-                    AppTextField(
-                      controller.phone,
-                      borderColor: ColorUtil.mediumGrey,
-                      labelText: S.of(context).phoneNumber,
-                      keyBoardType: TextInputType.number,
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 10.0,
-                      ),
-                      prefixWidget: const Icon(
-                        CupertinoIcons.phone_circle_fill,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Align(
+                    alignment: AppUtil.isLtr
+                        ? Alignment.bottomLeft
+                        : Alignment.bottomRight,
+                    child: Text(
+                      S.of(context).phoneHint,
+                      style: AppUtil.textStyle(
                         color: ColorUtil.mediumGrey,
-                        size: 20.0,
-                      ),
-                      validator: const QuickTextValidator(
-                        isPhone: true,
-                        hasMinLength: 11,
+                        letterSpacing: 1.5,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 43.sp,
+                        height: 1.5,
                       ),
                     ),
-                  ],
+                  ),
+                  AppTextField(
+                    controller.phone,
+                    borderColor: ColorUtil.mediumGrey,
+                    labelText: S.of(context).phoneNumber,
+                    keyBoardType: TextInputType.number,
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 10.0,
+                    ),
+                    prefixWidget: const Icon(
+                      CupertinoIcons.phone_circle_fill,
+                      color: ColorUtil.mediumGrey,
+                      size: 20.0,
+                    ),
+                    validator: const QuickTextValidator(
+                      isPhone: true,
+                      hasMinLength: 11,
+                    ),
+                  ),
                   Obx(
                     () => AppButton(
                       margin: const EdgeInsets.symmetric(

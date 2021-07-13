@@ -35,6 +35,7 @@ class AvailableRoomsView extends GetView<AvailableRoomsController> {
             SfDateRangePicker(
               onSelectionChanged: controller.onSelectionChanged,
               selectionMode: DateRangePickerSelectionMode.range,
+              enableMultiView: true,
               minDate: DateTime.now().subtract(
                 const Duration(days: 1),
               ),

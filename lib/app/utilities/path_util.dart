@@ -19,4 +19,11 @@ class PathUtil {
 
 class ApiUtil {
   static const String checkMobile = '$url/checkMobile';
+  static const String verifyOTP = '$url/verifyOTP';
+  static const String loadApp = '$url/loadApp';
+  static const String resendOTP = '$url/resendOTP';
+  static const String registerClient = '$url/registerClient';
+  static const String authClient = '$url/authClient';
+  static const String forgetPassword = '$url/forgetPassword';
+  static const String changePassword = '$url/changePassword';
 }

@@ -4,30 +4,31 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:majorica/app/data/models/loaded_data.dart';
+import 'package:majorica/app/data/models/user.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
 import 'package:majorica/app/utilities/mixins/busy_mixin.dart';
 import 'package:majorica/app/utilities/path_util.dart';
 import 'package:majorica/generated/l10n.dart';
 
+import 'cache_service.dart';
+
 class AuthService extends GetxService with BusyMixin, ApiMixin {
+  final currentUser = Rxn<User>();
+
   static AuthService get to => Get.find<AuthService>();
   GlobalKey<FormState> accountFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> resetPasswordFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> personalDataFormKey = GlobalKey<FormState>();
   TextEditingController accountId = TextEditingController();
-  TextEditingController nationalId = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController otp = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController oldPassword = TextEditingController();
   TextEditingController confirmedPassword = TextEditingController();
-  TextEditingController tradeName = TextEditingController();
-  TextEditingController governorate = TextEditingController();
-  TextEditingController address = TextEditingController();
-  TextEditingController birthDate = TextEditingController();
 
   late CountDownController countDownController = CountDownController();
 
@@ -53,38 +54,38 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
 
   Future<void> login() async {
     final formData = loginFormKey.currentState;
-    // if (formData!.validate()) {
-    //   formData.save();
-    //   try {
-    //     startBusyWithId('login');
-    //     final Map<String, dynamic> response = await post(
-    //       body: {
-    //         "Action": "Auth",
-    //         "UserID": accountId.text,
-    //         "Password": password.text,
-    //       },
-    //     );
-    //     if (response['OTPHash'] != null) {
-    //       otpHash(response['OTPHash']);
-    //       password.clear();
-    //       accountId.clear();
-    //       changePassword(false);
-    //       forgetPassword(false);
-    //       Get.toNamed(Routes.OTP);
-    //     } else if (response['SessionID'] != null) {
-    //       sessionID(response['SessionID']);
-    //       password.clear();
-    //       accountId.clear();
-    //       changePassword(false);
-    //       forgetPassword(false);
-    //       await loadApp();
-    //       Get.offAllNamed(Routes.ROOT);
-    //     }
-    //     endBusySuccess();
-    //   } catch (error) {
-    //     endBusyError(error.toString(), showDialog: true);
-    //   }
-    // }
+    if (formData!.validate()) {
+      formData.save();
+      try {
+        startBusyWithId('login');
+        final response = await post(
+          ApiUtil.authClient,
+          body: {
+            "mobileNum": "2${phone.text}",
+            "password": password.text,
+          },
+        );
+        if (response['OTPHash'] != null) {
+          otpHash(response['OTPHash']);
+          password.clear();
+          accountId.clear();
+          changePassword(false);
+          forgetPassword(false);
+          Get.toNamed(Routes.OTP);
+        } else if (response['sessionID'] != null) {
+          sessionID(response['sessionID']);
+          password.clear();
+          accountId.clear();
+          changePassword(false);
+          forgetPassword(false);
+          await loadApp();
+          Get.offAllNamed(Routes.ROOT);
+        }
+        endBusySuccess();
+      } catch (error) {
+        endBusyError(error.toString(), showDialog: true);
+      }
+    }
   }
 
   Future<void> checkMobile() async {
@@ -96,9 +97,9 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         Map<String, dynamic> response;
         if (forgetPassword.value) {
           response = await post(
-            ApiUtil.checkMobile,
+            ApiUtil.forgetPassword,
             body: {
-              "UserID": accountId.text,
+              "mobileNum": "2${phone.text}",
             },
           );
         } else {
@@ -112,6 +113,8 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         if (response['OTPHash'] != null) {
           otpHash(response['OTPHash']);
           Get.toNamed(Routes.OTP);
+        } else if (response['checkMobile'] == true) {
+          Get.offNamed(Routes.LOGIN);
         }
         endBusySuccess();
       } catch (error) {
@@ -121,22 +124,22 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
   }
 
   Future<void> sendOTPAgain() async {
-    // try {
-    //   startBusyWithId('registerOTPAgain');
-    //   final response = await post(
-    //     body: {
-    //       "Action": "ResendOTP",
-    //       "OTPHash": otpHash.value,
-    //     },
-    //   );
-    //   if (response['Success'] != 'true') {
-    //     otp.clear();
-    //     isCounting(true);
-    //   }
-    //   endBusySuccess();
-    // } catch (error) {
-    //   endBusyError(error.toString(), showDialog: true);
-    // }
+    try {
+      startBusyWithId('registerOTPAgain');
+      final response = await post(
+        ApiUtil.resendOTP,
+        body: {
+          "OTPHash": otpHash.value,
+        },
+      );
+      if (response['Success'] != 'true') {
+        otp.clear();
+        isCounting(true);
+      }
+      endBusySuccess();
+    } catch (error) {
+      endBusyError(error.toString(), showDialog: true);
+    }
   }
 
   Future<void> sendOTP() async {
@@ -160,135 +163,103 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
   }
 
   Future<void> _sendOTPForRegisterOrLogin() async {
-    // try {
-    //   startBusyWithId('otp');
-    //   final response = await post(
-    //     body: {
-    //       "Action": "VerifyOTP",
-    //       "OTPHash": otpHash.value,
-    //       "OTPCode": otp.text,
-    //     },
-    //   );
-    //   if (response['RegisterHash'] != null) {
-    //     registerHash(response['RegisterHash']);
-    //     otp.clear();
-    //     Get.offAllNamed(Routes.PERSONAL_DATA);
-    //   } else if (response['Fingerprint'] != null &&
-    //       response['SessionID'] != null) {
-    //     sessionID(response['SessionID']);
-    //     otp.clear();
-    //     await loadApp();
-    //     Get.offAllNamed(Routes.ROOT);
-    //   }
-    // } catch (error) {
-    //   rethrow;
-    // }
+    try {
+      startBusyWithId('otp');
+      final response = await post(
+        ApiUtil.verifyOTP,
+        body: {
+          "OTPHash": otpHash.value,
+          "OTPCode": otp.text,
+        },
+      );
+      if (response['registerHash'] != null) {
+        registerHash(response['registerHash']);
+        otp.clear();
+        Get.offAllNamed(Routes.SIGN_UP);
+      } else if (response['sessionID'] != null) {
+        sessionID(response['sessionID']);
+        otp.clear();
+        await loadApp();
+        Get.offAllNamed(Routes.ROOT);
+      }
+    } catch (error) {
+      rethrow;
+    }
   }
 
   Future<void> _sendOTPAndResetPassword() async {
-    // try {
-    //   startBusyWithId('otp');
-    //   final response = await post(
-    //     body: {
-    //       "Action": "VerifyOTP",
-    //       "OTPHash": otpHash.value,
-    //       "OTPCode": otp.text,
-    //     },
-    //   );
-    //   if (response['TempPassword'] != null) {
-    //     tempPassword(response['TempPassword']);
-    //     otp.clear();
-    //     Get.offAllNamed(Routes.RESET_PASSWORD);
-    //   }
-    // } catch (error) {
-    //   rethrow;
-    // }
-  }
-
-  Future<void> sendPersonalData() async {
-    final formData = personalDataFormKey.currentState;
-    // if (formData!.validate()) {
-    //   formData.save();
-    //   try {
-    //     if (agreeToTermsAndConditions.value) {
-    //       startBusyWithId('personal');
-    //       final response = await post(
-    //         body: {
-    //           "Action": "Register",
-    //           "RegisterHash": registerHash.value,
-    //           "Name": name.text,
-    //           "Password": "123",
-    //           "Birthday": birthDate.text,
-    //           "Gender": 1,
-    //           "Address": address.text,
-    //           "BusinessName": tradeName.text,
-    //         },
-    //       );
-    //       if (response['RegisterHash'] != null) {
-    //         registerHash(response['RegisterHash']);
-    //         name.clear();
-    //         birthDate.clear();
-    //         governorate.clear();
-    //         address.clear();
-    //         tradeName.clear();
-    //         Get.offAllNamed(Routes.PROFESSIONAL_DATA);
-    //       }
-    //       endBusySuccess();
-    //     } else {
-    //       throw S.current.termsAndConditionsValidation;
-    //     }
-    //   } catch (error) {
-    //     endBusyError(error.toString(), showDialog: true);
-    //   }
-    // }
+    try {
+      startBusyWithId('otp');
+      final response = await post(
+        ApiUtil.verifyOTP,
+        body: {
+          "OTPHash": otpHash.value,
+          "OTPCode": otp.text,
+        },
+      );
+      if (response['tempPassword'] != null) {
+        tempPassword(response['tempPassword']);
+        otp.clear();
+        Get.offAllNamed(Routes.RESET_PASSWORD);
+      }
+    } catch (error) {
+      rethrow;
+    }
   }
 
   Future<void> signUp() async {
-    // try {
-    //   if (frontId.value.path.isNotEmpty && rearId.value.path.isNotEmpty) {
-    //     startBusyWithId('signUp');
-    //     final response = await post(
-    //       body: {
-    //         "Action": "Register",
-    //         "RegisterHash": registerHash.value,
-    //         "Uploads": filesToBase64(
-    //           {
-    //             "IDFace": frontId.value,
-    //             "IDBack": rearId.value,
-    //             "CommercialRegistration": commercialRegisterImage.value,
-    //             "TaxCard": taxCardImage.value,
-    //           },
-    //         ),
-    //       },
-    //     );
-    //     endBusySuccess();
-    //     if (response['Message'] != null) {}
-    //   } else {
-    //     throw S.current.idValidation;
-    //   }
-    // } catch (error) {
-    //   endBusyError(error.toString(), showDialog: true);
-    // }
+    final formData = personalDataFormKey.currentState;
+    if (formData!.validate()) {
+      formData.save();
+      try {
+        if (agreeToTermsAndConditions.value) {
+          startBusyWithId('personal');
+          final response = await post(
+            ApiUtil.registerClient,
+            body: {
+              "registerHash": registerHash.value,
+              "name": name.text,
+              "password": password.text,
+            },
+          );
+          if (response['SessionID'] != null) {
+            sessionID(response['SessionID']);
+            name.clear();
+            password.clear();
+            confirmedPassword.clear();
+            await loadApp();
+            Get.offAllNamed(Routes.ROOT);
+          }
+          endBusySuccess();
+        } else {
+          throw S.current.termsAndConditionsValidation;
+        }
+      } catch (error) {
+        endBusyError(error.toString(), showDialog: true);
+      }
+    }
   }
 
-  Future<void> loadApp() async {
-    // try {
-    //   final appLoadedData = AppLoadedData.fromJson(
-    //     await post(
-    //       body: {
-    //         "Action": "LoadApp",
-    //         "SessionID": sessionID.value,
-    //         "Fingerprint": fingerprint.value,
-    //       },
-    //     ),
-    //   );
-    //   appLoadedData.user!.fingerprint = fingerprint.value;
-    //   appLoadedData.user!.sessionID = sessionID.value;
-    //   CacheService.to.userRepo.updateUserCache(appLoadedData);
-    // } catch (error) {
-    //   // endBusyError(error.toString(), showDialog: true);
-    //   rethrow;
-    // }
+  Future<void> loadApp({String? localSession}) async {
+    try {
+      final appLoadedData = AppLoadedData.fromJson(
+        await post(
+          ApiUtil.loadApp,
+          body: {
+            "sessionID": localSession ?? sessionID.value,
+          },
+        ),
+      );
+      if (localSession == null) {
+        CacheService.to.userRepo.updateUserCache(
+          appLoadedData,
+          sessionID.value,
+        );
+      }
+    } catch (error) {
+      // endBusyError(error.toString(), showDialog: true);
+      rethrow;
+    }
   }
 
   Future<void> resetPassword() async {
@@ -309,44 +280,62 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
   }
 
   Future<void> _resetPasswordByOTP() async {
-    // try {
-    //   final response = await post(
-    //     body: {
-    //       "Action": "ForgetPassword",
-    //       "UserID": accountId.text,
-    //       "TempPassword": tempPassword.value,
-    //       "NewPassword": password.text,
-    //     },
-    //   );
-    //   accountId.clear();
-    //   password.clear();
-    //   confirmedPassword.clear();
-    //   phone.clear();
-    //   otp.clear();
-    //   endBusySuccess();
-    //   Get.offAllNamed(Routes.LOGIN);
-    // } catch (error) {
-    //   rethrow;
-    // }
+    try {
+      final response = await post(
+        ApiUtil.forgetPassword,
+        body: {
+          "tempPassword": tempPassword.value,
+          "newPassword": password.text,
+        },
+      );
+      if (response['sessionID'] != null) {
+        accountId.clear();
+        password.clear();
+        confirmedPassword.clear();
+        phone.clear();
+        otp.clear();
+        await loadApp();
+        endBusySuccess();
+        Get.offAllNamed(Routes.ROOT);
+      }
+    } catch (error) {
+      rethrow;
+    }
   }
 
   Future<void> _changeUserPassword() async {
-    // try {
-    //   final response = await post(
-    //     body: {
-    //       "Action": "ChangePassword",
-    //       "SessionID": sessionID.value,
-    //       "OldPassword": oldPassword.text,
-    //       "NewPassword": password.text,
-    //     },
-    //   );
-    //   oldPassword.clear();
-    //   password.clear();
-    //   confirmedPassword.clear();
-    //   endBusySuccess();
-    //   Get.offAllNamed(Routes.LOGIN);
-    // } catch (error) {
-    //   rethrow;
-    // }
+    try {
+      final response = await post(
+        ApiUtil.changePassword,
+        body: {
+          "sessionID": currentUser.value!.sessionID,
+          "oldPassword": oldPassword.text,
+          "newPassword": password.text,
+        },
+      );
+      oldPassword.clear();
+      password.clear();
+      confirmedPassword.clear();
+      endBusySuccess();
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  void onReady() {
+    CacheService.to.userRepo.firstEntryStream().listen(
+      (event) async {
+        print('New update in user info');
+        if (event == null) {
+          currentUser.value = null;
+        } else {
+          currentUser(event.value);
+          sessionID(currentUser.value!.sessionID);
+        }
+      },
+    );
+    super.onReady();
   }
 }

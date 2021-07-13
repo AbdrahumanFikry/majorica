@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:majorica/app/components/global_pending.dart';
 import 'app/components/app_builder.dart';
 import 'app/routes/app_pages.dart';
-import 'app/services/initial_binding.dart';
 import 'app/utilities/app_util.dart';
 import 'generated/l10n.dart';
 
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
             theme: AppUtil.appLightTheme,
             getPages: AppPages.routes,
             initialRoute: Routes.SPLASH,
-            initialBinding: InitialBinding(),
             builder: (context, child) => GlobalPending(child: child!),
             localizationsDelegates: const [
               S.delegate,

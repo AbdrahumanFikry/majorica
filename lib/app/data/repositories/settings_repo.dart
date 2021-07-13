@@ -7,10 +7,5 @@ class SettingsRepo extends ActiveRepo<String, dynamic> {
 
   String get cachedLang => getValueById('cachedLang').toString();
 
-  bool get isDarkMode => getValueById('isDarkMode') ?? false;
-
   Future setCachedLang(String? value) async => dataBox.put('cachedLang', value);
-
-  Future setIsDarkMode({bool value = false}) async =>
-      dataBox.put('isDarkMode', value);
 }

@@ -98,7 +98,7 @@ mixin ApiMixin {
       final Map<String, dynamic> response =
           json.decode(data.toString()) as Map<String, dynamic>;
       print('Response : ${data.toString()}');
-      if (response['ErrorDesc'] != null) {
+      if (response['error'] != null) {
         throw DioError(
           requestOptions: RequestOptions(
             path: '',
@@ -106,8 +106,8 @@ mixin ApiMixin {
           type: DioErrorType.response,
           response: Response<APIError>(
             data: APIError(
-              message: response['ErrorDesc'],
-              code: response['ErrorCode'],
+              message: response['error'],
+              code: response['errorCode'],
             ),
             statusCode: 400,
             requestOptions: RequestOptions(

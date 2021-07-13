@@ -126,7 +126,7 @@ class SignUpView extends GetView<AuthService> {
                 ),
                 isBusy: controller.busyId.value == 'personal',
                 title: S.of(context).continueNext,
-                onTap: controller.sendPersonalData,
+                onTap: controller.signUp,
               ),
             ],
           ),

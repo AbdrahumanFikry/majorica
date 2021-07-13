@@ -127,7 +127,7 @@ class AppTextField extends StatelessWidget {
                                         ? Icons.visibility_off_outlined
                                         : Icons.visibility_outlined,
                                     size: 16.0,
-                                    color: borderColor ?? ColorUtil.whiteColor,
+                                    color: borderColor ?? ColorUtil.darkBlue,
                                   ),
                                 )
                               : null),
