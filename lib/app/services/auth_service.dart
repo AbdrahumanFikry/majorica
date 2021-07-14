@@ -315,11 +315,13 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           "newPassword": password.text,
         },
       );
-      oldPassword.clear();
-      password.clear();
-      confirmedPassword.clear();
-      endBusySuccess();
-      Get.offAllNamed(Routes.LOGIN);
+      if (response['success'] == true) {
+        oldPassword.clear();
+        password.clear();
+        confirmedPassword.clear();
+        endBusySuccess();
+        Get.offAllNamed(Routes.LOGIN);
+      }
     } catch (error) {
       rethrow;
     }

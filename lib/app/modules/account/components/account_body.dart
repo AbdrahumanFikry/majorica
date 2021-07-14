@@ -5,6 +5,7 @@ import 'package:majorica/app/modules/account/components/account_card.dart';
 import 'package:majorica/app/modules/account/controllers/account_controller.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/services/auth_service.dart';
+import 'package:majorica/app/services/cache_service.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:majorica/generated/l10n.dart';
 import 'package:get/get.dart';
@@ -62,7 +63,7 @@ class AccountBody extends GetView<AccountController> {
             iconData: Icons.power_settings_new_rounded,
             title: S.of(context).signOut,
             onTap: () async {
-              // await CacheService.to.userRepo.signOutAndRemoveSessionID();
+              await CacheService.to.userRepo.clear();
               Get.offAllNamed(Routes.LOGIN);
             },
           ),

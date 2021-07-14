@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,37 +13,42 @@ class AccountHeader extends StatelessWidget {
       height: Get.height * 0.32,
       width: Get.width,
       color: ColorUtil.primaryColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Karim Nagy',
-            style: AppUtil.textStyle(
-              fontSize: 60.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(
-            height: 30.sp,
-          ),
-          Text(
-            '+201020304050',
-            style: AppUtil.textStyle(
-              fontSize: 48.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(
-            height: 30.sp,
-          ),
-          Text(
-            '1200 ${S.of(context).points}',
-            style: AppUtil.textStyle(
-              fontSize: 48.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+      child: Obx(
+        () {
+          final user = AuthService.to.currentUser.value!;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                user.name,
+                style: AppUtil.textStyle(
+                  fontSize: 60.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 30.sp,
+              ),
+              // Text(
+              //   ,
+              //   style: AppUtil.textStyle(
+              //     fontSize: 48.sp,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 30.sp,
+              // ),
+              Text(
+                '${user.points} ${S.of(context).points}',
+                style: AppUtil.textStyle(
+                  fontSize: 48.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
