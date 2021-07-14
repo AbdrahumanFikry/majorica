@@ -2,6 +2,7 @@ const imagesPath = 'assets/images/';
 const iconsPath = 'assets/icons/';
 const lottiePath = 'assets/lottie/';
 const url = 'https://backend.majoricahotel.com';
+const imagesAPI = 'https://majoricahotel.com/pub/';
 
 class PathUtil {
   //Images

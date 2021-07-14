@@ -4,7 +4,6 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:majorica/app/data/models/loaded_data.dart';
 import 'package:majorica/app/data/models/user.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
@@ -242,18 +241,19 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
 
   Future<void> loadApp({String? localSession}) async {
     try {
-      final appLoadedData = AppLoadedData.fromJson(
-        await post(
-          ApiUtil.loadApp,
-          body: {
-            "sessionID": localSession ?? sessionID.value,
-          },
-        ),
+      final response = await post(
+        ApiUtil.loadApp,
+        body: {
+          "sessionID": localSession ?? sessionID.value,
+        },
       );
-      if (localSession == null) {
-        CacheService.to.userRepo.updateUserCache(
-          appLoadedData,
+      if (response['success'] == true) {
+        await CacheService.to.userRepo.updateUserCache(
+          response['user'],
           sessionID.value,
+        );
+        await CacheService.to.appDataRepo.updateAppDataCache(
+          response,
         );
       }
     } catch (error) {
