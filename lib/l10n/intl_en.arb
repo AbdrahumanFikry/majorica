@@ -162,5 +162,9 @@
   "id": "ID",
   "amount": "Amount",
   "refID": "Ref ID",
-  "paidFor": "Paid for"
+  "paidFor": "Paid for",
+  "removeCoupon": "Remove Coupon",
+  "totalBeforeCoupon": "Total before coupon",
+  "paymentDoneSuccessfully": "Payment done successfully",
+  "paymentError": "Payment not done ,an error occurred"
 }

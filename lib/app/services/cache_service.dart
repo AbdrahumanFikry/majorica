@@ -8,6 +8,7 @@ import 'package:majorica/app/data/repositories/settings_repo.dart';
 import 'package:get/get.dart';
 import 'package:bdaya_repository_pattern/bdaya_repository_pattern.dart';
 import 'package:majorica/app/data/repositories/user_repo.dart';
+import 'package:majorica/app/data/models/app_settings.dart';
 
 class CacheService extends CacheServiceInterface with GetxServiceMixin {
   static CacheService get to => Get.find();
@@ -36,5 +37,6 @@ class CacheService extends CacheServiceInterface with GetxServiceMixin {
     Hive.registerAdapter(RoomPackageAdapter());
     Hive.registerAdapter(AppLinksAdapter());
     Hive.registerAdapter(AppDataAdapter());
+    Hive.registerAdapter(AppSettingsAdapter());
   }
 }

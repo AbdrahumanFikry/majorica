@@ -1,12 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:majorica/app/components/global_app_bar.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
+import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/generated/l10n.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Payment extends StatefulWidget {
+  final String paymentToken;
+
+  const Payment({
+    required this.paymentToken,
+  });
+
   @override
   _PaymentState createState() => _PaymentState();
 }
@@ -32,7 +40,7 @@ class _PaymentState extends State<Payment> {
         builder: (BuildContext context) {
           return WebView(
             initialUrl:
-                'https://backend.majoricahotel.com/priLog/posttest.html',
+                'https://backend.majoricahotel.com/payment/${widget.paymentToken}',
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController webViewController) {
               _controller.complete(webViewController);
@@ -60,10 +68,7 @@ class _PaymentState extends State<Payment> {
     return JavascriptChannel(
       name: 'Payment',
       onMessageReceived: (JavascriptMessage message) {
-        // TODO ??????????????????
-        Scaffold.of(context).showSnackBar(
-          SnackBar(content: Text(message.message)),
-        );
+        Get.back(result: message.message);
       },
     );
   }

@@ -5,8 +5,9 @@ import '../controllers/pendings_controller.dart';
 class PendingsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<PendingsController>(
-      () => PendingsController(),
+    Get.put<PendingsController>(
+      PendingsController(),
+      permanent: true,
     );
   }
 }

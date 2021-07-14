@@ -162,5 +162,9 @@
   "id": " رقم العمليه",
   "amount": "المبلغ",
   "refID": "رقم المراجعه",
-  "paidFor": "مدفوع ل"
+  "paidFor": "مدفوع ل",
+  "removeCoupon": "حذف الالكوبون",
+  "totalBeforeCoupon": "الاجمالى قبل الكوبون",
+  "paymentDoneSuccessfully": "تم الدفع بنجاح",
+  "paymentError": "لم تكتمل عمليه الدفع حدث خطأ ما"
 }

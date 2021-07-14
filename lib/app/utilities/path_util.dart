@@ -16,6 +16,8 @@ class PathUtil {
   //Lottie
   static const String emptyLottie = '${lottiePath}empty.json';
   static const String upLottie = '${lottiePath}up.json';
+  static const String loadingLottie = '${lottiePath}loading.json';
+  static const String pendingLottie = '${lottiePath}pending.json';
 }
 
 class ApiUtil {
@@ -27,4 +29,6 @@ class ApiUtil {
   static const String authClient = '$url/authClient';
   static const String forgetPassword = '$url/forgetPassword';
   static const String changePassword = '$url/changePassword';
+  static const String checkDate = '$url/checkDate';
+  static const String reserve = '$url/reserve';
 }

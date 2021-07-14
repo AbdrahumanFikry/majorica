@@ -1686,6 +1686,46 @@ class S {
       args: [],
     );
   }
+
+  /// `حذف الالكوبون`
+  String get removeCoupon {
+    return Intl.message(
+      'حذف الالكوبون',
+      name: 'removeCoupon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الاجمالى قبل الكوبون`
+  String get totalBeforeCoupon {
+    return Intl.message(
+      'الاجمالى قبل الكوبون',
+      name: 'totalBeforeCoupon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم الدفع بنجاح`
+  String get paymentDoneSuccessfully {
+    return Intl.message(
+      'تم الدفع بنجاح',
+      name: 'paymentDoneSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لم تكتمل عمليه الدفع حدث خطأ ما`
+  String get paymentError {
+    return Intl.message(
+      'لم تكتمل عمليه الدفع حدث خطأ ما',
+      name: 'paymentError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

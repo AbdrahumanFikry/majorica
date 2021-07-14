@@ -1,27 +1,83 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:majorica/app/data/models/pending.dart';
+import 'package:majorica/app/data/models/room_group.dart';
+import 'package:majorica/app/data/models/room_package.dart';
+import 'package:majorica/app/modules/pendings/controllers/pendings_controller.dart';
+import 'package:majorica/app/modules/root/controllers/root_controller.dart';
+import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
 import 'package:majorica/app/utilities/mixins/busy_mixin.dart';
+import 'package:majorica/app/utilities/path_util.dart';
 import 'package:majorica/generated/l10n.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoomDetailsController extends GetxController with BusyMixin, ApiMixin {
   final currentAdIndex = 0.obs;
+  final dynamic data;
+  final roomData = Rxn<RoomGroup>();
+  final sleeps = 1.obs;
+  final roomCount = 1.obs;
+  final selectedPackage = Rxn<RoomPackage>();
+  final roomPackagesFromCache = RxList<RoomPackage>(<RoomPackage>[]);
 
-  final List<String> imgList = [
-    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  ];
+  RoomDetailsController(this.data);
+
+  double? get total {
+    return (roomData.value!.price! +
+            (selectedPackage.value!.price! * sleeps.value)) *
+        roomCount.value;
+  }
 
   Future<void> reserve() async {
+    for (var i = 0; i < roomCount.value; i++) {
+      final pending = PendingRoom(
+        id: roomData.value!.groupId!,
+        name: roomData.value!.name,
+        sleeps: sleeps.value,
+        image: roomData.value!.images!.isNotEmpty
+            ? roomData.value!.images!.first!
+            : null,
+        total: roomData.value!.price! +
+            (selectedPackage.value!.price! * sleeps.value),
+        startDate: roomData.value!.startDate,
+        endDate: roomData.value!.endDate,
+        roomPackage: selectedPackage.value,
+      );
+      PendingsController.to.pendingList.add(pending);
+    }
     await AppUtil.showAlertDialog(
-      contentText: S.current.pendingDoneDesc,
+      title: S.current.pendingDoneDesc,
+      child: Column(
+        children: [
+          Lottie.asset(
+            PathUtil.pendingLottie,
+            width: 300.sp,
+            height: 300.sp,
+          ),
+        ],
+      ),
       confirmText: S.current.confirmReservation,
       enableCancel: true,
       onConfirm: () {
         Get.back();
+        Get.toNamed(Routes.PENDINGS);
       },
     );
+  }
+
+  @override
+  void onReady() {
+    if (data != null) {
+      final RoomGroup? roomGroup = data;
+      roomData(roomGroup);
+    }
+    roomPackagesFromCache.assignAll(
+      RootController.to.appData.value!.roomPackages!.toList(),
+    );
+    selectedPackage(roomPackagesFromCache.first);
+    super.onReady();
   }
 }

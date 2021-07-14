@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/quantity_widget.dart';
+import 'package:majorica/app/modules/room_details/controllers/room_details_controller.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:majorica/generated/l10n.dart';
 
-class RoomParticipants extends StatelessWidget {
+class RoomParticipants extends GetView<RoomDetailsController> {
   @override
   Widget build(BuildContext context) {
     return GlobalCard(
@@ -41,8 +43,22 @@ class RoomParticipants extends StatelessWidget {
                     softWrap: true,
                   ),
                 ),
-                const QuantityWidget(
-                  amount: 1,
+                Obx(
+                  () => QuantityWidget(
+                    amount: controller.sleeps.value,
+                    readOnly: controller.roomData.value?.maxSleeps == null,
+                    incrementFunc: () {
+                      if (controller.sleeps.value <
+                          controller.roomData.value!.maxSleeps!) {
+                        controller.sleeps(controller.sleeps.value + 1);
+                      }
+                    },
+                    decrementFunc: () {
+                      if (controller.sleeps.value > 1) {
+                        controller.sleeps(controller.sleeps.value - 1);
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
@@ -50,7 +66,7 @@ class RoomParticipants extends StatelessWidget {
               height: 15.0,
             ),
             Text(
-              '${S.of(context).maxParticipantsNum} (2)',
+              '${S.of(context).maxParticipantsNum} (${controller.roomData.value?.maxSleeps ?? '1'})',
               style: AppUtil.textStyle(
                 fontSize: 42.sp,
                 fontWeight: FontWeight.bold,

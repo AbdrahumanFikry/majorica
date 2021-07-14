@@ -2,7 +2,6 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:majorica/app/components/badge.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/modules/account/views/account_view.dart';
 import 'package:majorica/app/modules/home/views/home_view.dart';

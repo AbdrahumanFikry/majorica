@@ -1,4 +1,5 @@
 import 'package:bdaya_repository_pattern/bdaya_repository_pattern.dart';
+import 'package:majorica/app/data/models/room_package.dart';
 import '_hive_type_ids.dart';
 
 part 'room_group.g.dart';
@@ -19,4 +20,16 @@ class RoomGroup extends HiveObject {
 
   @HiveField(5)
   List<String?>? images;
+
+  @HiveField(6)
+  int? count;
+
+  @HiveField(8)
+  double? price;
+
+  @HiveField(9)
+  DateTime? startDate;
+
+  @HiveField(10)
+  DateTime? endDate;
 }

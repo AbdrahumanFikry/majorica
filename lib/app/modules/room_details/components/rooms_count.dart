@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/quantity_widget.dart';
+import 'package:majorica/app/modules/room_details/controllers/room_details_controller.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:majorica/generated/l10n.dart';
 
-class RoomCount extends StatelessWidget {
+class RoomCount extends GetView<RoomDetailsController> {
   @override
   Widget build(BuildContext context) {
     return GlobalCard(
@@ -41,8 +43,22 @@ class RoomCount extends StatelessWidget {
                     softWrap: true,
                   ),
                 ),
-                const QuantityWidget(
-                  amount: 1,
+                Obx(
+                  () => QuantityWidget(
+                    amount: controller.roomCount.value,
+                    readOnly: controller.roomData.value?.count == null,
+                    incrementFunc: () {
+                      if (controller.roomCount.value <
+                          controller.roomData.value!.count!) {
+                        controller.roomCount(controller.roomCount.value + 1);
+                      }
+                    },
+                    decrementFunc: () {
+                      if (controller.roomCount.value > 1) {
+                        controller.roomCount(controller.roomCount.value - 1);
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
@@ -50,7 +66,7 @@ class RoomCount extends StatelessWidget {
               height: 15.0,
             ),
             Text(
-              '${S.of(context).maxAvailableRooms} (2)',
+              '${S.of(context).maxAvailableRooms} (${controller.roomData.value?.count ?? '1'})',
               style: AppUtil.textStyle(
                 fontSize: 42.sp,
                 fontWeight: FontWeight.bold,

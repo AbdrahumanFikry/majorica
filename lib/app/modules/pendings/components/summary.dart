@@ -38,7 +38,7 @@ class Summary extends GetView<PendingsController> {
                 ),
                 Expanded(
                   child: Text(
-                    '1800 ${S.of(context).egp}',
+                    '${controller.allTotal} ${S.of(context).egp}',
                     style: AppUtil.textStyle(
                       fontSize: 40.sp,
                       fontWeight: FontWeight.w600,
@@ -52,32 +52,32 @@ class Summary extends GetView<PendingsController> {
             const SizedBox(
               height: 10.0,
             ),
-            Row(
-              children: [
-                Text(
-                  S.of(context).discount,
-                  style: AppUtil.textStyle(
-                    fontSize: 40.sp,
-                    fontWeight: FontWeight.bold,
-                    color: ColorUtil.darkBlue,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    '100 ${S.of(context).egp}',
-                    style: AppUtil.textStyle(
-                      fontSize: 40.sp,
-                      fontWeight: FontWeight.w600,
-                      color: ColorUtil.primaryColor,
-                    ),
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
+            // Row(
+            //   children: [
+            //     Text(
+            //       S.of(context).discount,
+            //       style: AppUtil.textStyle(
+            //         fontSize: 40.sp,
+            //         fontWeight: FontWeight.bold,
+            //         color: ColorUtil.darkBlue,
+            //       ),
+            //     ),
+            //     Expanded(
+            //       child: Text(
+            //         '100 ${S.of(context).egp}',
+            //         style: AppUtil.textStyle(
+            //           fontSize: 40.sp,
+            //           fontWeight: FontWeight.w600,
+            //           color: ColorUtil.primaryColor,
+            //         ),
+            //         textAlign: TextAlign.end,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 10.0,
+            // ),
             // AppTextField(
             //   null,
             //   underLine: false,

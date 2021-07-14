@@ -21,13 +21,17 @@ class RoomGroupAdapter extends TypeAdapter<RoomGroup> {
       ..name = fields[2] as String?
       ..desc = fields[3] as String?
       ..maxSleeps = fields[4] as int?
-      ..images = (fields[5] as List?)?.cast<String>();
+      ..images = (fields[5] as List?)?.cast<String?>()
+      ..count = fields[6] as int?
+      ..price = fields[8] as double?
+      ..startDate = fields[9] as DateTime?
+      ..endDate = fields[10] as DateTime?;
   }
 
   @override
   void write(BinaryWriter writer, RoomGroup obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(9)
       ..writeByte(1)
       ..write(obj.groupId)
       ..writeByte(2)
@@ -37,7 +41,15 @@ class RoomGroupAdapter extends TypeAdapter<RoomGroup> {
       ..writeByte(4)
       ..write(obj.maxSleeps)
       ..writeByte(5)
-      ..write(obj.images);
+      ..write(obj.images)
+      ..writeByte(6)
+      ..write(obj.count)
+      ..writeByte(8)
+      ..write(obj.price)
+      ..writeByte(9)
+      ..write(obj.startDate)
+      ..writeByte(10)
+      ..write(obj.endDate);
   }
 
   @override

@@ -1,19 +1,29 @@
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/net_image.dart';
+import 'package:majorica/app/data/models/room_group.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
+import 'package:majorica/app/utilities/path_util.dart';
 import 'package:majorica/generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoomCard extends StatelessWidget {
+  final RoomGroup room;
+
+  const RoomCard({
+    required this.room,
+  });
+
   @override
   Widget build(BuildContext context) {
+    final _random = Random();
     return GlobalCard(
-      onTap: () => Get.toNamed(Routes.ROOM_DETAILS),
+      onTap: () => Get.toNamed(Routes.ROOM_DETAILS, arguments: room),
       color: ColorUtil.whiteColor,
       borderRadius: AppUtil.borderRadius10,
       margin: const EdgeInsets.symmetric(
@@ -27,11 +37,20 @@ class RoomCard extends StatelessWidget {
               topLeft: Radius.circular(10.0),
               topRight: Radius.circular(10.0),
             ),
-            child: NetImage(
-              'https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_450,q_auto,w_450/itemimages/96/95/96959_v6.jpeg',
-              height: 400.sp,
-              width: Get.width,
-            ),
+            child: room.images == null || room.images!.isEmpty
+                ? Image.asset(
+                    PathUtil.appIcon,
+                    height: 400.sp,
+                    width: Get.width,
+                    fit: BoxFit.contain,
+                  )
+                : NetImage(
+                    room.images!.length > 1
+                        ? room.images![_random.nextInt(room.images!.length)]!
+                        : room.images!.first!,
+                    height: 400.sp,
+                    width: Get.width,
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -45,7 +64,7 @@ class RoomCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'Double room',
+                        room.name ?? 'room',
                         style: AppUtil.textStyle(
                           fontSize: 50.sp,
                           fontWeight: FontWeight.bold,
@@ -55,8 +74,11 @@ class RoomCard extends StatelessWidget {
                         softWrap: true,
                       ),
                     ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
                     Text(
-                      '1500 ${S.of(context).egp}',
+                      '${room.price ?? '-'} ${S.of(context).egp}',
                       style: AppUtil.textStyle(
                         fontSize: 50.sp,
                         color: ColorUtil.errorColor,
@@ -69,7 +91,7 @@ class RoomCard extends StatelessWidget {
                   height: 10.0,
                 ),
                 Text(
-                  '1 Room\r\n2 small beds\r\nFree WiFi',
+                  room.desc ?? '',
                   style: AppUtil.textStyle(
                     fontSize: 44.sp,
                     color: ColorUtil.mediumGrey,
@@ -82,7 +104,7 @@ class RoomCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '2',
+                      room.maxSleeps?.toString() ?? '-',
                       style: AppUtil.textStyle(
                         fontSize: 60.sp,
                         color: ColorUtil.primaryColor,
@@ -102,7 +124,7 @@ class RoomCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        '${S.of(context).available} (3)',
+                        '${S.of(context).available} (${room.count ?? '-'})',
                         style: AppUtil.textStyle(
                           fontSize: 50.sp,
                           fontWeight: FontWeight.bold,

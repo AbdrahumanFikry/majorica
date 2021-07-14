@@ -18,35 +18,35 @@ class AvailableRoomsView extends GetView<AvailableRoomsController> {
         title: S.of(context).reserveRoom,
         enableBack: true,
       ),
-      body: Form(
-        key: controller.filterFormKey,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                S.of(context).choosePeriod,
-                style: AppUtil.textStyle(
-                  fontSize: 55.sp,
-                ),
-                textAlign: TextAlign.center,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              S.of(context).choosePeriod,
+              style: AppUtil.textStyle(
+                fontSize: 55.sp,
               ),
+              textAlign: TextAlign.center,
             ),
-            SfDateRangePicker(
-              onSelectionChanged: controller.onSelectionChanged,
-              selectionMode: DateRangePickerSelectionMode.range,
-              enableMultiView: true,
-              minDate: DateTime.now().subtract(
+          ),
+          SfDateRangePicker(
+            controller: controller.dateRangePickerController,
+            onSelectionChanged: controller.onSelectionChanged,
+            selectionMode: DateRangePickerSelectionMode.range,
+            enableMultiView: true,
+            minDate: DateTime.now().subtract(
+              const Duration(days: 1),
+            ),
+            initialSelectedRange: PickerDateRange(
+              DateTime.now(),
+              DateTime.now().add(
                 const Duration(days: 1),
               ),
-              initialSelectedRange: PickerDateRange(
-                DateTime.now(),
-                DateTime.now().add(
-                  const Duration(days: 1),
-                ),
-              ),
             ),
-            AppButton(
+          ),
+          Obx(
+            () => AppButton(
               isBusy: controller.isBusy.value,
               title: S.of(context).confirm,
               margin: const EdgeInsets.symmetric(
@@ -55,8 +55,8 @@ class AvailableRoomsView extends GetView<AvailableRoomsController> {
               ),
               onTap: controller.fetchRooms,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

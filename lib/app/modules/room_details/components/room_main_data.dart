@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/modules/room_details/components/period_component.dart';
+import 'package:majorica/app/modules/room_details/controllers/room_details_controller.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:majorica/generated/l10n.dart';
 
-class RoomMainData extends StatelessWidget {
+class RoomMainData extends GetView<RoomDetailsController> {
   @override
   Widget build(BuildContext context) {
     return GlobalCard(
@@ -28,7 +30,7 @@ class RoomMainData extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'Double room',
+                    controller.roomData.value?.name ?? '',
                     style: AppUtil.textStyle(
                       fontSize: 60.sp,
                       color: ColorUtil.darkBlue,
@@ -39,8 +41,11 @@ class RoomMainData extends StatelessWidget {
                     softWrap: true,
                   ),
                 ),
+                const SizedBox(
+                  width: 10.0,
+                ),
                 Text(
-                  '1500 ${S.of(context).egp}',
+                  '${controller.roomData.value?.price ?? '-'} ${S.of(context).egp}',
                   style: AppUtil.textStyle(
                     fontSize: 60.sp,
                     color: ColorUtil.errorColor,
@@ -52,12 +57,12 @@ class RoomMainData extends StatelessWidget {
             const SizedBox(
               height: 15.0,
             ),
-            PeriodComponent(
-              startDate: DateTime.now().subtract(
-                const Duration(days: 3),
+            if (controller.roomData.value?.startDate != null &&
+                controller.roomData.value?.endDate != null)
+              PeriodComponent(
+                startDate: controller.roomData.value!.startDate!,
+                endDate: controller.roomData.value!.endDate!,
               ),
-              endDate: DateTime.now(),
-            ),
           ],
         ),
       ),

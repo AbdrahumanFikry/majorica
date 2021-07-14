@@ -248,17 +248,19 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         },
       );
       if (response['success'] == true) {
+        await CacheService.to.appDataRepo.updateAppDataCache(
+          response,
+        );
         await CacheService.to.userRepo.updateUserCache(
           response['user'],
           sessionID.value,
         );
-        await CacheService.to.appDataRepo.updateAppDataCache(
-          response,
-        );
       }
     } catch (error) {
+      if (localSession == null) {
+        rethrow;
+      }
       // endBusyError(error.toString(), showDialog: true);
-      rethrow;
     }
   }
 

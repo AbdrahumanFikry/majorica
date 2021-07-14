@@ -23,28 +23,12 @@ extension DateTimeExt on DateTime {
     }
   }
 
-  String toNumbersFormat() {
+  String toDayMonthOnly() {
     if (this == null) {
       return '-';
     } else {
-      return intl.DateFormat('yyyy-MM-dd', AppUtil.currentLocale.toString())
+      return intl.DateFormat.MMMd(AppUtil.currentLocale.toString())
           .format(this);
-    }
-  }
-
-  String toTimeOnly() {
-    if (this == null) {
-      return '-';
-    } else {
-      return intl.DateFormat.Hm(AppUtil.currentLocale.toString()).format(this);
-    }
-  }
-
-  String toTimeWithAmPmFormat() {
-    if (this == null) {
-      return '-';
-    } else {
-      return intl.DateFormat.jm(AppUtil.currentLocale.toString()).format(this);
     }
   }
 }

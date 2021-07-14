@@ -4,7 +4,7 @@ import '_hive_type_ids.dart';
 
 part 'app_settings.g.dart';
 
-@HiveType(typeId: roomGroupTypeId)
+@HiveType(typeId: appSettingsTypeId)
 class AppSettings extends HiveObject {
   @HiveField(1)
   late List<String>? appBG;

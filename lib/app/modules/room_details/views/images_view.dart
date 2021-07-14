@@ -6,12 +6,13 @@ import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/components/loading.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
+import 'package:majorica/app/utilities/path_util.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoomImagesView extends StatelessWidget {
-  final List<String> galleryItems;
+  final List<String?>? galleryItems;
 
   const RoomImagesView({required this.galleryItems});
 
@@ -30,15 +31,15 @@ class RoomImagesView extends StatelessWidget {
                 return PhotoViewGalleryPageOptions(
                   tightMode: true,
                   imageProvider: CachedNetworkImageProvider(
-                    galleryItems[index],
+                    imagesAPI + galleryItems![index]!,
                   ),
                   initialScale: PhotoViewComputedScale.contained,
                   heroAttributes: PhotoViewHeroAttributes(
-                    tag: galleryItems[index].split('/').last,
+                    tag: galleryItems![index]!.split('/').last,
                   ),
                 );
               },
-              itemCount: galleryItems.length,
+              itemCount: galleryItems!.length,
               loadingBuilder: (context, event) => Loading(),
             ),
           ),
