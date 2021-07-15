@@ -32,7 +32,7 @@ class PeriodComponent extends StatelessWidget {
               child: Text(
                 startDate.toLongUserString(),
                 style: AppUtil.textStyle(
-                  fontSize: 50.sp,
+                  fontSize: 40.sp,
                   fontWeight: FontWeight.w500,
                 ),
                 overflow: TextOverflow.ellipsis,
@@ -65,7 +65,7 @@ class PeriodComponent extends StatelessWidget {
               child: Text(
                 endDate.toLongUserString(),
                 style: AppUtil.textStyle(
-                  fontSize: 50.sp,
+                  fontSize: 40.sp,
                   fontWeight: FontWeight.w500,
                 ),
                 overflow: TextOverflow.ellipsis,

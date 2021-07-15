@@ -14,6 +14,7 @@ import 'package:majorica/generated/l10n.dart';
 
 class PendingsController extends GetxController with BusyMixin, ApiMixin {
   final pendingList = RxList<PendingRoom>(<PendingRoom>[]);
+  final showPendingIcon = false.obs;
   TextEditingController couponController = TextEditingController();
   final couponApplied = false.obs;
 
@@ -62,17 +63,19 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
           ),
         );
         print(':::::::::::: $result');
-        final message = json.decode(result);
-        if (message['success'] == true) {
-          await AppUtil.showAlertDialog(
-            contentText: S.current.paymentDoneSuccessfully,
-          );
-          pendingList.clear();
-          Get.back();
-        } else {
-          AppUtil.showAlertDialog(
-            contentText: '${S.current.paymentError} (${message['error']})',
-          );
+        if (result != null) {
+          final message = json.decode(result);
+          if (message['success'] == true) {
+            await AppUtil.showAlertDialog(
+              contentText: S.current.paymentDoneSuccessfully,
+            );
+            pendingList.clear();
+            Get.back();
+          } else {
+            AppUtil.showAlertDialog(
+              contentText: '${S.current.paymentError} (${message['error']})',
+            );
+          }
         }
       }
       endBusySuccess();
@@ -126,5 +129,20 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
     } catch (error) {
       endBusyError(error, showDialog: true);
     }
+  }
+
+  @override
+  void onReady() {
+    pendingList.stream.listen((event) {
+      print(pendingList.isNotEmpty && Get.currentRoute != '/pendings');
+      if (pendingList.isEmpty) {
+        showPendingIcon(false);
+      } else if (pendingList.isNotEmpty && Get.currentRoute != '/pendings') {
+        showPendingIcon(true);
+      } else {
+        showPendingIcon(false);
+      }
+    });
+    super.onReady();
   }
 }

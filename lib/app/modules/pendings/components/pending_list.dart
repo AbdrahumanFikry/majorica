@@ -71,8 +71,21 @@ class PendingList extends GetView<PendingsController> {
                                     vertical: 3.0,
                                   ),
                                   child: GestureDetector(
-                                    onTap: () =>
-                                        controller.pendingList.remove(pending),
+                                    onTap: () async {
+                                      final result =
+                                          await AppUtil.showAlertDialog(
+                                        enableCancel: true,
+                                        title: S.of(context).areYouSure,
+                                        contentText:
+                                            S.of(context).deleteThisReservation,
+                                      );
+                                      if (result == true) {
+                                        controller.pendingList.remove(pending);
+                                        if (controller.pendingList.isEmpty) {
+                                          Get.back();
+                                        }
+                                      }
+                                    },
                                     child: Icon(
                                       CupertinoIcons.multiply,
                                       color: ColorUtil.errorColor,

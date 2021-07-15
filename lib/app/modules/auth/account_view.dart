@@ -1,9 +1,11 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/app_button.dart';
 import 'package:majorica/app/components/app_text_field.dart';
+import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
@@ -75,10 +77,21 @@ class AccountView extends GetView<AuthService> {
                     margin: const EdgeInsets.symmetric(
                       vertical: 10.0,
                     ),
-                    prefixWidget: const Icon(
-                      CupertinoIcons.phone_circle_fill,
-                      color: ColorUtil.mediumGrey,
-                      size: 20.0,
+                    prefixWidget: GlobalCard(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 5.0,
+                        vertical: 2.5,
+                      ),
+                      child: CountryCodePicker(
+                        onChanged: (val) =>
+                            controller.countryCode(val.dialCode),
+                        initialSelection: 'EG',
+                        favorite: const ['+20', 'EG'],
+                        showFlagMain: false,
+                        showCountryOnly: true,
+                      ),
                     ),
                     validator: const QuickTextValidator(
                       isPhone: true,

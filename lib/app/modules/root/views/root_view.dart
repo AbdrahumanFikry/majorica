@@ -73,7 +73,7 @@ class RootView extends GetView<RootController> {
                                 ? ColorUtil.primaryColor
                                 : ColorUtil.mediumGrey,
                             fontWeight: FontWeight.bold,
-                            fontSize: 10.0,
+                            fontSize: 34.sp,
                           ),
                         ),
                       ],

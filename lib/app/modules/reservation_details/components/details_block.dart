@@ -180,8 +180,8 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
-                    )
-                  else
+                    ),
+                  if (res.statusText!.toLowerCase() != 'canceled')
                     AppButton(
                       isBusy: controller.isBusy.value,
                       width: 400.sp,

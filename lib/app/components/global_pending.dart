@@ -23,9 +23,9 @@ class GlobalPending extends StatelessWidget {
         children: [
           child,
           if (PendingsController.to.pendingList.isNotEmpty &&
-              Get.currentRoute != '/pendings')
+              PendingsController.to.showPendingIcon.value)
             Positioned(
-              top: 140.sp,
+              top: 20.sp,
               right: AppUtil.isLtr ? 0.0 : null,
               left: !AppUtil.isLtr ? 0.0 : null,
               child: GlobalCard(
@@ -34,11 +34,11 @@ class GlobalPending extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Badge(
                   top: 0.0,
-                  title: '1',
+                  title: PendingsController.to.pendingList.length.toString(),
                   child: IconButton(
                     onPressed: () {
                       Get.toNamed(Routes.PENDINGS);
-                      AppBuilder.of(context)!.rebuild();
+                      PendingsController.to.showPendingIcon(false);
                     },
                     icon: const Icon(
                       Icons.bookmark,

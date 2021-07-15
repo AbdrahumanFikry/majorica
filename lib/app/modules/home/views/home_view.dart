@@ -88,7 +88,7 @@ class HomeView extends GetView<HomeController> {
                               Text(
                                 S.of(context).reserveRoom,
                                 style: AppUtil.textStyle(
-                                  fontSize: 55.sp,
+                                  fontSize: 45.sp,
                                 ),
                               ),
                               const SizedBox(
@@ -97,7 +97,7 @@ class HomeView extends GetView<HomeController> {
                               Text(
                                 S.of(context).pressToChooseDate,
                                 style: AppUtil.textStyle(
-                                  fontSize: 45.sp,
+                                  fontSize: 37.sp,
                                 ),
                               ),
                             ],

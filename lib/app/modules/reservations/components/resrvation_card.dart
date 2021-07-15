@@ -40,7 +40,7 @@ class ReservationCard extends StatelessWidget {
                     child: Text(
                       reservation.roomType!,
                       style: AppUtil.textStyle(
-                        fontSize: 50.sp,
+                        fontSize: 44.sp,
                         fontWeight: FontWeight.bold,
                         color: ColorUtil.darkBlue,
                       ),
@@ -81,7 +81,7 @@ class ReservationCard extends StatelessWidget {
                           Text(
                             S.of(context).packages,
                             style: AppUtil.textStyle(
-                              fontSize: 50.sp,
+                              fontSize: 40.sp,
                               fontWeight: FontWeight.bold,
                               color: ColorUtil.blackColor,
                             ),
@@ -89,7 +89,7 @@ class ReservationCard extends StatelessWidget {
                           Text(
                             reservation.roomPackage!,
                             style: AppUtil.textStyle(
-                              fontSize: 44.sp,
+                              fontSize: 38.sp,
                               fontWeight: FontWeight.w500,
                               color: ColorUtil.mediumGrey,
                             ),
@@ -105,7 +105,7 @@ class ReservationCard extends StatelessWidget {
                             Text(
                               S.of(context).offer,
                               style: AppUtil.textStyle(
-                                fontSize: 50.sp,
+                                fontSize: 40.sp,
                                 fontWeight: FontWeight.bold,
                                 color: ColorUtil.blackColor,
                               ),
@@ -113,7 +113,7 @@ class ReservationCard extends StatelessWidget {
                             Text(
                               reservation.offerName!,
                               style: AppUtil.textStyle(
-                                fontSize: 44.sp,
+                                fontSize: 38.sp,
                                 fontWeight: FontWeight.w500,
                                 color: ColorUtil.mediumGrey,
                               ),
@@ -132,7 +132,7 @@ class ReservationCard extends StatelessWidget {
                   Text(
                     S.of(context).total,
                     style: AppUtil.textStyle(
-                      fontSize: 66.sp,
+                      fontSize: 50.sp,
                       fontWeight: FontWeight.bold,
                       color: ColorUtil.darkBlue,
                     ),
@@ -141,7 +141,7 @@ class ReservationCard extends StatelessWidget {
                   Text(
                     '${reservation.reservationTotal} ${S.of(context).egp}',
                     style: AppUtil.textStyle(
-                      fontSize: 66.sp,
+                      fontSize: 50.sp,
                       fontWeight: FontWeight.bold,
                       color: ColorUtil.errorColor,
                     ),

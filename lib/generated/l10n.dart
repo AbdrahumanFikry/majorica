@@ -1317,10 +1317,10 @@ class S {
     );
   }
 
-  /// `أختر فتره الاقامه`
+  /// `أضغط لأختيار فتره الاقامه`
   String get choosePeriod {
     return Intl.message(
-      'أختر فتره الاقامه',
+      'أضغط لأختيار فتره الاقامه',
       name: 'choosePeriod',
       desc: '',
       args: [],
@@ -1617,10 +1617,10 @@ class S {
     );
   }
 
-  /// `تفاصيل الدفع`
+  /// `تفاصيل الحجز`
   String get reservationDetails {
     return Intl.message(
-      'تفاصيل الدفع',
+      'تفاصيل الحجز',
       name: 'reservationDetails',
       desc: '',
       args: [],
@@ -1722,6 +1722,16 @@ class S {
     return Intl.message(
       'لم تكتمل عمليه الدفع حدث خطأ ما',
       name: 'paymentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مسح هذا الحجز`
+  String get deleteThisReservation {
+    return Intl.message(
+      'مسح هذا الحجز',
+      name: 'deleteThisReservation',
       desc: '',
       args: [],
     );

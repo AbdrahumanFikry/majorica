@@ -32,6 +32,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
   late CountDownController countDownController = CountDownController();
 
   final genderValue = 'male'.obs;
+  final countryCode = '+20'.obs;
   final pinCodeError = RxString('');
   final forgetPassword = false.obs;
   final changePassword = false.obs;
@@ -60,7 +61,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         final response = await post(
           ApiUtil.authClient,
           body: {
-            "mobileNum": "2${phone.text}",
+            "mobileNum": "${countryCode.value}${phone.text}",
             "password": password.text,
           },
         );
@@ -98,14 +99,14 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           response = await post(
             ApiUtil.forgetPassword,
             body: {
-              "mobileNum": "2${phone.text}",
+              "mobileNum": "${countryCode.value}${phone.text}",
             },
           );
         } else {
           response = await post(
             ApiUtil.checkMobile,
             body: {
-              "mobileNum": "2${phone.text}",
+              "mobileNum": "${countryCode.value}${phone.text}",
             },
           );
         }

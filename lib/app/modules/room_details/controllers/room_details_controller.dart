@@ -63,6 +63,7 @@ class RoomDetailsController extends GetxController with BusyMixin, ApiMixin {
       enableCancel: true,
       onConfirm: () {
         Get.back();
+        PendingsController.to.showPendingIcon(false);
         Get.toNamed(Routes.PENDINGS);
       },
     );
