@@ -112,7 +112,7 @@ class RoomDetailsView extends GetView<RoomDetailsController> {
                 ),
               ),
               Positioned(
-                top: 20.sp,
+                top: 90.sp,
                 right: !AppUtil.isLtr ? 0.0 : null,
                 left: AppUtil.isLtr ? 0.0 : null,
                 child: GlobalCard(
