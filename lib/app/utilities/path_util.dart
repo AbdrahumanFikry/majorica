@@ -31,4 +31,6 @@ class ApiUtil {
   static const String changePassword = '$url/changePassword';
   static const String checkDate = '$url/checkDate';
   static const String reserve = '$url/reserve';
+  static const String cancelReservation = '$url/cancelReservation';
+  static const String myReservations = '$url/myReservations';
 }

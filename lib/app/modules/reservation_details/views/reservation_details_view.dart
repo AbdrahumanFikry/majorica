@@ -25,25 +25,47 @@ class ReservationDetailsView extends GetView<ReservationDetailsController> {
             height: Get.height,
             width: Get.width,
           ),
-          Positioned(
-            top: 0.0,
-            right: 0.0,
-            left: 0.0,
-            child: Container(
-              height: 300.sp,
-              width: Get.width,
-              color: ColorUtil.primaryColor,
-              child: Center(
-                child: Text(
-                  S.of(context).upComing,
-                  style: AppUtil.textStyle(
-                    color: ColorUtil.whiteColor,
-                    fontSize: 55.sp,
-                    fontWeight: FontWeight.bold,
+          Obx(
+            () {
+              final res = controller.reservationDetails.value;
+              return Positioned(
+                top: 0.0,
+                right: 0.0,
+                left: 0.0,
+                child: Container(
+                  height: 300.sp,
+                  width: Get.width,
+                  color: ColorUtil.primaryColor,
+                  child: Column(
+                    children: [
+                      Text(
+                        res!.checkOut!.isBefore(DateTime.now())
+                            ? S.of(context).past
+                            : S.of(context).upComing,
+                        style: AppUtil.textStyle(
+                          color: ColorUtil.whiteColor,
+                          fontSize: 55.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        res.statusText!,
+                        style: AppUtil.textStyle(
+                          color: res.statusColor != null
+                              ? AppUtil.fromHex(res.statusColor!)
+                              : ColorUtil.whiteColor,
+                          fontSize: 55.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
           DetailsBlock(),
         ],

@@ -10,7 +10,7 @@ import 'package:intl/intl.dart' as intl;
 import 'package:majorica/app/components/app_button.dart';
 import 'package:majorica/app/components/loading.dart';
 import 'package:majorica/generated/l10n.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'color_util.dart';
 
 class AppUtil {
@@ -513,6 +513,95 @@ class AppUtil {
           ),
         ),
         isDismissible: false,
+      );
+    }
+  }
+
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
+
+  static Future<void> callPhone(
+    BuildContext context, {
+    required List<String> phoneNumbers,
+  }) async {
+    if (Platform.isIOS) {
+      showCupertinoModalPopup<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoActionSheet(
+            actions: <Widget>[
+              ...phoneNumbers.map((e) {
+                final url = 'tel://$e';
+                return CupertinoActionSheetAction(
+                  onPressed: () async {
+                    try {
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      }
+                    } catch (e) {
+                      print(e.toString());
+                    }
+                  },
+                  child: Text(
+                    e,
+                    style: const TextStyle(
+                      color: ColorUtil.primaryColor,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ],
+            cancelButton: CupertinoActionSheetAction(
+              isDefaultAction: true,
+              onPressed: () {
+                Get.back(result: true);
+              },
+              child: Text(
+                S.current.cancel,
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      await Get.bottomSheet(
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            ),
+          ),
+          child: ListView.builder(
+            itemCount: phoneNumbers.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              final url = 'tel://${phoneNumbers[index]}';
+              return ListTile(
+                title: Text(
+                  phoneNumbers[index],
+                  style: const TextStyle(
+                    color: ColorUtil.primaryColor,
+                  ),
+                ),
+                onTap: () async {
+                  try {
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    }
+                  } catch (e) {
+                    print(e.toString());
+                  }
+                },
+              );
+            },
+          ),
+        ),
       );
     }
   }

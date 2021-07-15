@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:majorica/app/components/animated_list_handler.dart';
 import 'package:majorica/app/components/app_button.dart';
 import 'package:majorica/app/components/global_card.dart';
+import 'package:majorica/app/modules/reservation_details/controllers/reservation_details_controller.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import 'package:majorica/generated/l10n.dart';
 
 import 'info_line.dart';
 
-class DetailsBlock extends StatelessWidget {
+class DetailsBlock extends GetView<ReservationDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -31,122 +32,168 @@ class DetailsBlock extends StatelessWidget {
             horizontal: 20.0,
             vertical: 10.0,
           ),
-          child: AnimatedListHandler(
-            disableGlow: true,
-            shrinkWrap: true,
-            children: [
-              Text(
-                'Double room',
-                style: AppUtil.textStyle(
-                  color: ColorUtil.darkBlue,
-                  fontSize: 65.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              InfoLine(
-                title: S.of(context).packages,
-                info: 'Bed only',
-              ),
-              InfoLine(
-                title: S.of(context).participants,
-                info: '2',
-              ),
-              InfoLine(
-                title: S.of(context).total,
-                info: '1500 ${S.of(context).egp}',
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: FDottedLine(
-                  color: ColorUtil.mediumGrey,
-                  width: Get.width,
-                  strokeWidth: 2.0,
-                  dottedLength: 15.sp,
-                  space: 2.0,
-                ),
-              ),
-              Text(
-                S.of(context).paymentDetails,
-                style: AppUtil.textStyle(
-                  color: ColorUtil.darkBlue,
-                  fontSize: 50.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Row(
+          child: Obx(
+            () {
+              final res = controller.reservationDetails.value;
+              return AnimatedListHandler(
+                disableGlow: true,
+                shrinkWrap: true,
                 children: [
-                  Expanded(
-                    child: InfoLine(
-                      title: S.of(context).id,
-                      info: '#123',
-                      mini: true,
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          res!.roomType!,
+                          style: AppUtil.textStyle(
+                            color: ColorUtil.darkBlue,
+                            fontSize: 65.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        '#${res.iD!}',
+                        style: AppUtil.textStyle(
+                          color: ColorUtil.errorColor,
+                          fontSize: 50.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: InfoLine(
-                      title: S.of(context).refID,
-                      info: '#1234567',
-                      mini: true,
-                    ),
+                  InfoLine(
+                    title: S.of(context).packages,
+                    info: res.roomPackage!,
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: InfoLine(
-                      title: S.of(context).amount,
-                      info: '1500',
-                      mini: true,
-                    ),
+                  InfoLine(
+                    title: S.of(context).participants,
+                    info: res.sleeps!,
                   ),
-                  Expanded(
-                    child: InfoLine(
-                      title: S.of(context).paidFor,
-                      info: '010203040',
-                      mini: true,
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: FDottedLine(
-                  color: ColorUtil.mediumGrey,
-                  width: Get.width,
-                  strokeWidth: 2.0,
-                  dottedLength: 15.sp,
-                  space: 2.0,
-                ),
-              ),
-              ExpansionTile(
-                tilePadding: EdgeInsets.zero,
-                iconColor: ColorUtil.primaryColor,
-                title: Text(
-                  S.of(context).moreDetails,
-                  style: AppUtil.textStyle(
-                    color: ColorUtil.darkBlue,
-                    fontSize: 50.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                children: List.generate(
-                  2,
-                  (index) => InfoLine(
+                  InfoLine(
                     title: S.of(context).total,
-                    info: '1500 ${S.of(context).egp}',
+                    info: '${res.reservationTotal} ${S.of(context).egp}',
                   ),
-                ),
-              ),
-              AppButton(
-                width: 400.sp,
-                backgroundColor: Colors.transparent,
-                borderColor: ColorUtil.errorColor,
-                textColor: ColorUtil.errorColor,
-                title: S.of(context).cancelReservation,
-              ),
-            ],
+                  if (res.offerName != null)
+                    InfoLine(
+                      title: S.of(context).offer,
+                      info: res.offerName!,
+                    ),
+                  if (res.paymentDetails != null) ...[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: FDottedLine(
+                        color: ColorUtil.mediumGrey,
+                        width: Get.width,
+                        strokeWidth: 2.0,
+                        dottedLength: 15.sp,
+                        space: 2.0,
+                      ),
+                    ),
+                    Text(
+                      S.of(context).paymentDetails,
+                      style: AppUtil.textStyle(
+                        color: ColorUtil.darkBlue,
+                        fontSize: 50.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: InfoLine(
+                            title: S.of(context).id,
+                            info: '#${res.paymentDetails!.paymentID!}',
+                            mini: true,
+                          ),
+                        ),
+                        Expanded(
+                          child: InfoLine(
+                            title: S.of(context).refID,
+                            info: '#${res.paymentDetails!.orderRefID!}',
+                            mini: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: InfoLine(
+                            title: S.of(context).amount,
+                            info:
+                                '${res.paymentDetails!.paymentAmount!} ${S.of(context).egp}',
+                            mini: true,
+                          ),
+                        ),
+                        Expanded(
+                          child: InfoLine(
+                            title: S.of(context).paidFor,
+                            info: '#${res.paymentDetails!.reservationIDs!}',
+                            mini: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: FDottedLine(
+                      color: ColorUtil.mediumGrey,
+                      width: Get.width,
+                      strokeWidth: 2.0,
+                      dottedLength: 15.sp,
+                      space: 2.0,
+                    ),
+                  ),
+                  if (res.reservation!.isNotEmpty)
+                    ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      iconColor: ColorUtil.primaryColor,
+                      title: Text(
+                        S.of(context).moreDetails,
+                        style: AppUtil.textStyle(
+                          color: ColorUtil.darkBlue,
+                          fontSize: 50.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      children: res.reservation!
+                          .map(
+                            (detail) => InfoLine(
+                              title: detail.date!,
+                              info: '${detail.price!} ${S.of(context).egp}',
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  if (res.refundable != null)
+                    Text(
+                      res.refundable!,
+                      style: AppUtil.textStyle(
+                        color: res.statusColor != null
+                            ? AppUtil.fromHex(res.refundableColor!)
+                            : ColorUtil.whiteColor,
+                        fontSize: 50.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  else
+                    AppButton(
+                      isBusy: controller.isBusy.value,
+                      width: 400.sp,
+                      backgroundColor: Colors.transparent,
+                      borderColor: ColorUtil.errorColor,
+                      textColor: ColorUtil.errorColor,
+                      title: S.of(context).cancelReservation,
+                      onTap: controller.cancelReservation,
+                    ),
+                ],
+              );
+            },
           ),
         ),
       ),
