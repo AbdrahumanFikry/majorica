@@ -16,10 +16,9 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 220.sp,
+      top: Get.height * 0.17,
       right: 0.0,
       left: 0.0,
-      // bottom: 0.0,
       child: GlobalCard(
         color: ColorUtil.whiteColor,
         elevation: 10.0,
@@ -39,30 +38,14 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                 disableGlow: true,
                 shrinkWrap: true,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          res!.roomType!,
-                          style: AppUtil.textStyle(
-                            color: ColorUtil.darkBlue,
-                            fontSize: 65.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      Text(
-                        '#${res.iD!}',
-                        style: AppUtil.textStyle(
-                          color: ColorUtil.errorColor,
-                          fontSize: 50.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    res!.roomType!,
+                    style: AppUtil.textStyle(
+                      color: ColorUtil.darkBlue,
+                      fontSize: 65.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                   InfoLine(
                     title: S.of(context).packages,
@@ -95,7 +78,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                     Text(
                       S.of(context).paymentDetails,
                       style: AppUtil.textStyle(
-                        color: ColorUtil.darkBlue,
+                        color: ColorUtil.errorColor,
                         fontSize: 50.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -107,6 +90,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                             title: S.of(context).id,
                             info: '#${res.paymentDetails!.paymentID!}',
                             mini: true,
+                            highLight: true,
                           ),
                         ),
                         Expanded(
@@ -114,6 +98,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                             title: S.of(context).refID,
                             info: '#${res.paymentDetails!.orderRefID!}',
                             mini: true,
+                            highLight: true,
                           ),
                         ),
                       ],
@@ -126,6 +111,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                             info:
                                 '${res.paymentDetails!.paymentAmount!} ${S.of(context).egp}',
                             mini: true,
+                            highLight: true,
                           ),
                         ),
                         Expanded(
@@ -133,6 +119,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                             title: S.of(context).paidFor,
                             info: '#${res.paymentDetails!.reservationIDs!}',
                             mini: true,
+                            highLight: true,
                           ),
                         ),
                       ],
@@ -189,7 +176,15 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                       borderColor: ColorUtil.errorColor,
                       textColor: ColorUtil.errorColor,
                       title: S.of(context).cancelReservation,
-                      onTap: controller.cancelReservation,
+                      onTap: () async => await AppUtil.showAlertDialog(
+                        title: S.of(context).areYouSure,
+                        contentText: S.of(context).deleteThisReservation,
+                        enableCancel: true,
+                        onConfirm: () {
+                          Get.back();
+                          controller.cancelReservation();
+                        },
+                      ),
                     ),
                 ],
               );

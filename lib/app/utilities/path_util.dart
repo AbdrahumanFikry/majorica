@@ -9,6 +9,7 @@ class PathUtil {
   static const String authPNG = '${imagesPath}auth.png';
   static const String otpPNG = '${imagesPath}otp.png';
   static const String forgotPasswordPNG = '${imagesPath}forgot_password.png';
+  static const String checkPNG = '${imagesPath}check.png';
 
   //Icons
   static const String appIcon = '${iconsPath}appIcon.png';

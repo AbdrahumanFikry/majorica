@@ -35,7 +35,7 @@ class OTPView extends GetView<AuthService> {
                 children: [
                   Image.asset(
                     PathUtil.otpPNG,
-                    height: 450.sp,
+                    height: 600.sp,
                   ),
                   const SizedBox(
                     height: 20.0,
@@ -45,7 +45,7 @@ class OTPView extends GetView<AuthService> {
                     style: AppUtil.textStyle(
                       color: ColorUtil.darkBlue,
                       fontWeight: FontWeight.bold,
-                      fontSize: 64.sp,
+                      fontSize: 50.sp,
                     ),
                   ),
                   const SizedBox(

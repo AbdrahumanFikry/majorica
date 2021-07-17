@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "category" : MessageLookupByLibrary.simpleMessage("Category"),
     "changePassword" : MessageLookupByLibrary.simpleMessage("Change password"),
     "chat" : MessageLookupByLibrary.simpleMessage("Chat"),
+    "checkIn" : MessageLookupByLibrary.simpleMessage("Check In"),
+    "checkOut" : MessageLookupByLibrary.simpleMessage("Check out"),
     "chooseBirthDate" : MessageLookupByLibrary.simpleMessage("Choose your birth date correctly"),
     "choosePeriod" : MessageLookupByLibrary.simpleMessage("Press to choose Period of stay"),
     "clearCache" : MessageLookupByLibrary.simpleMessage("Clear cache"),

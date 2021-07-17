@@ -8,6 +8,7 @@ import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/components/loading.dart';
 import 'package:majorica/app/modules/reservations/components/resrvation_card.dart';
 import 'package:majorica/app/modules/reservations/components/tab_item.dart';
+import 'package:majorica/app/utilities/color_util.dart';
 import 'package:majorica/generated/l10n.dart';
 import '../controllers/reservations_controller.dart';
 
@@ -15,6 +16,7 @@ class ReservationsView extends GetView<ReservationsController> {
   @override
   Widget build(BuildContext context) {
     return GlobalScaffold(
+      backgroundColor: ColorUtil.lightGrey,
       appBar: GlobalAppBar(
         title: S.of(context).allReservations,
       ),

@@ -1736,6 +1736,26 @@ class S {
       args: [],
     );
   }
+
+  /// `نزول`
+  String get checkIn {
+    return Intl.message(
+      'نزول',
+      name: 'checkIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مغادره`
+  String get checkOut {
+    return Intl.message(
+      'مغادره',
+      name: 'checkOut',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

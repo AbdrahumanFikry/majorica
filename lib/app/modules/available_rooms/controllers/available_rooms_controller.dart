@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/available_room.dart';
 import 'package:majorica/app/data/models/room_group.dart';
-import 'package:majorica/app/modules/available_rooms/views/available_rooms_reselt_view.dart';
 import 'package:majorica/app/modules/root/controllers/root_controller.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
@@ -13,8 +12,6 @@ import 'package:majorica/app/components/extensions.dart';
 class AvailableRoomsController extends GetxController with BusyMixin, ApiMixin {
   final _roomGroupsFromCache = RxList<RoomGroup>(<RoomGroup>[]);
   final availableRoomGroups = RxList<RoomGroup>(<RoomGroup>[]);
-
-  TextEditingController range = TextEditingController();
   final startDateTime = Rxn<DateTime>();
   final endDateTime = Rxn<DateTime>();
 
@@ -52,7 +49,6 @@ class AvailableRoomsController extends GetxController with BusyMixin, ApiMixin {
           }
           startDateTime(null);
           endDateTime(null);
-          Get.to(() => AvailableRoomsResultsView());
         }
       }
       endBusySuccess();
@@ -66,6 +62,13 @@ class AvailableRoomsController extends GetxController with BusyMixin, ApiMixin {
     _roomGroupsFromCache.assignAll(
       RootController.to.appData.value!.roomGroups!.toList(),
     );
+    if (Get.arguments != null) {
+      final _range = Get.arguments as DateTimeRange;
+      startDateTime(_range.start);
+      endDateTime(_range.end);
+      fetchRooms();
+    }
+
     super.onReady();
   }
 }

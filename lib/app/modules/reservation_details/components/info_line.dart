@@ -7,11 +7,13 @@ class InfoLine extends StatelessWidget {
   final String title;
   final String info;
   final bool mini;
+  final bool highLight;
 
   const InfoLine({
     required this.title,
     required this.info,
     this.mini = false,
+    this.highLight = false,
   });
 
   @override
@@ -32,7 +34,7 @@ class InfoLine extends StatelessWidget {
             child: Text(
               info,
               style: AppUtil.textStyle(
-                color: ColorUtil.darkBlue,
+                color: highLight ? ColorUtil.errorColor : ColorUtil.darkBlue,
                 fontSize: mini ? 34.sp : 44.sp,
                 fontWeight: FontWeight.w500,
               ),

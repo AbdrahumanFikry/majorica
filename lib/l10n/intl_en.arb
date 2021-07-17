@@ -167,5 +167,7 @@
   "totalBeforeCoupon": "Total before coupon",
   "paymentDoneSuccessfully": "Payment done successfully",
   "paymentError": "Payment not done ,an error occurred",
-  "deleteThisReservation": "Delete this reservation"
+  "deleteThisReservation": "Delete this reservation",
+  "checkIn": "Check In",
+  "checkOut": "Check out"
 }

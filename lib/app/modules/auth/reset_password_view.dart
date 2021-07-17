@@ -33,8 +33,8 @@ class ResetPasswordView extends GetView<AuthService> {
                     ),
                     Image.asset(
                       PathUtil.forgotPasswordPNG,
-                      height: 500.sp,
-                      width: 500.sp,
+                      height: 600.sp,
+                      width: 600.sp,
                       fit: BoxFit.contain,
                     ),
                     const Spacer(

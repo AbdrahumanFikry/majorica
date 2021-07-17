@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "category" : MessageLookupByLibrary.simpleMessage("الفئه"),
     "changePassword" : MessageLookupByLibrary.simpleMessage("تغيير كلمه المرور"),
     "chat" : MessageLookupByLibrary.simpleMessage("الدردشه"),
+    "checkIn" : MessageLookupByLibrary.simpleMessage("نزول"),
+    "checkOut" : MessageLookupByLibrary.simpleMessage("مغادره"),
     "chooseBirthDate" : MessageLookupByLibrary.simpleMessage("اختر تاريخ ميلادك بشكل صحيح"),
     "choosePeriod" : MessageLookupByLibrary.simpleMessage("أضغط لأختيار فتره الاقامه"),
     "clearCache" : MessageLookupByLibrary.simpleMessage("مسح الذاكره"),

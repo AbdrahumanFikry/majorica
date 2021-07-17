@@ -34,8 +34,8 @@ class LoginView extends GetView<AuthService> {
                   ),
                   Image.asset(
                     PathUtil.authPNG,
-                    height: 400.sp,
-                    width: 400.sp,
+                    height: 500.sp,
+                    width: 500.sp,
                   ),
                   const SizedBox(
                     height: 15.0,
@@ -137,38 +137,6 @@ class LoginView extends GetView<AuthService> {
                     isBusy: controller.busyId.value == 'login',
                     title: S.of(context).enter,
                     onTap: controller.login,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        S.of(context).donNotHaveAcc,
-                        style: AppUtil.textStyle(
-                          color: ColorUtil.mediumGrey,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5.0,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          controller.password.clear();
-                          controller.confirmedPassword.clear();
-                          controller.forgetPassword(false);
-                          controller.changePassword(false);
-                          Get.toNamed(Routes.ACCOUNT);
-                        },
-                        child: Text(
-                          S.of(context).signUp,
-                          style: AppUtil.textStyle(
-                            color: ColorUtil.darkBlue,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),

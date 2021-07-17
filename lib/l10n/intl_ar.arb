@@ -167,5 +167,7 @@
   "totalBeforeCoupon": "الاجمالى قبل الكوبون",
   "paymentDoneSuccessfully": "تم الدفع بنجاح",
   "paymentError": "لم تكتمل عمليه الدفع حدث خطأ ما",
-  "deleteThisReservation": "مسح هذا الحجز"
+  "deleteThisReservation": "مسح هذا الحجز",
+  "checkIn": "نزول",
+  "checkOut": "مغادره"
 }

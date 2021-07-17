@@ -44,7 +44,7 @@ class RoomImagesView extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 140.sp,
+            top: 150.sp,
             right: !AppUtil.isLtr ? 0.0 : null,
             left: AppUtil.isLtr ? 0.0 : null,
             child: GlobalCard(

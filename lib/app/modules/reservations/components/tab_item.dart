@@ -19,7 +19,7 @@ class TabItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlobalCard(
       onTap: onTap,
-      color: selected ? ColorUtil.primaryColor : ColorUtil.lightGrey,
+      color: selected ? ColorUtil.primaryColor : ColorUtil.whiteColor,
       margin: const EdgeInsets.symmetric(
         horizontal: 10.0,
         vertical: 5.0,

@@ -33,9 +33,9 @@ class AccountView extends GetView<AuthService> {
                     height: 200.sp,
                   ),
                   Image.asset(
-                    PathUtil.appIcon,
-                    height: 500.sp,
-                    width: 500.sp,
+                    PathUtil.checkPNG,
+                    height: 600.sp,
+                    width: 600.sp,
                   ),
                   const Spacer(),
                   Align(

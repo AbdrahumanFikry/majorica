@@ -8,7 +8,7 @@ import 'package:majorica/app/modules/reservations/controllers/reservations_contr
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:majorica/generated/l10n.dart';
-
+import 'package:majorica/app/components/extensions.dart';
 import '../controllers/reservation_details_controller.dart';
 
 class ReservationDetailsView extends GetView<ReservationDetailsController> {
@@ -35,7 +35,7 @@ class ReservationDetailsView extends GetView<ReservationDetailsController> {
                   right: 0.0,
                   left: 0.0,
                   child: Container(
-                    height: 300.sp,
+                    height: Get.height * 0.25,
                     width: Get.width,
                     color: ColorUtil.primaryColor,
                     child: Column(
@@ -47,7 +47,7 @@ class ReservationDetailsView extends GetView<ReservationDetailsController> {
                               : S.of(context).upComing,
                           style: AppUtil.textStyle(
                             color: ColorUtil.whiteColor,
-                            fontSize: 55.sp,
+                            fontSize: 50.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -63,6 +63,42 @@ class ReservationDetailsView extends GetView<ReservationDetailsController> {
                             fontSize: 55.sp,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              res.checkIn!.toDayMonthOnly(),
+                              style: AppUtil.textStyle(
+                                color: res.statusColor != null
+                                    ? AppUtil.fromHex(res.statusColor!)
+                                    : ColorUtil.whiteColor,
+                                fontSize: 55.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0,
+                                vertical: 10.0,
+                              ),
+                              child: Icon(
+                                Icons.arrow_forward_outlined,
+                                color: ColorUtil.darkBlue,
+                                size: 70.sp,
+                              ),
+                            ),
+                            Text(
+                              res.checkOut!.toDayMonthOnly(),
+                              style: AppUtil.textStyle(
+                                color: res.statusColor != null
+                                    ? AppUtil.fromHex(res.statusColor!)
+                                    : ColorUtil.whiteColor,
+                                fontSize: 55.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
