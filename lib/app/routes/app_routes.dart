@@ -17,6 +17,7 @@ abstract class Routes {
   static const ROOM_DETAILS = _Paths.ROOM_DETAILS;
   static const PENDINGS = _Paths.PENDINGS;
   static const RESERVATION_DETAILS = _Paths.RESERVATION_DETAILS;
+  static const DOCUMENTS = _Paths.DOCUMENTS;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const ROOM_DETAILS = '/room-details';
   static const PENDINGS = '/pendings';
   static const RESERVATION_DETAILS = '/reservation-details';
+  static const DOCUMENTS = '/documents';
 }

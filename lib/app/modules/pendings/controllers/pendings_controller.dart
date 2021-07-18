@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/pending.dart';
 import 'package:majorica/app/modules/pendings/views/payment_view.dart';
+import 'package:majorica/app/modules/pendings/views/success_page_view.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
@@ -62,15 +63,11 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
             paymentToken: response['paymentToken'],
           ),
         );
-        print(':::::::::::: $result');
         if (result != null) {
           final message = json.decode(result);
           if (message['success'] == true) {
-            await AppUtil.showAlertDialog(
-              contentText: S.current.paymentDoneSuccessfully,
-            );
             pendingList.clear();
-            Get.back();
+            Get.off(() => SuccessPageView());
           } else {
             AppUtil.showAlertDialog(
               contentText: '${S.current.paymentError} (${message['error']})',

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:majorica/app/components/app_builder.dart';
 import 'package:majorica/app/components/badge.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/modules/pendings/controllers/pendings_controller.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'global_card.dart';
 
@@ -27,9 +25,9 @@ class GlobalPending extends StatelessWidget {
             if (PendingsController.to.pendingList.isNotEmpty &&
                 PendingsController.to.showPendingIcon.value)
               Positioned(
-                top: 150.sp,
-                right: AppUtil.isLtr ? 0.0 : null,
-                left: !AppUtil.isLtr ? 0.0 : null,
+                top: 55.0,
+                right: AppUtil.isLtr ? 55.0 : null,
+                left: !AppUtil.isLtr ? 55.0 : null,
                 child: GlobalCard(
                   color: Colors.white,
                   elevation: 5,

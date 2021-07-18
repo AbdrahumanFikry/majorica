@@ -67,7 +67,7 @@ class AppUtil {
       );
 
   static ThemeData appLightTheme = ThemeData(
-    fontFamily: 'Almarai',
+    fontFamily: 'Cairo',
     primaryColor: ColorUtil.primaryColor,
     scaffoldBackgroundColor: ColorUtil.whiteScaffold,
     brightness: Brightness.light,

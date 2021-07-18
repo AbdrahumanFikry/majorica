@@ -1756,6 +1756,36 @@ class S {
       args: [],
     );
   }
+
+  /// `يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق`
+  String get uploadYourData {
+    return Intl.message(
+      'يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق',
+      name: 'uploadYourData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `المستندات`
+  String get documents {
+    return Intl.message(
+      'المستندات',
+      name: 'documents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أضف مستند`
+  String get addDocument {
+    return Intl.message(
+      'أضف مستند',
+      name: 'addDocument',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

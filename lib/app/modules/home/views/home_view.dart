@@ -117,7 +117,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10.0,
+                                height: 5.0,
                               ),
                               Text(
                                 S.of(context).pressToChooseDate,

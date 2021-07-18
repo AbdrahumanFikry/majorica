@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutUs" : MessageLookupByLibrary.simpleMessage("معلومات عنا"),
     "account" : MessageLookupByLibrary.simpleMessage("حسابى"),
     "accountId" : MessageLookupByLibrary.simpleMessage("رقم الحساب"),
+    "addDocument" : MessageLookupByLibrary.simpleMessage("أضف مستند"),
     "address" : MessageLookupByLibrary.simpleMessage("العنوان"),
     "agreeToTermsAndConditions" : MessageLookupByLibrary.simpleMessage("أوافق علي الشروط والاحكام"),
     "alert" : MessageLookupByLibrary.simpleMessage("تنبيه"),
@@ -72,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "discount" : MessageLookupByLibrary.simpleMessage("خصم"),
     "discountCard" : MessageLookupByLibrary.simpleMessage("بطاقة الخصم"),
     "discountCoupon" : MessageLookupByLibrary.simpleMessage("كوبون الخصم"),
+    "documents" : MessageLookupByLibrary.simpleMessage("المستندات"),
     "donNotHaveAcc" : MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
     "done" : MessageLookupByLibrary.simpleMessage("تم"),
     "edit" : MessageLookupByLibrary.simpleMessage("تعديل"),
@@ -197,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "typeMessage" : MessageLookupByLibrary.simpleMessage("أكتب رساله"),
     "unAuthorized" : MessageLookupByLibrary.simpleMessage("غير مصرح لك !"),
     "upComing" : MessageLookupByLibrary.simpleMessage("قادمه"),
+    "uploadYourData" : MessageLookupByLibrary.simpleMessage("يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق"),
     "verifyText" : MessageLookupByLibrary.simpleMessage("تم إرسال كود من 4 أرقام إلى رقم هاتفك قم بإدراجه للإستمرار")
   };
 }

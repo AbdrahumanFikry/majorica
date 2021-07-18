@@ -19,6 +19,7 @@ class PathUtil {
   static const String upLottie = '${lottiePath}up.json';
   static const String loadingLottie = '${lottiePath}loading.json';
   static const String pendingLottie = '${lottiePath}pending.json';
+  static const String successLottie = '${lottiePath}success.json';
 }
 
 class ApiUtil {
@@ -34,4 +35,7 @@ class ApiUtil {
   static const String reserve = '$url/reserve';
   static const String cancelReservation = '$url/cancelReservation';
   static const String myReservations = '$url/myReservations';
+  static const String myDocs = '$url/myDocs';
+  static const String uploadDocs = '$url/uploadDocs';
+  static const String deleteDoc = '$url/deleteDoc';
 }

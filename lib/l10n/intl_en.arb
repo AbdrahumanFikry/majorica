@@ -169,5 +169,8 @@
   "paymentError": "Payment not done ,an error occurred",
   "deleteThisReservation": "Delete this reservation",
   "checkIn": "Check In",
-  "checkOut": "Check out"
+  "checkOut": "Check out",
+  "uploadYourData": "Please upload or refresh your documents for faster registration at the hotel",
+  "documents": "Documents",
+  "addDocument": "Add Document"
 }

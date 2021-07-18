@@ -169,5 +169,8 @@
   "paymentError": "لم تكتمل عمليه الدفع حدث خطأ ما",
   "deleteThisReservation": "مسح هذا الحجز",
   "checkIn": "نزول",
-  "checkOut": "مغادره"
+  "checkOut": "مغادره",
+  "uploadYourData": "يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق",
+  "documents": "المستندات",
+  "addDocument": "أضف مستند"
 }

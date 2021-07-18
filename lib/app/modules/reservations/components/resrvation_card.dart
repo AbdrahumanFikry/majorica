@@ -41,7 +41,7 @@ class ReservationCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 10.0,
+                vertical: 5.0,
               ),
               child: Row(
                 children: [
@@ -73,7 +73,7 @@ class ReservationCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 10.0,
+                vertical: 5.0,
               ),
               child: Text(
                 reservation.roomType!,
@@ -87,7 +87,7 @@ class ReservationCard extends StatelessWidget {
             if (reservation.checkIn != null && reservation.checkOut != null)
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 10.0,
+                  vertical: 5.0,
                   horizontal: 20.0,
                 ),
                 child: Row(
@@ -109,7 +109,7 @@ class ReservationCard extends StatelessWidget {
               ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 10.0,
+                vertical: 5.0,
                 horizontal: 20.0,
               ),
               child: Row(
@@ -163,7 +163,7 @@ class ReservationCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
-                vertical: 10.0,
+                vertical: 5.0,
               ),
               child: Row(
                 children: [

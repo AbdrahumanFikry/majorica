@@ -95,7 +95,6 @@ class AccountView extends GetView<AuthService> {
                     ),
                     validator: const QuickTextValidator(
                       isPhone: true,
-                      hasMinLength: 11,
                     ),
                   ),
                   Obx(

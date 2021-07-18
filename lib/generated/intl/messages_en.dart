@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "aboutUs" : MessageLookupByLibrary.simpleMessage("About us"),
     "account" : MessageLookupByLibrary.simpleMessage("My account"),
     "accountId" : MessageLookupByLibrary.simpleMessage("Account Id"),
+    "addDocument" : MessageLookupByLibrary.simpleMessage("Add Document"),
     "address" : MessageLookupByLibrary.simpleMessage("Address"),
     "agreeToTermsAndConditions" : MessageLookupByLibrary.simpleMessage("I agree to the terms and conditions"),
     "alert" : MessageLookupByLibrary.simpleMessage("Alert"),
@@ -72,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "discount" : MessageLookupByLibrary.simpleMessage("Discount"),
     "discountCard" : MessageLookupByLibrary.simpleMessage("Discount Card"),
     "discountCoupon" : MessageLookupByLibrary.simpleMessage("Discount coupon"),
+    "documents" : MessageLookupByLibrary.simpleMessage("Documents"),
     "donNotHaveAcc" : MessageLookupByLibrary.simpleMessage("Don/\'t  have account?"),
     "done" : MessageLookupByLibrary.simpleMessage("Done"),
     "edit" : MessageLookupByLibrary.simpleMessage("Edit"),
@@ -197,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "typeMessage" : MessageLookupByLibrary.simpleMessage("Type a message"),
     "unAuthorized" : MessageLookupByLibrary.simpleMessage("Unauthorized action !"),
     "upComing" : MessageLookupByLibrary.simpleMessage("Up coming"),
+    "uploadYourData" : MessageLookupByLibrary.simpleMessage("Please upload or refresh your documents for faster registration at the hotel"),
     "verifyText" : MessageLookupByLibrary.simpleMessage("A 4 - Digit PIN has been sent to your email address, enter it below to continue")
   };
 }

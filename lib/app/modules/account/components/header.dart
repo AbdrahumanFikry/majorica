@@ -11,7 +11,7 @@ class AccountHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height * 0.32,
+      height: Get.height * 0.28,
       width: Get.width,
       color: ColorUtil.primaryColor,
       padding: EdgeInsets.symmetric(

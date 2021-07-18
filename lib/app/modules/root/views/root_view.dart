@@ -63,11 +63,11 @@ class RootView extends GetView<RootController> {
                             color: selected
                                 ? ColorUtil.primaryColor
                                 : ColorUtil.mediumGrey,
-                            size: 90.sp,
+                            size: 75.sp,
                           ),
                         ),
                         const SizedBox(
-                          height: 5.0,
+                          height: 10.0,
                         ),
                         FittedBox(
                           child: Text(
@@ -77,7 +77,7 @@ class RootView extends GetView<RootController> {
                                   ? ColorUtil.primaryColor
                                   : ColorUtil.mediumGrey,
                               fontWeight: FontWeight.bold,
-                              fontSize: 34.sp,
+                              fontSize: 32.sp,
                             ),
                           ),
                         ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:majorica/app/components/animated_list_handler.dart';
 import 'package:majorica/app/components/global_card.dart';
@@ -49,6 +50,11 @@ class AccountBody extends GetView<AccountController> {
               //   onTap: () => Get.toNamed(Routes.PENDINGS),
               //   trailing: '1',
               // ),
+              AccountCard(
+                iconData: CupertinoIcons.collections_solid,
+                title: S.of(context).documents,
+                onTap: () => Get.toNamed(Routes.DOCUMENTS),
+              ),
               AccountCard(
                 iconData: Icons.language,
                 title: S.of(context).language,

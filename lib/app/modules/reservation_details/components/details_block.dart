@@ -16,7 +16,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: Get.height * 0.17,
+      top: Get.height * 0.15,
       right: 0.0,
       left: 0.0,
       child: GlobalCard(
@@ -29,7 +29,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20.0,
-            vertical: 10.0,
+            vertical: 5.0,
           ),
           child: Obx(
             () {
@@ -171,7 +171,7 @@ class DetailsBlock extends GetView<ReservationDetailsController> {
                   if (res.statusText!.toLowerCase() != 'canceled')
                     AppButton(
                       isBusy: controller.isBusy.value,
-                      width: 400.sp,
+                      height: 100.sp,
                       backgroundColor: Colors.transparent,
                       borderColor: ColorUtil.errorColor,
                       textColor: ColorUtil.errorColor,

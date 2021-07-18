@@ -65,12 +65,14 @@ flutter:
     - assets/lottie/
 
   fonts:
-    - family: Almarai
+    - family: Cairo
       fonts:
-        - asset: assets/fonts/Almarai-Regular.ttf
-        - asset: assets/fonts/Almarai-Light.ttf
-        - asset: assets/fonts/Almarai-ExtraBold.ttf
-        - asset: assets/fonts/Almarai-Bold.ttf
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Black.ttf
+        - asset: assets/fonts/Cairo-Light.ttf
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+
 
 
 flutter_intl:

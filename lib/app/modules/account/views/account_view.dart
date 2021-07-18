@@ -23,7 +23,7 @@ class AccountView extends GetView<AccountController> {
             child: AccountHeader(),
           ),
           Positioned(
-            top: Get.height * 0.25,
+            top: Get.height * 0.235,
             left: 0.0,
             right: 0.0,
             child: AccountBody(),
