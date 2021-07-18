@@ -42,6 +42,7 @@ class DocumentsController extends GetxController with BusyMixin, ApiMixin {
         ApiUtil.uploadDocs,
         body: {
           "sessionID": sessionID,
+          "sessionID": sessionID,
         }..addAll(
             filesToBase64(
               {
@@ -53,6 +54,7 @@ class DocumentsController extends GetxController with BusyMixin, ApiMixin {
       if (response['success'] == true) {
         docFile(File(''));
         await fetchAllDocs();
+        Get.back();
       }
       endBusySuccess();
     } catch (error) {
