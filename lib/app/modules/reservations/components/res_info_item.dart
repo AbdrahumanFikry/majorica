@@ -22,9 +22,6 @@ class ResInfoItem extends StatelessWidget {
             color: ColorUtil.mediumGrey,
           ),
         ),
-        const SizedBox(
-          height: 5.0,
-        ),
         Text(
           info,
           style: AppUtil.textStyle(

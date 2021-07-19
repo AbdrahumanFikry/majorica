@@ -30,7 +30,7 @@ class RootView extends GetView<RootController> {
       'title': S.current.account,
       'icon': Icons.person_outline_outlined,
       'activeIcon': Icons.person,
-      'page': AccountView(),
+      'page': MyAccountView(),
     },
   ];
 
@@ -38,61 +38,59 @@ class RootView extends GetView<RootController> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        return SafeArea(
-          child: GlobalScaffold(
-            body: tabs[controller.currentPage.value]['page'],
-            bottomNavigationBar: Directionality(
-              textDirection: TextDirection.ltr,
-              child: AnimatedBottomNavigationBar.builder(
-                splashSpeedInMilliseconds: 0,
-                backgroundColor: ColorUtil.whiteScaffold,
-                itemCount: tabs.length,
-                tabBuilder: (int index, bool selected) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5.0,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          child: Icon(
-                            controller.currentPage.value == index
-                                ? tabs[index]['activeIcon']
-                                : tabs[index]['icon'],
+        return GlobalScaffold(
+          body: tabs[controller.currentPage.value]['page'],
+          bottomNavigationBar: Directionality(
+            textDirection: TextDirection.ltr,
+            child: AnimatedBottomNavigationBar.builder(
+              splashSpeedInMilliseconds: 0,
+              backgroundColor: ColorUtil.whiteScaffold,
+              itemCount: tabs.length,
+              tabBuilder: (int index, bool selected) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        child: Icon(
+                          controller.currentPage.value == index
+                              ? tabs[index]['activeIcon']
+                              : tabs[index]['icon'],
+                          color: selected
+                              ? ColorUtil.primaryColor
+                              : ColorUtil.mediumGrey,
+                          size: 30.0,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      FittedBox(
+                        child: Text(
+                          tabs[index]['title']!.toString(),
+                          style: AppUtil.textStyle(
                             color: selected
                                 ? ColorUtil.primaryColor
                                 : ColorUtil.mediumGrey,
-                            size: 75.sp,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28.sp,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        FittedBox(
-                          child: Text(
-                            tabs[index]['title']!.toString(),
-                            style: AppUtil.textStyle(
-                              color: selected
-                                  ? ColorUtil.primaryColor
-                                  : ColorUtil.mediumGrey,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 32.sp,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                activeIndex: controller.currentPage.value,
-                gapLocation: GapLocation.none,
-                notchSmoothness: NotchSmoothness.defaultEdge,
-                onTap: (index) {
-                  print(index);
-                  controller.currentPage(index);
-                },
-              ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              activeIndex: controller.currentPage.value,
+              gapLocation: GapLocation.none,
+              notchSmoothness: NotchSmoothness.defaultEdge,
+              onTap: (index) {
+                print(index);
+                controller.currentPage(index);
+              },
             ),
           ),
         );

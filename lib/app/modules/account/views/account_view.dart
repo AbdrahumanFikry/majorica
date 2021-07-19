@@ -6,7 +6,7 @@ import 'package:majorica/app/modules/account/components/account_body.dart';
 import '../components/header.dart';
 import '../controllers/account_controller.dart';
 
-class AccountView extends GetView<AccountController> {
+class MyAccountView extends GetView<AccountController> {
   @override
   Widget build(BuildContext context) {
     return GlobalScaffold(
@@ -23,7 +23,7 @@ class AccountView extends GetView<AccountController> {
             child: AccountHeader(),
           ),
           Positioned(
-            top: Get.height * 0.235,
+            top: Get.height * 0.22,
             left: 0.0,
             right: 0.0,
             child: AccountBody(),

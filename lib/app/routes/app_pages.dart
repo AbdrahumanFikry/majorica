@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:majorica/app/modules/account/bindings/account_binding.dart';
+import 'package:majorica/app/modules/account/views/account_view.dart';
 
 import 'package:majorica/app/modules/auth/account_view.dart';
 import 'package:majorica/app/modules/auth/login_view.dart';
@@ -41,6 +43,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () => HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_ACCOUNT,
+      page: () => MyAccountView(),
+      binding: AccountBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,

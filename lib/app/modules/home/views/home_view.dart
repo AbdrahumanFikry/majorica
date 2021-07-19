@@ -52,7 +52,7 @@ class HomeView extends GetView<HomeController> {
                     fit: BoxFit.cover,
                   ),
                 Positioned(
-                  top: 200.sp,
+                  top: 250.sp,
                   left: 0.0,
                   right: 0.0,
                   child: GlobalCard(
@@ -64,20 +64,34 @@ class HomeView extends GetView<HomeController> {
                     ),
                     onTap: () async {
                       final range = await Get.dialog<DateTimeRange>(
-                        DateRangePickerDialog(
-                          // context: context,
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(DateTime.now().year + 1),
-                          helpText: S.of(context).choosePeriod,
-                          cancelText: S.of(context).cancel,
-                          confirmText: S.of(context).confirm,
-                          saveText: S.of(context).confirm,
-                          fieldStartHintText: S.of(context).startDate,
-                          fieldEndHintText: S.of(context).endDate,
-                          fieldStartLabelText: S.of(context).startDate,
-                          fieldEndLabelText: S.of(context).endDate,
-                          // initialDateRange: controller.range.value,
-                          initialEntryMode: DatePickerEntryMode.calendarOnly,
+                        Theme(
+                          data: ThemeData(
+                              textButtonTheme: TextButtonThemeData(
+                                style: ButtonStyle(
+                                  fixedSize: MaterialStateProperty.all<Size>(
+                                    const Size(30.0, 30.0),
+                                  ),
+                                ),
+                              ),
+                              buttonTheme: const ButtonThemeData(
+                                textTheme: ButtonTextTheme.accent,
+                              ),
+                              primaryColor: ColorUtil.primaryColor),
+                          child: DateRangePickerDialog(
+                            // context: context,
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(DateTime.now().year + 1),
+                            helpText: S.of(context).choosePeriod,
+                            cancelText: S.of(context).cancel,
+                            confirmText: S.of(context).confirm,
+                            saveText: S.of(context).confirm,
+                            fieldStartHintText: S.of(context).startDate,
+                            fieldEndHintText: S.of(context).endDate,
+                            fieldStartLabelText: S.of(context).startDate,
+                            fieldEndLabelText: S.of(context).endDate,
+                            // initialDateRange: controller.range.value,
+                            initialEntryMode: DatePickerEntryMode.calendarOnly,
+                          ),
                         ),
                       );
                       if (range != null) {
@@ -133,7 +147,7 @@ class HomeView extends GetView<HomeController> {
                 if (controller.homeData.value?.myRooms != null &&
                     controller.homeData.value!.myRooms!.isNotEmpty)
                   Positioned(
-                    top: 500.sp,
+                    top: 425.sp,
                     left: 0.0,
                     right: 0.0,
                     bottom: 0.0,

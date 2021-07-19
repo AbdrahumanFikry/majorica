@@ -84,14 +84,15 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                             color: ColorUtil.darkBlue,
                           ),
                         ),
-                      Text(
-                        '#${widget.roomInfo!.iD!}',
-                        style: AppUtil.textStyle(
-                          fontSize: 44.sp,
-                          fontWeight: FontWeight.bold,
-                          color: ColorUtil.errorColor,
+                      if (widget.roomInfo?.requestable == true)
+                        Text(
+                          '#${widget.roomInfo!.roomNumber!}',
+                          style: AppUtil.textStyle(
+                            fontSize: 44.sp,
+                            fontWeight: FontWeight.bold,
+                            color: ColorUtil.errorColor,
+                          ),
                         ),
-                      ),
                       const SizedBox(
                         width: 10.0,
                       ),
@@ -169,8 +170,15 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                             title: 'WIFI',
                             onTap: () async => await AppUtil.showAlertDialog(
                               title: widget.wiFiName,
-                              contentText:
-                                  '${S.of(context).username} : ${widget.roomInfo!.iD!} \n${S.of(context).password} : ${widget.roomInfo!.wifiPassword!} ',
+                              child: SelectableText(
+                                '${S.of(context).username} : ${widget.roomInfo!.iD!} \n${S.of(context).password} : ${widget.roomInfo!.wifiPassword!} ',
+                                style: const TextStyle(
+                                  color: ColorUtil.blackColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16.0,
+                                  height: 1.5,
+                                ),
+                              ),
                             ),
                           ),
                         if (widget.requests?.entries != null)
