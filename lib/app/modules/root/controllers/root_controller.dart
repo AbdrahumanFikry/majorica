@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/app_data.dart';
 import 'package:majorica/app/services/auth_service.dart';
@@ -6,6 +7,8 @@ import 'package:majorica/app/services/cache_service.dart';
 class RootController extends GetxController {
   final currentPage = 0.obs;
   final appData = Rxn<AppData>();
+  final wallpaper = RxnString();
+  final random = Random();
 
   static RootController get to => Get.find<RootController>();
 
@@ -15,6 +18,9 @@ class RootController extends GetxController {
       (event) async {
         if (event != null) {
           appData(event.value);
+          final list =
+              appData.value?.appSettings?.appBG?.toList() ?? <String>[];
+          wallpaper(list[random.nextInt(list.length)]);
         }
       },
     ).onDone(() {

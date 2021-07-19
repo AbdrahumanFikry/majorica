@@ -114,9 +114,9 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         }
         if (response['OTPHash'] != null) {
           otpHash(response['OTPHash']);
-          Get.toNamed(Routes.OTP);
+          Get.offAllNamed(Routes.OTP);
         } else if (response['checkMobile'] == true) {
-          Get.offNamed(Routes.LOGIN);
+          Get.offAllNamed(Routes.LOGIN);
         }
         endBusySuccess();
       } catch (error) {

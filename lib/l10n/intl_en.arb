@@ -172,5 +172,9 @@
   "checkOut": "Check out",
   "uploadYourData": "Please upload or refresh your documents for faster registration at the hotel",
   "documents": "Documents",
-  "addDocument": "Add Document"
+  "addDocument": "Add Document",
+  "services": "Extra Services",
+  "requestedService": "You requested {service} ,one of our employees will contact you soon",
+  "username": "Username",
+  "dND": "Do Not Disturb"
 }

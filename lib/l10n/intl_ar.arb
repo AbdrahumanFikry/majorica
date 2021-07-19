@@ -172,5 +172,9 @@
   "checkOut": "مغادره",
   "uploadYourData": "يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق",
   "documents": "المستندات",
-  "addDocument": "أضف مستند"
+  "addDocument": "أضف مستند",
+  "services": "خدمات إضافيه",
+  "requestedService": "لقد طلبت {service} أحد مواظفينا سيتواصل معك فى اقرب وقت",
+  "username": "اسم المستخدم",
+  "dND": "عدم الإزعاج"
 }

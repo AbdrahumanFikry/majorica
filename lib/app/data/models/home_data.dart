@@ -1,7 +1,7 @@
 class HomeData {
-  List<MyRooms>? myRooms;
+  List<RoomInfo>? myRooms;
   String? wiFiName;
-  Map<String, String>? requests;
+  Map<String, dynamic>? requests;
 
   HomeData({
     this.myRooms,
@@ -11,9 +11,9 @@ class HomeData {
 
   HomeData.fromJson(Map<String, dynamic> json) {
     if (json['myRooms'] != null) {
-      myRooms = <MyRooms>[];
+      myRooms = <RoomInfo>[];
       json['myRooms'].forEach((v) {
-        myRooms!.add(MyRooms.fromJson(v));
+        myRooms!.add(RoomInfo.fromJson(v));
       });
     }
     wiFiName = json['WiFiName'];
@@ -21,7 +21,7 @@ class HomeData {
   }
 }
 
-class MyRooms {
+class RoomInfo {
   String? iD;
   String? roomNumber;
   String? checkoutDate;
@@ -31,7 +31,7 @@ class MyRooms {
   String? status;
   String? statusColor;
 
-  MyRooms({
+  RoomInfo({
     this.iD,
     this.roomNumber,
     this.checkoutDate,
@@ -42,7 +42,7 @@ class MyRooms {
     this.statusColor,
   });
 
-  MyRooms.fromJson(Map<String, dynamic> json) {
+  RoomInfo.fromJson(Map<String, dynamic> json) {
     iD = json['ID'];
     roomNumber = json['roomNumber'];
     checkoutDate = json['checkoutDate'];
