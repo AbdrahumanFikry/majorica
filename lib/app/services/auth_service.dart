@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bdaya_fcm_handler/bdaya_fcm_handler.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,7 @@ import 'cache_service.dart';
 
 class AuthService extends GetxService with BusyMixin, ApiMixin {
   final currentUser = Rxn<User>();
+  final currentFCMToken = RxnString();
 
   static AuthService get to => Get.find<AuthService>();
   GlobalKey<FormState> accountFormKey = GlobalKey<FormState>();
@@ -32,6 +34,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
   late CountDownController countDownController = CountDownController();
 
   final genderValue = 'male'.obs;
+  final countryCode = '+20'.obs;
   final pinCodeError = RxString('');
   final forgetPassword = false.obs;
   final changePassword = false.obs;
@@ -60,7 +63,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         final response = await post(
           ApiUtil.authClient,
           body: {
-            "mobileNum": "2${phone.text}",
+            "mobileNum": "${countryCode.value}${phone.text}",
             "password": password.text,
           },
         );
@@ -98,14 +101,14 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           response = await post(
             ApiUtil.forgetPassword,
             body: {
-              "mobileNum": "2${phone.text}",
+              "mobileNum": "${countryCode.value}${phone.text}",
             },
           );
         } else {
           response = await post(
             ApiUtil.checkMobile,
             body: {
-              "mobileNum": "2${phone.text}",
+              "mobileNum": "${countryCode.value}${phone.text}",
             },
           );
         }
@@ -337,6 +340,22 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         } else {
           currentUser(event.value);
           sessionID(currentUser.value!.sessionID);
+          final token =
+              currentFCMToken.value = await fcmServiceFinder!()?.getToken(
+            vapidKey:
+                "BOJ21GyEl9SKGIlzaPnNmxTa5qKP2Mty-GDsjq62FPu28x2FmUmXBOPNc2SBXtxm9XUuW7BJGXoun0cNK8JaStk",
+          );
+          try {
+            await post(
+              ApiUtil.updatePushToken,
+              body: {
+                "sessionID": sessionID.value,
+                "token": token,
+              },
+            );
+          } catch (e) {
+            printError(info: e.toString());
+          }
         }
       },
     );

@@ -21,7 +21,7 @@ class QuantityWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorUtil.lightGrey,
+        color: ColorUtil.primaryColor,
         borderRadius: AppUtil.borderRadius10,
         border: Border.all(
           color: ColorUtil.primaryColor,
@@ -40,17 +40,33 @@ class QuantityWidget extends StatelessWidget {
                 ),
                 child: Icon(
                   CupertinoIcons.add,
-                  color: Colors.green,
+                  color: Colors.white,
                 ),
               ),
             ),
-          FittedBox(
-            child: Text(
-              amount.toString(),
-              style: AppUtil.textStyle(
-                color: ColorUtil.blackColor,
-                fontWeight: FontWeight.w700,
-                fontSize: 50.sp,
+          Container(
+            decoration: BoxDecoration(
+              color: ColorUtil.whiteColor,
+              borderRadius: AppUtil.borderRadius10,
+              border: Border.all(
+                color: ColorUtil.primaryColor,
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 7.0,
+            ),
+            margin: const EdgeInsets.symmetric(
+              vertical: 3.0,
+            ),
+            child: FittedBox(
+              child: Text(
+                amount.toString(),
+                style: AppUtil.textStyle(
+                  color: ColorUtil.blackColor,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 50.sp,
+                ),
               ),
             ),
           ),
@@ -64,7 +80,7 @@ class QuantityWidget extends StatelessWidget {
                 ),
                 child: Icon(
                   CupertinoIcons.minus,
-                  color: Colors.red,
+                  color: Colors.white,
                 ),
               ),
             ),

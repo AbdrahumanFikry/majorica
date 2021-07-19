@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "420507086321",
+    "project_id": "majorica-hotel",
+    "storage_bucket": "majorica-hotel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420507086321:android:e8949d7db72929bf34a850",
+        "android_client_info": {
+          "package_name": "com.ezelab.majorica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420507086321-np1ajl9pc0i2dva7utmpckllhudgrbi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2P7QN7XeEOi9Dy1bLueTv9V6xYZ4xVdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420507086321-np1ajl9pc0i2dva7utmpckllhudgrbi4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

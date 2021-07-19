@@ -26,12 +26,16 @@ class ReservationDetailsController extends GetxController
       );
       if (response['success'] == true) {
         reservationDetails.value!.statusText = 'Canceled';
-        reservationDetails.value!.refundable = '';
-        ReservationsController.to.allReservations.value!.upComming!.removeWhere(
-          (res) => res.iD == reservationDetails.value!.iD,
-        );
-        ReservationsController.to.allReservations.value!.upComming!.add(
-          reservationDetails.value!,
+        reservationDetails.value!.statusColor = '#FF0000';
+        ReservationsController.to.allReservations.update(
+          (val) {
+            val!.upComming!.removeWhere(
+              (res) => res.iD == reservationDetails.value!.iD,
+            );
+            val.past!.add(
+              reservationDetails.value!,
+            );
+          },
         );
         Get.back();
       }

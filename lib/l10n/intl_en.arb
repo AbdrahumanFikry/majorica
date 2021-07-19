@@ -126,7 +126,7 @@
   "pressToChooseDate": "Press to choose the period",
   "endDateValidation": "End date must be after start date not reversed",
   "startDateNull": "You must pick start date first",
-  "choosePeriod": "Choose Period of stay",
+  "choosePeriod": "Press to choose Period of stay",
   "availableRooms": "Available rooms",
   "available": "Available",
   "description": "Description",
@@ -166,5 +166,11 @@
   "removeCoupon": "Remove Coupon",
   "totalBeforeCoupon": "Total before coupon",
   "paymentDoneSuccessfully": "Payment done successfully",
-  "paymentError": "Payment not done ,an error occurred"
+  "paymentError": "Payment not done ,an error occurred",
+  "deleteThisReservation": "Delete this reservation",
+  "checkIn": "Check In",
+  "checkOut": "Check out",
+  "uploadYourData": "Please upload or refresh your documents for faster registration at the hotel",
+  "documents": "Documents",
+  "addDocument": "Add Document"
 }

@@ -6,7 +6,9 @@ import 'package:majorica/app/modules/auth/otp_view.dart';
 import 'package:majorica/app/modules/auth/reset_password_view.dart';
 import 'package:majorica/app/modules/auth/signup_view.dart';
 import 'package:majorica/app/modules/available_rooms/bindings/available_rooms_binding.dart';
-import 'package:majorica/app/modules/available_rooms/views/available_rooms_view.dart';
+import 'package:majorica/app/modules/available_rooms/views/available_rooms_reselt_view.dart';
+import 'package:majorica/app/modules/documents/bindings/documents_binding.dart';
+import 'package:majorica/app/modules/documents/views/documents_view.dart';
 import 'package:majorica/app/modules/home/bindings/home_binding.dart';
 import 'package:majorica/app/modules/home/views/home_view.dart';
 import 'package:majorica/app/modules/pendings/bindings/pendings_binding.dart';
@@ -78,7 +80,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AVAILABLE_ROOMS,
-      page: () => AvailableRoomsView(),
+      page: () => AvailableRoomsResultsView(),
       binding: AvailableRoomsBinding(),
     ),
     GetPage(
@@ -95,6 +97,11 @@ class AppPages {
       name: _Paths.RESERVATION_DETAILS,
       page: () => ReservationDetailsView(),
       binding: ReservationDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DOCUMENTS,
+      page: () => DocumentsView(),
+      binding: DocumentsBinding(),
     ),
   ];
 }

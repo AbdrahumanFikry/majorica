@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:majorica/app/components/animated_list_handler.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/modules/account/components/account_card.dart';
 import 'package:majorica/app/modules/account/controllers/account_controller.dart';
+import 'package:majorica/app/modules/account/views/terms_of_service.dart';
+import 'package:majorica/app/modules/pendings/controllers/pendings_controller.dart';
 import 'package:majorica/app/modules/root/controllers/root_controller.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/services/auth_service.dart';
@@ -34,10 +37,8 @@ class AccountBody extends GetView<AccountController> {
           String link = appSettings.appLinks!.androidStore!;
           if (Platform.isAndroid) {
             link = appSettings.appLinks!.androidStore!;
-          } else if (Platform.isIOS) {
-            link = appSettings.appLinks!.appleStore!;
           } else {
-            link = appSettings.appLinks!.tOS!;
+            link = appSettings.appLinks!.appleStore!;
           }
           return AnimatedListHandler(
             shrinkWrap: true,
@@ -49,6 +50,11 @@ class AccountBody extends GetView<AccountController> {
               //   onTap: () => Get.toNamed(Routes.PENDINGS),
               //   trailing: '1',
               // ),
+              AccountCard(
+                iconData: CupertinoIcons.collections_solid,
+                title: S.of(context).documents,
+                onTap: () => Get.toNamed(Routes.DOCUMENTS),
+              ),
               AccountCard(
                 iconData: Icons.language,
                 title: S.of(context).language,
@@ -72,14 +78,22 @@ class AccountBody extends GetView<AccountController> {
               AccountCard(
                 iconData: Icons.call_outlined,
                 title: S.of(context).contactUs,
-                onTap: () => AppUtil.callPhone(
-                  context,
-                  phoneNumbers: appSettings.contactUs!,
-                ),
+                onTap: () async {
+                  try {
+                    if (await canLaunch(
+                        'tel://${appSettings.contactUs!.first}')) {
+                      await launch('tel://${appSettings.contactUs!.first}');
+                    }
+                  } catch (e) {
+                    print(e.toString());
+                  }
+                },
               ),
               AccountCard(
                 iconData: Icons.info_outline,
                 title: S.of(context).termsOfService,
+                onTap: () =>
+                    Get.to(() => TOS(tOSLink: appSettings.appLinks!.tOS!)),
               ),
               AccountCard(
                 iconData: Icons.star_border_outlined,
@@ -99,7 +113,8 @@ class AccountBody extends GetView<AccountController> {
                 title: S.of(context).signOut,
                 onTap: () async {
                   await CacheService.to.userRepo.clear();
-                  Get.offAllNamed(Routes.LOGIN);
+                  PendingsController.to.pendingList.clear();
+                  Get.offAllNamed(Routes.ACCOUNT);
                 },
               ),
               const SizedBox(

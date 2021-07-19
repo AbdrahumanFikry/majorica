@@ -67,7 +67,7 @@ class AppUtil {
       );
 
   static ThemeData appLightTheme = ThemeData(
-    fontFamily: 'Almarai',
+    fontFamily: 'Cairo',
     primaryColor: ColorUtil.primaryColor,
     scaffoldBackgroundColor: ColorUtil.whiteScaffold,
     brightness: Brightness.light,
@@ -127,7 +127,7 @@ class AppUtil {
         style: TextStyle(
           color: isGood ? Colors.green : ColorUtil.errorColor,
           fontWeight: FontWeight.w700,
-          fontSize: 14.0,
+          fontSize: 16.0,
         ),
       ),
       messageText: Text(
@@ -135,16 +135,10 @@ class AppUtil {
         style: const TextStyle(
           color: ColorUtil.blackColor,
           fontWeight: FontWeight.w500,
-          fontSize: 14.0,
+          fontSize: 16.0,
         ),
       ),
-      icon: Icon(
-        isGood
-            ? CupertinoIcons.checkmark_seal
-            : CupertinoIcons.exclamationmark_octagon,
-        color: isGood ? Colors.green : ColorUtil.errorColor,
-      ),
-      borderRadius: 5.0,
+      borderRadius: 15.0,
       mainButton: buttonText == null
           ? null
           : TextButton(

@@ -63,17 +63,22 @@ class RootView extends GetView<RootController> {
                             color: selected
                                 ? ColorUtil.primaryColor
                                 : ColorUtil.mediumGrey,
-                            size: 90.sp,
+                            size: 75.sp,
                           ),
                         ),
-                        Text(
-                          tabs[index]['title']!.toString(),
-                          style: AppUtil.textStyle(
-                            color: selected
-                                ? ColorUtil.primaryColor
-                                : ColorUtil.mediumGrey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 10.0,
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        FittedBox(
+                          child: Text(
+                            tabs[index]['title']!.toString(),
+                            style: AppUtil.textStyle(
+                              color: selected
+                                  ? ColorUtil.primaryColor
+                                  : ColorUtil.mediumGrey,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 32.sp,
+                            ),
                           ),
                         ),
                       ],

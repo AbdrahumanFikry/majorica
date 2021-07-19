@@ -28,8 +28,8 @@ class SignUpView extends GetView<AuthService> {
               ),
               Image.asset(
                 PathUtil.authPNG,
-                height: 300.sp,
-                width: 300.sp,
+                height: 500.sp,
+                width: 500.sp,
               ),
               const SizedBox(
                 height: 7.0,

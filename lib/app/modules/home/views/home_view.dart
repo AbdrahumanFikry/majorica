@@ -65,7 +65,32 @@ class HomeView extends GetView<HomeController> {
                     vertical: 10.0,
                     horizontal: 20.0,
                   ),
-                  onTap: () => Get.toNamed(Routes.AVAILABLE_ROOMS),
+                  onTap: () async {
+                    final range = await Get.dialog<DateTimeRange>(
+                      DateRangePickerDialog(
+                        // context: context,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(DateTime.now().year + 1),
+                        helpText: S.of(context).choosePeriod,
+                        cancelText: S.of(context).cancel,
+                        confirmText: S.of(context).confirm,
+                        saveText: S.of(context).confirm,
+                        fieldStartHintText: S.of(context).startDate,
+                        fieldEndHintText: S.of(context).endDate,
+                        fieldStartLabelText: S.of(context).startDate,
+                        fieldEndLabelText: S.of(context).endDate,
+                        // initialDateRange: controller.range.value,
+                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                      ),
+                    );
+                    if (range != null) {
+                      controller.range(range);
+                      Get.toNamed(
+                        Routes.AVAILABLE_ROOMS,
+                        arguments: range,
+                      );
+                    }
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 10.0,
@@ -88,16 +113,16 @@ class HomeView extends GetView<HomeController> {
                               Text(
                                 S.of(context).reserveRoom,
                                 style: AppUtil.textStyle(
-                                  fontSize: 55.sp,
+                                  fontSize: 45.sp,
                                 ),
                               ),
                               const SizedBox(
-                                height: 10.0,
+                                height: 5.0,
                               ),
                               Text(
                                 S.of(context).pressToChooseDate,
                                 style: AppUtil.textStyle(
-                                  fontSize: 45.sp,
+                                  fontSize: 37.sp,
                                 ),
                               ),
                             ],

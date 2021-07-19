@@ -1,4 +1,4 @@
-package com.majorica.majorica
+package com.ezelab.majorica
 
 import io.flutter.embedding.android.FlutterActivity
 

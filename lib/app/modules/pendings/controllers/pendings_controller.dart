@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/pending.dart';
 import 'package:majorica/app/modules/pendings/views/payment_view.dart';
+import 'package:majorica/app/modules/pendings/views/success_page_view.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
@@ -14,6 +15,7 @@ import 'package:majorica/generated/l10n.dart';
 
 class PendingsController extends GetxController with BusyMixin, ApiMixin {
   final pendingList = RxList<PendingRoom>(<PendingRoom>[]);
+  final showPendingIcon = false.obs;
   TextEditingController couponController = TextEditingController();
   final couponApplied = false.obs;
 
@@ -61,18 +63,16 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
             paymentToken: response['paymentToken'],
           ),
         );
-        print(':::::::::::: $result');
-        final message = json.decode(result);
-        if (message['success'] == true) {
-          await AppUtil.showAlertDialog(
-            contentText: S.current.paymentDoneSuccessfully,
-          );
-          pendingList.clear();
-          Get.back();
-        } else {
-          AppUtil.showAlertDialog(
-            contentText: '${S.current.paymentError} (${message['error']})',
-          );
+        if (result != null) {
+          final message = json.decode(result);
+          if (message['success'] == true) {
+            pendingList.clear();
+            Get.off(() => SuccessPageView());
+          } else {
+            AppUtil.showAlertDialog(
+              contentText: '${S.current.paymentError} (${message['error']})',
+            );
+          }
         }
       }
       endBusySuccess();
@@ -126,5 +126,20 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
     } catch (error) {
       endBusyError(error, showDialog: true);
     }
+  }
+
+  @override
+  void onReady() {
+    pendingList.stream.listen((event) {
+      print(pendingList.isNotEmpty && Get.currentRoute != '/pendings');
+      if (pendingList.isEmpty) {
+        showPendingIcon(false);
+      } else if (pendingList.isNotEmpty && Get.currentRoute != '/pendings') {
+        showPendingIcon(true);
+      } else {
+        showPendingIcon(false);
+      }
+    });
+    super.onReady();
   }
 }

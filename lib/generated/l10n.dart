@@ -1320,10 +1320,10 @@ class S {
     );
   }
 
-  /// `أختر فتره الاقامه`
+  /// `أضغط لأختيار فتره الاقامه`
   String get choosePeriod {
     return Intl.message(
-      'أختر فتره الاقامه',
+      'أضغط لأختيار فتره الاقامه',
       name: 'choosePeriod',
       desc: '',
       args: [],
@@ -1620,10 +1620,10 @@ class S {
     );
   }
 
-  /// `تفاصيل الدفع`
+  /// `تفاصيل الحجز`
   String get reservationDetails {
     return Intl.message(
-      'تفاصيل الدفع',
+      'تفاصيل الحجز',
       name: 'reservationDetails',
       desc: '',
       args: [],
@@ -1725,6 +1725,66 @@ class S {
     return Intl.message(
       'لم تكتمل عمليه الدفع حدث خطأ ما',
       name: 'paymentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مسح هذا الحجز`
+  String get deleteThisReservation {
+    return Intl.message(
+      'مسح هذا الحجز',
+      name: 'deleteThisReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نزول`
+  String get checkIn {
+    return Intl.message(
+      'نزول',
+      name: 'checkIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مغادره`
+  String get checkOut {
+    return Intl.message(
+      'مغادره',
+      name: 'checkOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق`
+  String get uploadYourData {
+    return Intl.message(
+      'يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق',
+      name: 'uploadYourData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `المستندات`
+  String get documents {
+    return Intl.message(
+      'المستندات',
+      name: 'documents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أضف مستند`
+  String get addDocument {
+    return Intl.message(
+      'أضف مستند',
+      name: 'addDocument',
       desc: '',
       args: [],
     );

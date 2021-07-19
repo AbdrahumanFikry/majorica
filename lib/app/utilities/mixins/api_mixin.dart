@@ -80,9 +80,9 @@ mixin ApiMixin {
     print('API error : ${error.message}');
     String errorMsg = '';
     switch (error.code) {
-      case 112:
+      case 600:
         errorMsg = S.current.unAuthorized;
-        getX.Get.offAllNamed(Routes.LOGIN);
+        getX.Get.offAllNamed(Routes.ACCOUNT);
         break;
       default:
         errorMsg = error.message!;

@@ -9,6 +9,7 @@ class PathUtil {
   static const String authPNG = '${imagesPath}auth.png';
   static const String otpPNG = '${imagesPath}otp.png';
   static const String forgotPasswordPNG = '${imagesPath}forgot_password.png';
+  static const String checkPNG = '${imagesPath}check.png';
 
   //Icons
   static const String appIcon = '${iconsPath}appIcon.png';
@@ -18,6 +19,7 @@ class PathUtil {
   static const String upLottie = '${lottiePath}up.json';
   static const String loadingLottie = '${lottiePath}loading.json';
   static const String pendingLottie = '${lottiePath}pending.json';
+  static const String successLottie = '${lottiePath}success.json';
 }
 
 class ApiUtil {
@@ -33,4 +35,8 @@ class ApiUtil {
   static const String reserve = '$url/reserve';
   static const String cancelReservation = '$url/cancelReservation';
   static const String myReservations = '$url/myReservations';
+  static const String myDocs = '$url/myDocs';
+  static const String uploadDocs = '$url/uploadDocs';
+  static const String deleteDoc = '$url/deleteDoc';
+  static const String updatePushToken = '$url/updatePushToken';
 }

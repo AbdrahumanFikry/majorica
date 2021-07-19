@@ -1,9 +1,11 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/app_button.dart';
 import 'package:majorica/app/components/app_text_field.dart';
+import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/services/auth_service.dart';
@@ -32,8 +34,8 @@ class LoginView extends GetView<AuthService> {
                   ),
                   Image.asset(
                     PathUtil.authPNG,
-                    height: 300.sp,
-                    width: 300.sp,
+                    height: 500.sp,
+                    width: 500.sp,
                   ),
                   const SizedBox(
                     height: 15.0,
@@ -57,10 +59,21 @@ class LoginView extends GetView<AuthService> {
                       horizontal: 15.0,
                       vertical: 5.0,
                     ),
-                    prefixWidget: const Icon(
-                      Icons.person,
-                      color: ColorUtil.primaryColor,
-                      size: 20.0,
+                    prefixWidget: GlobalCard(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 5.0,
+                        vertical: 2.5,
+                      ),
+                      child: CountryCodePicker(
+                        onChanged: (val) =>
+                            controller.countryCode(val.dialCode),
+                        initialSelection: 'EG',
+                        favorite: const ['+20', 'EG'],
+                        showFlagMain: false,
+                        showCountryOnly: true,
+                      ),
                     ),
                     validator: const QuickTextValidator(),
                   ),
@@ -124,38 +137,6 @@ class LoginView extends GetView<AuthService> {
                     isBusy: controller.busyId.value == 'login',
                     title: S.of(context).enter,
                     onTap: controller.login,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        S.of(context).donNotHaveAcc,
-                        style: AppUtil.textStyle(
-                          color: ColorUtil.mediumGrey,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5.0,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          controller.password.clear();
-                          controller.confirmedPassword.clear();
-                          controller.forgetPassword(false);
-                          controller.changePassword(false);
-                          Get.toNamed(Routes.ACCOUNT);
-                        },
-                        child: Text(
-                          S.of(context).signUp,
-                          style: AppUtil.textStyle(
-                            color: ColorUtil.darkBlue,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),

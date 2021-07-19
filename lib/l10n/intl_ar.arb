@@ -126,7 +126,7 @@
   "pressToChooseDate": "اضغط لاختيار المده",
   "endDateValidation": "تاريخ الإنتهاء يجب أن يكون بعد تاريخ البدء وليس العكس",
   "startDateNull": "يجب إختيار تاريخ البدء أولاً",
-  "choosePeriod": "أختر فتره الاقامه",
+  "choosePeriod": "أضغط لأختيار فتره الاقامه",
   "availableRooms": "الغرف المتاحه",
   "available": "متاح",
   "description": "الوصف",
@@ -156,7 +156,7 @@
   "confirmReservation": "تأكيد الحجز",
   "discount": "خصم",
   "payment": "الدفع",
-  "reservationDetails": "تفاصيل الدفع",
+  "reservationDetails": "تفاصيل الحجز",
   "cancelReservation": "إالغاء الحجز",
   "paymentDetails": "تفاصيل الدفع",
   "id": " رقم العمليه",
@@ -166,5 +166,11 @@
   "removeCoupon": "حذف الالكوبون",
   "totalBeforeCoupon": "الاجمالى قبل الكوبون",
   "paymentDoneSuccessfully": "تم الدفع بنجاح",
-  "paymentError": "لم تكتمل عمليه الدفع حدث خطأ ما"
+  "paymentError": "لم تكتمل عمليه الدفع حدث خطأ ما",
+  "deleteThisReservation": "مسح هذا الحجز",
+  "checkIn": "نزول",
+  "checkOut": "مغادره",
+  "uploadYourData": "يرجى رفع او تحديث المستندات لسرعه التسجيل فى الفندق",
+  "documents": "المستندات",
+  "addDocument": "أضف مستند"
 }

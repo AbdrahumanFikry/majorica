@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
@@ -109,7 +110,7 @@ class AppTextField extends StatelessWidget {
               prefixIcon: prefixWidget == null
                   ? null
                   : SizedBox(
-                      width: 10.0,
+                      width: 200.sp,
                       child: Center(
                         child: prefixWidget,
                       ),
