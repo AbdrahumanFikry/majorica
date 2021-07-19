@@ -11,6 +11,7 @@ dependencies:
     git:
       url: https://github.com/Bdaya-Dev/custom-splash.git
       ref: master
+  bdaya_fcm_handler: ^2.1.0
   bdaya_repository_pattern:
     git:
       url: git@github.com:AbdrahumanFikry/Flutter-Repository-Pattern.git
@@ -26,7 +27,9 @@ dependencies:
     git:
       url: git@github.com:t4ulabs/fdottedline.git
       ref: master
-  file_picker: ^3.0.2+2
+  file_picker: ^3.0.3
+  firebase_core: ^1.4.0
+  firebase_messaging: ^10.0.4
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.9.0

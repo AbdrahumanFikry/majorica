@@ -38,4 +38,5 @@ class ApiUtil {
   static const String myDocs = '$url/myDocs';
   static const String uploadDocs = '$url/uploadDocs';
   static const String deleteDoc = '$url/deleteDoc';
+  static const String updatePushToken = '$url/updatePushToken';
 }
