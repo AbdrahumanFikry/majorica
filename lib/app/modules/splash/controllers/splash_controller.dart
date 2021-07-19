@@ -22,7 +22,8 @@ class SplashController extends GetxController {
       await Firebase.initializeApp();
       fcmServiceFinder =
           () => Get.isRegistered<FCMService>() ? Get.find<FCMService>() : null;
-      final msg = await Get.put(FCMService(), permanent: true).doInit(
+      final RemoteMessage? msg =
+          await Get.put(FCMService(), permanent: true).doInit(
         requestFunc: () async {
           final settings = await FirebaseMessaging.instance.requestPermission();
           return settings;
