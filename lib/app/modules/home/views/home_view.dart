@@ -166,17 +166,33 @@ class HomeView extends GetView<HomeController> {
                             controller.homeData.value!.myRooms!.isNotEmpty)
                           Expanded(
                             child: AnimatedListHandler(
-                              children: controller.homeData.value!.myRooms!
-                                  .map(
-                                    (room) => RoomInfoView(
-                                      roomInfo: room,
-                                      requests:
-                                          controller.homeData.value!.requests,
-                                      wiFiName:
-                                          controller.homeData.value!.wiFiName,
+                              children: [
+                                // if (controller.payAvailable.value)
+                                GlobalCard(
+                                  color: ColorUtil.whiteColor,
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0,
+                                    vertical: 10.0,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      S.of(context).payDebt,
                                     ),
-                                  )
-                                  .toList(),
+                                  ),
+                                ),
+                                ...controller.homeData.value!.myRooms!
+                                    .map(
+                                      (room) => RoomInfoView(
+                                        roomInfo: room,
+                                        requests:
+                                            controller.homeData.value!.requests,
+                                        wiFiName:
+                                            controller.homeData.value!.wiFiName,
+                                      ),
+                                    )
+                                    .toList(),
+                              ],
                             ),
                           ),
                       ],

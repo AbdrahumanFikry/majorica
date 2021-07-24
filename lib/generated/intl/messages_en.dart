@@ -203,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match !"),
         "past": MessageLookupByLibrary.simpleMessage("Past"),
+        "payDebt": MessageLookupByLibrary.simpleMessage("Pay the debt"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "paymentDetails":
             MessageLookupByLibrary.simpleMessage("Payment details"),

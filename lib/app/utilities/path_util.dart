@@ -41,4 +41,5 @@ class ApiUtil {
   static const String updatePushToken = '$url/updatePushToken';
   static const String getHome = '$url/getHome';
   static const String sendRequest = '$url/sendRequest';
+  static const String payBalance = '$url/payBalance';
 }

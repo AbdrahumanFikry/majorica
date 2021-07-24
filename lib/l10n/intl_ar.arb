@@ -184,5 +184,6 @@
   "depositedAmount": "المبلغ المودع",
   "networkName": "إسم الشبكه",
   "connect": "توصيل",
-  "removeDoc": "إزاله هذا المستند"
+  "removeDoc": "إزاله هذا المستند",
+  "payDebt": "ادفع المديونيه"
 }

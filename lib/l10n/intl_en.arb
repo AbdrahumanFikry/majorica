@@ -184,5 +184,6 @@
   "depositedAmount": "deposited amount",
   "networkName": "Network name",
   "connect": "Connect",
-  "removeDoc": "Remove this document"
+  "removeDoc": "Remove this document",
+  "payDebt": "Pay the debt"
 }

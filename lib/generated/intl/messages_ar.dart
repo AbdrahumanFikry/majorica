@@ -201,6 +201,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
             "كلمتي المرور غير متطابقتان !"),
         "past": MessageLookupByLibrary.simpleMessage("فائته"),
+        "payDebt": MessageLookupByLibrary.simpleMessage("ادفع المديونيه"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "paymentDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
         "paymentDoneSuccessfully":

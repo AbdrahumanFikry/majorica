@@ -9,6 +9,8 @@ import 'package:majorica/app/utilities/path_util.dart';
 import 'package:majorica/generated/l10n.dart';
 
 class HomeController extends GetxController with BusyMixin, ApiMixin {
+  TextEditingController payAmount = TextEditingController();
+  final payAvailable = false.obs;
   final range = Rx<DateTimeRange>(
     DateTimeRange(
       start: DateTime.now(),
@@ -33,6 +35,9 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
       );
       if (response['success'] == true) {
         homeData(HomeData.fromJson(response));
+      }
+      if (response['user'] != null) {
+        payAvailable(response['user']!['payBalance'] ?? false);
       }
       endBusySuccess();
     } catch (error) {
@@ -91,6 +96,26 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
           );
           val.myRooms![index].dND = currentDND;
         });
+      }
+      endBusySuccess();
+    } catch (error) {
+      endBusyError(error, showDialog: true);
+    }
+  }
+
+  Future<void> payBalance() async {
+    try {
+      startBusyWithId('payBalance');
+      final sessionID = AuthService.to.currentUser.value!.sessionID;
+      final response = await post(
+        ApiUtil.payBalance,
+        body: {
+          "sessionID": sessionID,
+          "payAmount": payAmount.text,
+        },
+      );
+      if (response['success'] == true) {
+        fetchHomeData();
       }
       endBusySuccess();
     } catch (error) {

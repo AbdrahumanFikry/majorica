@@ -1909,6 +1909,16 @@ class S {
       args: [],
     );
   }
+
+  /// `ادفع المديونيه`
+  String get payDebt {
+    return Intl.message(
+      'ادفع المديونيه',
+      name: 'payDebt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
