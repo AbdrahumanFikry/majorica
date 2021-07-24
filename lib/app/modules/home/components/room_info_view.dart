@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/app_button.dart';
@@ -183,16 +184,73 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                           AppButton(
                             height: 90.sp,
                             title: 'WIFI',
-                            onTap: () async => await AppUtil.showAlertDialog(
-                              title: widget.wiFiName,
-                              child: SelectableText(
-                                '${S.of(context).username} : ${widget.roomInfo!.iD!} \n${S.of(context).password} : ${widget.roomInfo!.wifiPassword!} ',
-                                style: const TextStyle(
-                                  color: ColorUtil.blackColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                  height: 1.5,
-                                ),
+                            onTap: () async => AppUtil.showAlertDialog(
+                              confirmText: S.of(context).done,
+                              // enableCancel: true,
+                              title:
+                                  '${S.of(context).networkName} (${widget.wiFiName})',
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          '${S.of(context).username} : ${widget.roomInfo!.iD!}',
+                                          style: TextStyle(
+                                            color: ColorUtil.blackColor,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 40.sp,
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Clipboard.setData(
+                                            ClipboardData(
+                                              text: widget.roomInfo!.iD,
+                                            ),
+                                          );
+                                          Get.back();
+                                        },
+                                        child: const Icon(
+                                          Icons.copy_rounded,
+                                          color: ColorUtil.mediumGrey,
+                                          size: 26.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          '${S.of(context).password} : ${widget.roomInfo!.wifiPassword!} ',
+                                          style: TextStyle(
+                                            color: ColorUtil.blackColor,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 40.sp,
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Clipboard.setData(
+                                            ClipboardData(
+                                              text:
+                                                  widget.roomInfo!.wifiPassword,
+                                            ),
+                                          );
+                                          Get.back();
+                                        },
+                                        child: const Icon(
+                                          Icons.copy_rounded,
+                                          color: ColorUtil.mediumGrey,
+                                          size: 26.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ),

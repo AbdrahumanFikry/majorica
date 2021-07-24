@@ -181,5 +181,8 @@
   "noRooms": "There is no room available in this period",
   "noReservations": "No reservations yet",
   "resNum": "Reservation",
-  "depositedAmount": "deposited amount"
+  "depositedAmount": "deposited amount",
+  "networkName": "Network name",
+  "connect": "Connect",
+  "removeDoc": "Remove this document"
 }

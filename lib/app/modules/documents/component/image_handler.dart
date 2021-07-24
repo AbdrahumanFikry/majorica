@@ -81,7 +81,7 @@ class ImageHandler extends StatelessWidget {
                                 child: const Icon(
                                   CupertinoIcons.multiply,
                                   color: ColorUtil.whiteColor,
-                                  size: 20.0,
+                                  size: 30.0,
                                 ),
                               ),
                             ),

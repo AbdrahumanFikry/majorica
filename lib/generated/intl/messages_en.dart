@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirmReservation":
             MessageLookupByLibrary.simpleMessage("Confirm reservation"),
+        "connect": MessageLookupByLibrary.simpleMessage("Connect"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
         "continueNext": MessageLookupByLibrary.simpleMessage("Continue"),
         "createNow": MessageLookupByLibrary.simpleMessage("Create now"),
@@ -175,6 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameNull":
             MessageLookupByLibrary.simpleMessage("Please Enter your name"),
         "nationalId": MessageLookupByLibrary.simpleMessage("National id"),
+        "networkName": MessageLookupByLibrary.simpleMessage("Network name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noChangedData":
             MessageLookupByLibrary.simpleMessage("You did not change any data"),
@@ -230,6 +232,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rear": MessageLookupByLibrary.simpleMessage("Rear"),
         "refID": MessageLookupByLibrary.simpleMessage("Ref ID"),
         "removeCoupon": MessageLookupByLibrary.simpleMessage("Remove Coupon"),
+        "removeDoc":
+            MessageLookupByLibrary.simpleMessage("Remove this document"),
         "requestedService": m3,
         "resNum": MessageLookupByLibrary.simpleMessage("Reservation"),
         "reservationDate":

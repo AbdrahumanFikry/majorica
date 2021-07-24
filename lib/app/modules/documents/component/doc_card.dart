@@ -9,6 +9,7 @@ import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:majorica/generated/l10n.dart';
 
 class DocCard extends StatelessWidget {
   final Document document;
@@ -52,12 +53,19 @@ class DocCard extends StatelessWidget {
                     color: Colors.black54,
                   ),
                   child: GestureDetector(
-                    onTap: () async =>
-                        await DocumentsController.to.removeDoc(document.iD),
+                    onTap: () async {
+                      final result = await AppUtil.showAlertDialog(
+                        title: S.of(context).areYouSure,
+                        contentText: S.of(context).removeDoc,
+                      );
+                      if (result == true) {
+                        await DocumentsController.to.removeDoc(document.iD);
+                      }
+                    },
                     child: const Icon(
                       CupertinoIcons.multiply,
                       color: ColorUtil.whiteColor,
-                      size: 20.0,
+                      size: 30.0,
                     ),
                   ),
                 ),

@@ -181,5 +181,8 @@
   "noRooms": "لا توجد غرف فى تلك المده",
   "noReservations": "لا يوجد حجوزات",
   "resNum": "حجز",
-  "depositedAmount": "المبلغ المودع"
+  "depositedAmount": "المبلغ المودع",
+  "networkName": "إسم الشبكه",
+  "connect": "توصيل",
+  "removeDoc": "إزاله هذا المستند"
 }

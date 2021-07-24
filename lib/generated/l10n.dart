@@ -1879,6 +1879,36 @@ class S {
       args: [],
     );
   }
+
+  /// `إسم الشبكه`
+  String get networkName {
+    return Intl.message(
+      'إسم الشبكه',
+      name: 'networkName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `توصيل`
+  String get connect {
+    return Intl.message(
+      'توصيل',
+      name: 'connect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إزاله هذا المستند`
+  String get removeDoc {
+    return Intl.message(
+      'إزاله هذا المستند',
+      name: 'removeDoc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

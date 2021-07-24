@@ -75,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirmReservation":
             MessageLookupByLibrary.simpleMessage("تأكيد الحجز"),
+        "connect": MessageLookupByLibrary.simpleMessage("توصيل"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معانا"),
         "continueNext": MessageLookupByLibrary.simpleMessage("إستمرار"),
         "createNow": MessageLookupByLibrary.simpleMessage("إنشاء الاَن"),
@@ -172,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("الإسم"),
         "nameNull": MessageLookupByLibrary.simpleMessage("من فضلك ادخل الاسم"),
         "nationalId": MessageLookupByLibrary.simpleMessage("الرقم القومى"),
+        "networkName": MessageLookupByLibrary.simpleMessage("إسم الشبكه"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "noChangedData":
             MessageLookupByLibrary.simpleMessage("لم تقم بتغيير أى بيانات"),
@@ -227,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rear": MessageLookupByLibrary.simpleMessage("الخلف"),
         "refID": MessageLookupByLibrary.simpleMessage("رقم المراجعه"),
         "removeCoupon": MessageLookupByLibrary.simpleMessage("حذف الالكوبون"),
+        "removeDoc": MessageLookupByLibrary.simpleMessage("إزاله هذا المستند"),
         "requestedService": m3,
         "resNum": MessageLookupByLibrary.simpleMessage("حجز"),
         "reservationDate": MessageLookupByLibrary.simpleMessage("تاريخ الحجز"),
