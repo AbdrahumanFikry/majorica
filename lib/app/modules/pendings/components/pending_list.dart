@@ -139,7 +139,10 @@ class PendingList extends GetView<PendingsController> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      '${pending.roomPackage!.name} (${pending.sleeps ?? '0'}*${pending.roomPackage?.price ?? '0'} ${S.of(context).egp})',
+                                      pending.roomPackage?.price == null ||
+                                              pending.roomPackage?.price == 0
+                                          ? pending.roomPackage!.name!
+                                          : '${pending.roomPackage!.name} (${pending.sleeps ?? '0'}*${pending.roomPackage?.price ?? '0'} ${S.of(context).egp})',
                                       style: AppUtil.textStyle(
                                         color: ColorUtil.errorColor,
                                         fontWeight: FontWeight.w500,

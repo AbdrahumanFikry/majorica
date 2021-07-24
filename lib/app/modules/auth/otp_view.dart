@@ -80,7 +80,6 @@ class OTPView extends GetView<AuthService> {
                   else
                     PinCodeTextField(
                       autofocus: true,
-                      maxLength: 4,
                       controller: controller.otp,
                       highlight: true,
                       errorBorderColor: ColorUtil.errorColor,
@@ -100,7 +99,7 @@ class OTPView extends GetView<AuthService> {
                       wrapAlignment: WrapAlignment.spaceAround,
                       pinBoxDecoration:
                           ProvidedPinBoxDecoration.roundedPinBoxDecoration,
-                      pinTextStyle: TextStyle(
+                      pinTextStyle: const TextStyle(
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,
                         color: ColorUtil.darkBlue,

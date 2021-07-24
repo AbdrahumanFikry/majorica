@@ -54,7 +54,9 @@ class ReservationsView extends GetView<ReservationsController> {
                       ),
                       Expanded(
                         child: controller.reservations!.isEmpty
-                            ? const EmptyWidget()
+                            ? EmptyWidget(
+                                hint: S.of(context).noReservations,
+                              )
                             : AnimatedListHandler(
                                 children: controller.reservations!
                                     .map(

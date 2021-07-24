@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/animated_list_handler.dart';
-import 'package:majorica/app/components/app_builder.dart';
 import 'package:majorica/app/components/app_button.dart';
+import 'package:majorica/app/components/app_text_field.dart';
 import 'package:majorica/app/components/global_app_bar.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/modules/pendings/components/cobon.dart';
@@ -42,7 +42,39 @@ class PendingsView extends GetView<PendingsController> {
             children: [
               PendingList(),
               Coupon(),
-              // Summary(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      S.of(context).depositedAmount,
+                      style: AppUtil.textStyle(
+                        fontSize: 50.sp,
+                        fontWeight: FontWeight.bold,
+                        color: ColorUtil.darkBlue,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    AppTextField(
+                      controller.payAmount,
+                      underLine: false,
+                      readOnly: controller.couponApplied.value,
+                      hintText: S.of(context).enterDiscountCoupon,
+                      hintColor: ColorUtil.mediumGrey,
+                      suffixWidget: Text(
+                        S.of(context).egp,
+                        style: AppUtil.textStyle(
+                          fontWeight: FontWeight.bold,
+                          color: ColorUtil.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               AppButton(
                 elevation: 2.0,
                 isBusy: controller.isBusy.value,
@@ -51,31 +83,7 @@ class PendingsView extends GetView<PendingsController> {
                   horizontal: 20.0,
                   vertical: 10.0,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      S.of(context).confirmReservation,
-                      style: AppUtil.textStyle(
-                        fontSize: 40.sp,
-                        fontWeight: FontWeight.bold,
-                        color: ColorUtil.whiteColor,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
-                    Text(
-                      '${controller.allTotal} ${S.of(context).egp}',
-                      style: AppUtil.textStyle(
-                        fontSize: 40.sp,
-                        fontWeight: FontWeight.w600,
-                        color: ColorUtil.whiteColor,
-                      ),
-                      textAlign: TextAlign.end,
-                    ),
-                  ],
-                ),
+                title: S.of(context).confirmReservation,
               ),
             ],
           ),

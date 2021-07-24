@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,8 @@ import 'package:majorica/app/components/app_button.dart';
 import 'package:majorica/app/components/loading.dart';
 import 'package:majorica/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path_provider/path_provider.dart';
+
 import 'color_util.dart';
 
 class AppUtil {
@@ -154,7 +157,7 @@ class AppUtil {
                 ),
               ),
             ),
-      isDismissible: true,
+      isDismissible: false,
       snackStyle: SnackStyle.FLOATING,
     );
   }
@@ -368,13 +371,33 @@ class AppUtil {
         for (final file in result.files) {
           print(file.name);
           print(file.path);
-          files.add(File(file.path!));
+          if (allowCompression) {
+            final compressedFile =
+                await compressFile(File(file.path!), file.name);
+            files.add(compressedFile!);
+          } else {
+            files.add(File(file.path!));
+          }
         }
       }
     } catch (e) {
       print('FilePicker error : ${e.toString()}');
     }
     return files;
+  }
+
+  static Future<File?> compressFile(File? file, String? filename) async {
+    final dir = await getTemporaryDirectory();
+    file!.writeAsBytesSync(file.readAsBytesSync().buffer.asUint8List());
+    final targetPath = "${dir.absolute.path}${"/$filename"}";
+    final result = await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path,
+      targetPath,
+      quality: 50,
+    );
+    print(file.lengthSync());
+    print(result!.lengthSync());
+    return result;
   }
 
   static Future<DateTime?> chooseDateTime({

@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
             getPages: AppPages.routes,
             initialRoute: Routes.SPLASH,
             initialBinding: PendingsBinding(),
-            builder: (context, child) => GlobalPending(child: child!),
+            builder: (context, child) => GlobalPending(
+              child: child ?? SizedBox(height: Get.height, width: Get.width),
+            ),
             localizationsDelegates: const [
               S.delegate,
               GlobalCupertinoLocalizations.delegate,

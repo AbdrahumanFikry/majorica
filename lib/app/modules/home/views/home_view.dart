@@ -52,117 +52,137 @@ class HomeView extends GetView<HomeController> {
                     fit: BoxFit.cover,
                   ),
                 Positioned(
-                  top: 250.sp,
+                  top: 150.sp,
                   left: 0.0,
                   right: 0.0,
-                  child: GlobalCard(
-                    color: ColorUtil.whiteColor,
-                    elevation: 10.0,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                      horizontal: 20.0,
-                    ),
-                    onTap: () async {
-                      final range = await Get.dialog<DateTimeRange>(
-                        Theme(
-                          data: ThemeData(
-                              textButtonTheme: TextButtonThemeData(
-                                style: ButtonStyle(
-                                  fixedSize: MaterialStateProperty.all<Size>(
-                                    const Size(30.0, 30.0),
+                  bottom: 0.0,
+                  child: SafeArea(
+                    child: Column(
+                      children: [
+                        GlobalCard(
+                          color: ColorUtil.whiteColor,
+                          elevation: 10.0,
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 20.0,
+                          ),
+                          onTap: () async {
+                            final range = await Get.dialog<DateTimeRange>(
+                              Theme(
+                                data: ThemeData(
+                                  textButtonTheme: TextButtonThemeData(
+                                    style: ButtonStyle(
+                                      fixedSize:
+                                          MaterialStateProperty.all<Size>(
+                                        const Size(150.0, 150.0),
+                                      ),
+                                      textStyle:
+                                          MaterialStateProperty.all<TextStyle>(
+                                        AppUtil.textStyle(
+                                          fontSize: 22.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      minimumSize:
+                                          MaterialStateProperty.all<Size>(
+                                        const Size(150.0, 150.0),
+                                      ),
+                                    ),
                                   ),
+                                  buttonTheme: const ButtonThemeData(
+                                    textTheme: ButtonTextTheme.accent,
+                                  ),
+                                  primaryColor: ColorUtil.primaryColor,
+                                ),
+                                child: DateRangePickerDialog(
+                                  // context: context,
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime(DateTime.now().year + 1),
+                                  helpText: S.of(context).choosePeriod,
+                                  cancelText: S.of(context).cancel,
+                                  confirmText: S.of(context).confirm,
+                                  saveText: S.of(context).confirm,
+                                  fieldStartHintText: S.of(context).startDate,
+                                  fieldEndHintText: S.of(context).endDate,
+                                  fieldStartLabelText: S.of(context).startDate,
+                                  fieldEndLabelText: S.of(context).endDate,
+                                  // initialDateRange: controller.range.value,
+                                  initialEntryMode:
+                                      DatePickerEntryMode.calendarOnly,
                                 ),
                               ),
-                              buttonTheme: const ButtonThemeData(
-                                textTheme: ButtonTextTheme.accent,
-                              ),
-                              primaryColor: ColorUtil.primaryColor),
-                          child: DateRangePickerDialog(
-                            // context: context,
-                            firstDate: DateTime.now(),
-                            lastDate: DateTime(DateTime.now().year + 1),
-                            helpText: S.of(context).choosePeriod,
-                            cancelText: S.of(context).cancel,
-                            confirmText: S.of(context).confirm,
-                            saveText: S.of(context).confirm,
-                            fieldStartHintText: S.of(context).startDate,
-                            fieldEndHintText: S.of(context).endDate,
-                            fieldStartLabelText: S.of(context).startDate,
-                            fieldEndLabelText: S.of(context).endDate,
-                            // initialDateRange: controller.range.value,
-                            initialEntryMode: DatePickerEntryMode.calendarOnly,
-                          ),
-                        ),
-                      );
-                      if (range != null) {
-                        controller.range(range);
-                        Get.toNamed(
-                          Routes.AVAILABLE_ROOMS,
-                          arguments: range,
-                        );
-                      }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10.0,
-                        horizontal: 20.0,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            CupertinoIcons.calendar,
-                            size: 85.sp,
-                            color: ColorUtil.blackColor,
-                          ),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            );
+                            if (range != null) {
+                              controller.range(range);
+                              Get.toNamed(
+                                Routes.AVAILABLE_ROOMS,
+                                arguments: range,
+                              );
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 10.0,
+                              horizontal: 20.0,
+                            ),
+                            child: Row(
                               children: [
-                                Text(
-                                  S.of(context).reserveRoom,
-                                  style: AppUtil.textStyle(
-                                    fontSize: 45.sp,
-                                  ),
+                                Icon(
+                                  CupertinoIcons.calendar,
+                                  size: 85.sp,
+                                  color: ColorUtil.blackColor,
                                 ),
                                 const SizedBox(
-                                  height: 5.0,
+                                  width: 20.0,
                                 ),
-                                Text(
-                                  S.of(context).pressToChooseDate,
-                                  style: AppUtil.textStyle(
-                                    fontSize: 37.sp,
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        S.of(context).reserveRoom,
+                                        style: AppUtil.textStyle(
+                                          fontSize: 45.sp,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5.0,
+                                      ),
+                                      Text(
+                                        S.of(context).pressToChooseDate,
+                                        style: AppUtil.textStyle(
+                                          fontSize: 37.sp,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        if (controller.homeData.value?.myRooms != null &&
+                            controller.homeData.value!.myRooms!.isNotEmpty)
+                          Expanded(
+                            child: AnimatedListHandler(
+                              children: controller.homeData.value!.myRooms!
+                                  .map(
+                                    (room) => RoomInfoView(
+                                      roomInfo: room,
+                                      requests:
+                                          controller.homeData.value!.requests,
+                                      wiFiName:
+                                          controller.homeData.value!.wiFiName,
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
-                if (controller.homeData.value?.myRooms != null &&
-                    controller.homeData.value!.myRooms!.isNotEmpty)
-                  Positioned(
-                    top: 425.sp,
-                    left: 0.0,
-                    right: 0.0,
-                    bottom: 0.0,
-                    child: AnimatedListHandler(
-                      children: controller.homeData.value!.myRooms!
-                          .map(
-                            (room) => RoomInfoView(
-                              roomInfo: room,
-                              requests: controller.homeData.value!.requests,
-                              wiFiName: controller.homeData.value!.wiFiName,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ),
               ],
             );
           },

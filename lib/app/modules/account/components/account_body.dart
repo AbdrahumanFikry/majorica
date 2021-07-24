@@ -12,7 +12,6 @@ import 'package:majorica/app/modules/root/controllers/root_controller.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/services/cache_service.dart';
-import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/color_util.dart';
 import 'package:majorica/generated/l10n.dart';
 import 'package:get/get.dart';
@@ -109,6 +108,7 @@ class AccountBody extends GetView<AccountController> {
                   onTap: () async {
                     PendingsController.to.pendingList.clear();
                     await CacheService.to.userRepo.clear();
+                    AuthService.to.sessionID('');
                     Get.offAllNamed(Routes.ACCOUNT);
                   },
                 ),

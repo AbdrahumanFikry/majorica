@@ -36,7 +36,7 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
       }
       endBusySuccess();
     } catch (error) {
-      endBusyError(error, showDialog: true);
+      print('error fetching home date : $error');
     }
   }
 
@@ -89,7 +89,7 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
           final int index = val!.myRooms!.indexWhere(
             (element) => element.iD == resID,
           );
-          val.myRooms![index].dND = !currentDND;
+          val.myRooms![index].dND = currentDND;
         });
       }
       endBusySuccess();

@@ -49,11 +49,11 @@ class AppPages {
       page: () => MyAccountView(),
       binding: AccountBinding(),
     ),
-    GetPage(
-      name: _Paths.LOGIN,
-      page: () => LoginView(),
-      transition: Transition.fade,
-    ),
+    // GetPage(
+    //   name: _Paths.LOGIN,
+    //   page: () => LoginView(),
+    //   transition: Transition.fade,
+    // ),
     GetPage(
       name: _Paths.ACCOUNT,
       page: () => AccountView(),

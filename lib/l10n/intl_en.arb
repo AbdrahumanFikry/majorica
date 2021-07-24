@@ -176,5 +176,10 @@
   "services": "Extra Services",
   "requestedService": "You requested {service} ,one of our employees will contact you soon",
   "username": "Username",
-  "dND": "Do Not Disturb"
+  "dND": "Do Not Disturb",
+  "roomNum": "Room number",
+  "noRooms": "There is no room available in this period",
+  "noReservations": "No reservations yet",
+  "resNum": "Reservation",
+  "depositedAmount": "deposited amount"
 }

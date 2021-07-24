@@ -39,22 +39,11 @@ class EmptyWidget extends StatelessWidget {
               height: 20.0,
             ),
             Text(
-              S.of(context).noData,
+              hint ?? '',
               style: TextStyle(
                 fontSize: 60.sp,
                 fontWeight: FontWeight.bold,
                 color: ColorUtil.errorColor,
-              ),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              hint ?? '',
-              style: TextStyle(
-                fontSize: 48.sp,
-                fontWeight: FontWeight.w700,
-                color: ColorUtil.mediumGrey,
               ),
             ),
             const SizedBox(

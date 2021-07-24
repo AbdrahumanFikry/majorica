@@ -73,20 +73,9 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                 children: [
                   Row(
                     children: [
-                      if (widget.roomInfo?.dND == true)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 5.0,
-                          ),
-                          child: Icon(
-                            CupertinoIcons.moon_fill,
-                            size: 75.sp,
-                            color: ColorUtil.darkBlue,
-                          ),
-                        ),
                       if (widget.roomInfo?.requestable == true)
                         Text(
-                          '#${widget.roomInfo!.roomNumber!}',
+                          '${S.of(context).roomNum} : ${widget.roomInfo!.roomNumber!}',
                           style: AppUtil.textStyle(
                             fontSize: 44.sp,
                             fontWeight: FontWeight.bold,
@@ -106,7 +95,33 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                               color: AppUtil.fromHex(
                                   widget.roomInfo!.statusColor!),
                             ),
-                            textAlign: TextAlign.end,
+                            textAlign: widget.roomInfo?.requestable == true
+                                ? TextAlign.end
+                                : TextAlign.start,
+                          ),
+                        ),
+                      if (widget.roomInfo?.requestable != true) ...[
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          '${S.of(context).resNum} : ${widget.roomInfo!.iD!}',
+                          style: AppUtil.textStyle(
+                            fontSize: 44.sp,
+                            fontWeight: FontWeight.bold,
+                            color: ColorUtil.errorColor,
+                          ),
+                        ),
+                      ],
+                      if (widget.roomInfo?.dND == true)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 5.0,
+                          ),
+                          child: Icon(
+                            CupertinoIcons.moon_fill,
+                            size: 75.sp,
+                            color: ColorUtil.darkBlue,
                           ),
                         ),
                       if (widget.roomInfo?.requestable == true)
@@ -156,7 +171,7 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                                     onChanged: (val) async =>
                                         await HomeController.to.requestDND(
                                       widget.roomInfo!.iD!,
-                                      currentDND: !val,
+                                      currentDND: val,
                                     ),
                                   ),
                                 ],

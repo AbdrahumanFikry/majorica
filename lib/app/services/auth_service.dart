@@ -49,13 +49,14 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
   final tempPassword = ''.obs;
   final registerHash = ''.obs;
   final sessionID = ''.obs;
+  final numChecked = false.obs;
 
   void changeObscuring() {
     hidePassword(!hidePassword.value);
   }
 
   Future<void> login() async {
-    final formData = loginFormKey.currentState;
+    final formData = accountFormKey.currentState;
     if (formData!.validate()) {
       formData.save();
       try {
@@ -73,6 +74,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           accountId.clear();
           changePassword(false);
           forgetPassword(false);
+          numChecked(false);
           Get.toNamed(Routes.OTP);
         } else if (response['sessionID'] != null) {
           sessionID(response['sessionID']);
@@ -80,6 +82,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           accountId.clear();
           changePassword(false);
           forgetPassword(false);
+          numChecked(false);
           await loadApp();
           Get.offAllNamed(Routes.ROOT);
         }
@@ -116,7 +119,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           otpHash(response['OTPHash']);
           Get.offAllNamed(Routes.OTP);
         } else if (response['checkMobile'] == true) {
-          Get.offAllNamed(Routes.LOGIN);
+          numChecked(true);
         }
         endBusySuccess();
       } catch (error) {
@@ -322,8 +325,9 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         oldPassword.clear();
         password.clear();
         confirmedPassword.clear();
+        numChecked(true);
         endBusySuccess();
-        Get.offAllNamed(Routes.LOGIN);
+        Get.offAllNamed(Routes.ACCOUNT);
       }
     } catch (error) {
       rethrow;

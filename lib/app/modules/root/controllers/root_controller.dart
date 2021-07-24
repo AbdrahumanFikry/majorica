@@ -20,7 +20,9 @@ class RootController extends GetxController {
           appData(event.value);
           final list =
               appData.value?.appSettings?.appBG?.toList() ?? <String>[];
-          wallpaper(list[random.nextInt(list.length)]);
+          if (list.isNotEmpty) {
+            wallpaper(list[random.nextInt(list.length)]);
+          }
         }
       },
     ).onDone(() {

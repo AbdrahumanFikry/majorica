@@ -21,7 +21,7 @@ mixin ApiMixin {
   }) async {
     body.addAll(
       {
-        "Lang": AppUtil.isLtr ? "en" : "ar",
+        "lang": AppUtil.isLtr ? "en" : "ar",
       },
     );
     print('Request body : $body');

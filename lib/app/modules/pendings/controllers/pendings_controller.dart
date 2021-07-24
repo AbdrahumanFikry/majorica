@@ -15,9 +15,10 @@ import 'package:majorica/generated/l10n.dart';
 
 class PendingsController extends GetxController with BusyMixin, ApiMixin {
   final pendingList = RxList<PendingRoom>(<PendingRoom>[]);
-  final showPendingIcon = false.obs;
   TextEditingController couponController = TextEditingController();
+  final showPendingIcon = false.obs;
   final couponApplied = false.obs;
+  TextEditingController payAmount = TextEditingController();
 
   double? get allTotal {
     double all = 0.0;
@@ -29,6 +30,7 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
         all = all + pending.total!;
       }
     }
+    payAmount.text = all.toString();
     return all;
   }
 
@@ -53,6 +55,7 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
                 },
               )
               .toList(),
+          "payAmount": payAmount.text,
           "voucher": couponController.text,
           "confirm": true,
         },
@@ -63,6 +66,7 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
             paymentToken: response['paymentToken'],
           ),
         );
+        print('::::::::::::::::::::::::::::::: $result');
         if (result != null) {
           final message = json.decode(result);
           if (message['success'] == true) {
@@ -70,7 +74,8 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
             Get.off(() => SuccessPageView());
           } else {
             AppUtil.showAlertDialog(
-              contentText: '${S.current.paymentError} (${message['error']})',
+              contentText: message['error'],
+              confirmText: S.current.done,
             );
           }
         }
@@ -78,6 +83,35 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
       endBusySuccess();
     } catch (error) {
       endBusyError(error, showDialog: true);
+    }
+  }
+
+  Future<void> addPending() async {
+    try {
+      startBusyWithId('addPending');
+      final sessionID = AuthService.to.currentUser.value!.sessionID;
+      await post(
+        ApiUtil.reserve,
+        body: {
+          "sessionID": sessionID,
+          "reservations": pendingList
+              .map(
+                (pending) => {
+                  "groupId": pending.id,
+                  "packageId": pending.roomPackage!.packageId,
+                  "fromDate": pending.startDate!.toShortUserString(),
+                  "toDate": pending.endDate!.toShortUserString(),
+                  "sleeps": pending.sleeps,
+                },
+              )
+              .toList(),
+          "voucher": couponController.text,
+          "confirm": false,
+        },
+      );
+      endBusySuccess();
+    } catch (error) {
+      endBusyError(error, showDialog: false);
     }
   }
 
@@ -106,7 +140,6 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
         },
       );
       if (response['reserve'] != null) {
-        List<ReserveInfo> reserveInfoList = <ReserveInfo>[];
         response['reserve'].forEach(
           (v) {
             final ReserveInfo reserveInfo = ReserveInfo.fromJson(v);
@@ -135,6 +168,7 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
       if (pendingList.isEmpty) {
         showPendingIcon(false);
       } else if (pendingList.isNotEmpty && Get.currentRoute != '/pendings') {
+        addPending();
         showPendingIcon(true);
       } else {
         showPendingIcon(false);

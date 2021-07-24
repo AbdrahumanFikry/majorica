@@ -12,14 +12,17 @@ class RootBinding extends Bindings {
       RootController(),
       permanent: true,
     );
-    Get.lazyPut<ReservationsController>(
-      () => ReservationsController(),
+    Get.put<ReservationsController>(
+      ReservationsController(),
+      permanent: true,
     );
-    Get.lazyPut<HomeController>(
-      () => HomeController(),
+    Get.put<HomeController>(
+      HomeController(),
+      permanent: true,
     );
-    Get.lazyPut<AccountController>(
-      () => AccountController(),
+    Get.put<AccountController>(
+      AccountController(),
+      permanent: true,
     );
   }
 }

@@ -30,7 +30,7 @@ class Coupon extends GetView<PendingsController> {
               ),
             ),
             const SizedBox(
-              height: 10.0,
+              height: 5.0,
             ),
             Waiting(
               loading: controller.busyId.value == 'Coupon',

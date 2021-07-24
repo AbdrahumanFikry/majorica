@@ -27,89 +27,143 @@ class AccountView extends GetView<AuthService> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Form(
               key: controller.accountFormKey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 200.sp,
-                  ),
-                  Image.asset(
-                    PathUtil.checkPNG,
-                    height: 600.sp,
-                    width: 600.sp,
-                  ),
-                  const Spacer(),
-                  Align(
-                    alignment: AppUtil.isLtr
-                        ? Alignment.bottomLeft
-                        : Alignment.bottomRight,
-                    child: Text(
-                      S.of(context).enterOwnPhone,
-                      style: AppUtil.textStyle(
-                        color: ColorUtil.darkBlue,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 54.sp,
+              child: Obx(
+                () => Column(
+                  children: [
+                    SizedBox(
+                      height: 200.sp,
+                    ),
+                    Image.asset(
+                      PathUtil.checkPNG,
+                      height: 600.sp,
+                      width: 600.sp,
+                    ),
+                    const Spacer(),
+                    Align(
+                      alignment: AppUtil.isLtr
+                          ? Alignment.bottomLeft
+                          : Alignment.bottomRight,
+                      child: Text(
+                        S.of(context).enterOwnPhone,
+                        style: AppUtil.textStyle(
+                          color: ColorUtil.darkBlue,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 54.sp,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Align(
-                    alignment: AppUtil.isLtr
-                        ? Alignment.bottomLeft
-                        : Alignment.bottomRight,
-                    child: Text(
-                      S.of(context).phoneHint,
-                      style: AppUtil.textStyle(
-                        color: ColorUtil.mediumGrey,
-                        letterSpacing: 1.5,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 43.sp,
-                        height: 1.5,
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Align(
+                      alignment: AppUtil.isLtr
+                          ? Alignment.bottomLeft
+                          : Alignment.bottomRight,
+                      child: Text(
+                        S.of(context).phoneHint,
+                        style: AppUtil.textStyle(
+                          color: ColorUtil.mediumGrey,
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 43.sp,
+                          height: 1.5,
+                        ),
                       ),
                     ),
-                  ),
-                  AppTextField(
-                    controller.phone,
-                    borderColor: ColorUtil.mediumGrey,
-                    labelText: S.of(context).phoneNumber,
-                    keyBoardType: TextInputType.number,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10.0,
-                    ),
-                    prefixWidget: GlobalCard(
-                      color: Colors.transparent,
-                      elevation: 0,
+                    AppTextField(
+                      controller.phone,
+                      borderColor: ColorUtil.mediumGrey,
+                      labelText: S.of(context).phoneNumber,
+                      keyBoardType: TextInputType.number,
                       margin: const EdgeInsets.symmetric(
-                        horizontal: 5.0,
-                        vertical: 2.5,
+                        vertical: 10.0,
                       ),
-                      child: CountryCodePicker(
-                        onChanged: (val) =>
-                            controller.countryCode(val.dialCode),
-                        initialSelection: 'EG',
-                        favorite: const ['+20', 'EG'],
-                        showFlagMain: false,
-                        showCountryOnly: true,
+                      prefixWidget: GlobalCard(
+                        color: Colors.transparent,
+                        elevation: 0,
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 5.0,
+                          vertical: 2.5,
+                        ),
+                        child: CountryCodePicker(
+                          onChanged: (val) =>
+                              controller.countryCode(val.dialCode),
+                          initialSelection: 'EG',
+                          favorite: const ['+20', 'EG'],
+                          showFlagMain: false,
+                          showCountryOnly: true,
+                        ),
+                      ),
+                      validator: const QuickTextValidator(
+                        isPhone: true,
                       ),
                     ),
-                    validator: const QuickTextValidator(
-                      isPhone: true,
-                    ),
-                  ),
-                  Obx(
-                    () => AppButton(
+                    if (controller.numChecked.value) ...[
+                      AppTextField(
+                        controller.password,
+                        isPassword: true,
+                        labelText: S.of(context).password,
+                        hidePassword: controller.hidePassword.value,
+                        changeObscuring: controller.changeObscuring,
+                        prefixWidget: const Icon(
+                          CupertinoIcons.lock_fill,
+                          color: ColorUtil.primaryColor,
+                          size: 20.0,
+                        ),
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 15.0,
+                          vertical: 5.0,
+                        ),
+                        validator: const QuickTextValidator(
+                          hasMinLength: 8,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Align(
+                        alignment: AppUtil.isLtr
+                            ? Alignment.bottomLeft
+                            : Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0,
+                            vertical: 3.0,
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              controller.password.clear();
+                              controller.confirmedPassword.clear();
+                              controller.forgetPassword(true);
+                              controller.changePassword(false);
+                              controller.numChecked(false);
+                            },
+                            child: Text(
+                              S.of(context).forgetPassword,
+                              style: AppUtil.textStyle(
+                                color: ColorUtil.mediumGrey,
+                                fontSize: 14.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    AppButton(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 30.0,
                         vertical: 10.0,
                       ),
-                      isBusy: controller.busyId.value == 'checkMobile',
+                      isBusy: controller.busyId.value == 'checkMobile' ||
+                          controller.busyId.value == 'login',
                       backgroundColor: ColorUtil.primaryColor,
                       title: S.of(context).confirm,
-                      onTap: controller.checkMobile,
+                      onTap: controller.numChecked.value
+                          ? controller.login
+                          : controller.checkMobile,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

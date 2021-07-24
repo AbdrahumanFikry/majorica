@@ -24,7 +24,9 @@ class AvailableRoomsResultsView extends GetView<AvailableRoomsController> {
             return Loading();
           } else {
             if (rooms.isEmpty) {
-              return const EmptyWidget();
+              return EmptyWidget(
+                hint: S.of(context).noRooms,
+              );
             } else {
               return AnimatedListHandler(
                 children: rooms
