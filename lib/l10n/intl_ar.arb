@@ -186,6 +186,8 @@
   "connect": "توصيل",
   "removeDoc": "إزاله هذا المستند",
   "payDebt": "ادفع المديونيه",
+  "outStandingBalance": "المديونيه",
   "enterAmountHere": "أدخل المبلغ هنا",
-  "minPayBalance": "أقل مبلغ هو 100"
+  "minPayBalance": "أقل مبلغ هو 100",
+  "copiedToClipboard": "تم النسخه للحافظه"
 }

@@ -17,22 +17,10 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
   final pendingList = RxList<PendingRoom>(<PendingRoom>[]);
   TextEditingController couponController = TextEditingController();
   final showPendingIcon = false.obs;
+  final outStandingBalance = '0'.obs;
   final couponApplied = false.obs;
+  final allTotal = 0.0.obs;
   TextEditingController payAmount = TextEditingController();
-
-  double? get allTotal {
-    double all = 0.0;
-    for (final pending in pendingList) {
-      if (pending.reserveInfo?.offer != null &&
-          pending.reserveInfo?.offer == true) {
-        all = all + pending.reserveInfo!.nightsFinalPrice!;
-      } else {
-        all = all + pending.total!;
-      }
-    }
-    payAmount.text = all.toString();
-    return all;
-  }
 
   static PendingsController get to => Get.find<PendingsController>();
 
@@ -90,7 +78,7 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
     try {
       startBusyWithId('addPending');
       final sessionID = AuthService.to.currentUser.value!.sessionID;
-      await post(
+      final response = await post(
         ApiUtil.reserve,
         body: {
           "sessionID": sessionID,
@@ -109,6 +97,11 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
           "confirm": false,
         },
       );
+      allTotal(double.tryParse(response['subTotal'].toString()));
+      outStandingBalance(response['balance'].toString());
+      if (response['totalPayable'] != null) {
+        payAmount.text = response['totalPayable'].toString();
+      }
       endBusySuccess();
     } catch (error) {
       endBusyError(error, showDialog: false);
@@ -139,6 +132,7 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
           "confirm": false,
         },
       );
+
       if (response['reserve'] != null) {
         response['reserve'].forEach(
           (v) {
@@ -154,6 +148,11 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
           },
         );
       }
+      allTotal(double.tryParse(response['subTotal'].toString()));
+      outStandingBalance(response['balance'].toString());
+      if (response['totalPayable'] != null) {
+        payAmount.text = response['totalPayable'].toString();
+      }
       couponApplied(!couponApplied.value);
       endBusySuccess();
     } catch (error) {
@@ -164,7 +163,6 @@ class PendingsController extends GetxController with BusyMixin, ApiMixin {
   @override
   void onReady() {
     pendingList.stream.listen((event) {
-      print(pendingList.isNotEmpty && Get.currentRoute != '/pendings');
       if (pendingList.isEmpty) {
         showPendingIcon(false);
       } else if (pendingList.isNotEmpty && Get.currentRoute != '/pendings') {

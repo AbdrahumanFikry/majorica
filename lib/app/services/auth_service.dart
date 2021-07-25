@@ -184,6 +184,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         Get.offAllNamed(Routes.SIGN_UP);
       } else if (response['sessionID'] != null) {
         sessionID(response['sessionID']);
+        currentUser(null);
         otp.clear();
         await loadApp();
         Get.offAllNamed(Routes.ROOT);

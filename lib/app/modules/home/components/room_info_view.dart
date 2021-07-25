@@ -212,7 +212,10 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                                               text: widget.roomInfo!.iD,
                                             ),
                                           );
-                                          Get.back();
+                                          AppUtil.showAlertSnack(
+                                            body:
+                                                S.of(context).copiedToClipboard,
+                                          );
                                         },
                                         child: const Icon(
                                           Icons.copy_rounded,
@@ -242,7 +245,10 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                                                   widget.roomInfo!.wifiPassword,
                                             ),
                                           );
-                                          Get.back();
+                                          AppUtil.showAlertSnack(
+                                            body:
+                                                S.of(context).copiedToClipboard,
+                                          );
                                         },
                                         child: const Icon(
                                           Icons.copy_rounded,

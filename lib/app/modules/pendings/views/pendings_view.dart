@@ -5,7 +5,9 @@ import 'package:majorica/app/components/animated_list_handler.dart';
 import 'package:majorica/app/components/app_button.dart';
 import 'package:majorica/app/components/app_text_field.dart';
 import 'package:majorica/app/components/global_app_bar.dart';
+import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
+import 'package:majorica/app/components/waiting.dart';
 import 'package:majorica/app/modules/pendings/components/cobon.dart';
 import 'package:majorica/app/modules/pendings/components/pending_list.dart';
 import 'package:majorica/app/utilities/app_util.dart';
@@ -42,6 +44,64 @@ class PendingsView extends GetView<PendingsController> {
             children: [
               PendingList(),
               Coupon(),
+              GlobalCard(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              S.of(context).total,
+                              style: AppUtil.textStyle(
+                                fontSize: 50.sp,
+                                fontWeight: FontWeight.bold,
+                                color: ColorUtil.darkBlue,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '${controller.allTotal.toStringAsFixed(0)} ${S.of(context).egp}',
+                            style: AppUtil.textStyle(
+                              fontSize: 50.sp,
+                              fontWeight: FontWeight.bold,
+                              color: ColorUtil.primaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (int.tryParse(controller.outStandingBalance.value)! >
+                          0)
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                S.of(context).outStandingBalance,
+                                style: AppUtil.textStyle(
+                                  fontSize: 50.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorUtil.darkBlue,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '${controller.outStandingBalance.value} ${S.of(context).egp}',
+                              style: AppUtil.textStyle(
+                                fontSize: 50.sp,
+                                fontWeight: FontWeight.bold,
+                                color: ColorUtil.primaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
@@ -58,18 +118,21 @@ class PendingsView extends GetView<PendingsController> {
                     const SizedBox(
                       height: 5.0,
                     ),
-                    AppTextField(
-                      controller.payAmount,
-                      underLine: false,
-                      readOnly: controller.isBusy.value,
-                      hintText: S.of(context).amount,
-                      hintColor: ColorUtil.mediumGrey,
-                      keyBoardType: TextInputType.number,
-                      suffixWidget: Text(
-                        S.of(context).egp,
-                        style: AppUtil.textStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ColorUtil.primaryColor,
+                    Waiting(
+                      loading: controller.busyId.value == 'addPending',
+                      child: AppTextField(
+                        controller.payAmount,
+                        underLine: false,
+                        readOnly: controller.isBusy.value,
+                        hintText: S.of(context).amount,
+                        hintColor: ColorUtil.mediumGrey,
+                        keyBoardType: TextInputType.number,
+                        suffixWidget: Text(
+                          S.of(context).egp,
+                          style: AppUtil.textStyle(
+                            fontWeight: FontWeight.bold,
+                            color: ColorUtil.primaryColor,
+                          ),
                         ),
                       ),
                     ),

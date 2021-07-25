@@ -172,39 +172,41 @@ class HomeView extends GetView<HomeController> {
                           Expanded(
                             child: AnimatedListHandler(
                               children: [
-                                // if (controller.payAvailable.value)
-                                AppButton(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 20.0,
-                                    vertical: 10.0,
-                                  ),
-                                  title: S.of(context).payDebt,
-                                  isBusy: controller.payBalanceLoading.value,
-                                  onTap: () async => AppUtil.showAlertDialog(
-                                    enableCancel: true,
-                                    title: S.of(context).payDebt,
-                                    onConfirm: controller.payBalance,
-                                    child: Form(
-                                      key: controller.payBalanceFormKey,
-                                      child: AppTextField(
-                                        controller.payAmount,
-                                        underLine: false,
-                                        readOnly: controller.isBusy.value,
-                                        hintText: S.of(context).enterAmountHere,
-                                        hintColor: ColorUtil.mediumGrey,
-                                        keyBoardType: TextInputType.number,
-                                        margin: const EdgeInsets.all(20.0),
-                                        suffixWidget: Text(
-                                          S.of(context).egp,
-                                          style: AppUtil.textStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: ColorUtil.primaryColor,
+                                if (controller.payAvailable.value)
+                                  AppButton(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 20.0,
+                                      vertical: 10.0,
+                                    ),
+                                    title:
+                                        '${S.of(context).payDebt} (${controller.amountMustPaid.value} ${S.of(context).egp})',
+                                    isBusy: controller.payBalanceLoading.value,
+                                    onTap: () async => AppUtil.showAlertDialog(
+                                      enableCancel: true,
+                                      title: S.of(context).payDebt,
+                                      onConfirm: controller.payBalance,
+                                      child: Form(
+                                        key: controller.payBalanceFormKey,
+                                        child: AppTextField(
+                                          controller.payAmount,
+                                          underLine: false,
+                                          readOnly: controller.isBusy.value,
+                                          hintText:
+                                              S.of(context).enterAmountHere,
+                                          hintColor: ColorUtil.mediumGrey,
+                                          keyBoardType: TextInputType.number,
+                                          margin: const EdgeInsets.all(20.0),
+                                          suffixWidget: Text(
+                                            S.of(context).egp,
+                                            style: AppUtil.textStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: ColorUtil.primaryColor,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
                                 ...controller.homeData.value!.myRooms!
                                     .map(
                                       (room) => RoomInfoView(

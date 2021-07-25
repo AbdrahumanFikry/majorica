@@ -79,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "connect": MessageLookupByLibrary.simpleMessage("Connect"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
         "continueNext": MessageLookupByLibrary.simpleMessage("Continue"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("Copied to Clipboard"),
         "createNow": MessageLookupByLibrary.simpleMessage("Create now"),
         "createUserAccount":
             MessageLookupByLibrary.simpleMessage("Create user account"),
@@ -198,6 +200,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
         "otpSendDone": MessageLookupByLibrary.simpleMessage(
             "A confirmation code has been sent to your phone"),
+        "outStandingBalance":
+            MessageLookupByLibrary.simpleMessage("Outstanding balance"),
         "packages": MessageLookupByLibrary.simpleMessage("Packages"),
         "paidFor": MessageLookupByLibrary.simpleMessage("Paid for"),
         "participants": MessageLookupByLibrary.simpleMessage("Participants"),
@@ -207,7 +211,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsDoNotMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match !"),
         "past": MessageLookupByLibrary.simpleMessage("Past"),
-        "payDebt": MessageLookupByLibrary.simpleMessage("Pay the debt"),
+        "payDebt": MessageLookupByLibrary.simpleMessage("Pay the outstanding"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "paymentDetails":
             MessageLookupByLibrary.simpleMessage("Payment details"),

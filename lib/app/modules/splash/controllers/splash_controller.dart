@@ -13,9 +13,10 @@ import 'package:majorica/generated/l10n.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class SplashController extends GetxController {
-  Future<void> _initCache() async {
+  Future<bool> _initCache() async {
     await Hive.initFlutter('v1');
     await (Get.put(CacheService())).init();
+    return CacheService.to.userRepo.initAuthLogic();
   }
 
   Future<String> initFunction(BuildContext context) async {
@@ -31,9 +32,8 @@ class SplashController extends GetxController {
         },
         platform: Theme.of(context).platform,
       );
-      await _initCache();
+      final authLogicRes = await _initCache();
       Get.put<AuthService>(AuthService());
-      final authLogicRes = await CacheService.to.userRepo.initAuthLogic();
       Get.put(NotificationService()).init();
       if (msg != null) {
         print(msg.notification.toString());

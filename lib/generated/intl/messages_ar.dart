@@ -78,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "connect": MessageLookupByLibrary.simpleMessage("توصيل"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معانا"),
         "continueNext": MessageLookupByLibrary.simpleMessage("إستمرار"),
+        "copiedToClipboard":
+            MessageLookupByLibrary.simpleMessage("تم النسخه للحافظه"),
         "createNow": MessageLookupByLibrary.simpleMessage("إنشاء الاَن"),
         "createUserAccount":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب مستخدم"),
@@ -196,6 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمه المرور القديمه"),
         "otpSendDone": MessageLookupByLibrary.simpleMessage(
             "تم ارسال كود التأكيد علي هاتفك"),
+        "outStandingBalance": MessageLookupByLibrary.simpleMessage("المديونيه"),
         "packages": MessageLookupByLibrary.simpleMessage("الحزم"),
         "paidFor": MessageLookupByLibrary.simpleMessage("مدفوع ل"),
         "participants": MessageLookupByLibrary.simpleMessage("الأفراد"),

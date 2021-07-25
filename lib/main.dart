@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:majorica/app/components/global_pending.dart';
 import 'package:majorica/app/services/analytics_service.dart';
 import 'app/components/app_builder.dart';
-import 'app/modules/pendings/bindings/pendings_binding.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/init_binding.dart';
 import 'app/utilities/app_util.dart';
@@ -42,7 +41,10 @@ class MyApp extends StatelessWidget {
             getPages: AppPages.routes,
             initialRoute: Routes.SPLASH,
             initialBinding: InitBinding(),
-            navigatorObservers: [AnalyticsService.to.getAnalyticsObserver()],
+            navigatorObservers: [
+              if (Get.isRegistered<AnalyticsService>())
+                AnalyticsService.to.getAnalyticsObserver()
+            ],
             builder: (context, child) => GlobalPending(
               child: child ?? SizedBox(height: Get.height, width: Get.width),
             ),

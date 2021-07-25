@@ -1920,6 +1920,16 @@ class S {
     );
   }
 
+  /// `المديونيه`
+  String get outStandingBalance {
+    return Intl.message(
+      'المديونيه',
+      name: 'outStandingBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `أدخل المبلغ هنا`
   String get enterAmountHere {
     return Intl.message(
@@ -1935,6 +1945,16 @@ class S {
     return Intl.message(
       'أقل مبلغ هو 100',
       name: 'minPayBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم النسخه للحافظه`
+  String get copiedToClipboard {
+    return Intl.message(
+      'تم النسخه للحافظه',
+      name: 'copiedToClipboard',
       desc: '',
       args: [],
     );

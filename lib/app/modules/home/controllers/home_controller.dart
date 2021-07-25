@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/home_data.dart';
+import 'package:majorica/app/modules/pendings/controllers/pendings_controller.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
@@ -17,6 +18,7 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
   GlobalKey<FormState> payBalanceFormKey = GlobalKey<FormState>();
   final payAvailable = false.obs;
   final payBalanceLoading = false.obs;
+  final amountMustPaid = ''.obs;
   final range = Rx<DateTimeRange>(
     DateTimeRange(
       start: DateTime.now(),
@@ -44,6 +46,10 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
       }
       if (response['user'] != null) {
         payAvailable(response['user']!['payBalance'] ?? false);
+        if (payAvailable.value) {
+          amountMustPaid(response['user']!['balance'].toString());
+          payAmount.text = amountMustPaid.value;
+        }
       }
       endBusySuccess();
     } catch (error) {
@@ -131,11 +137,15 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
           );
           if (response['paymentToken'] != null) {
             payAmount.clear();
+            PendingsController.to.showPendingIcon(false);
             final result = await Get.to(
               () => Payment(
                 paymentToken: response['paymentToken'],
               ),
             );
+            if (PendingsController.to.pendingList.isNotEmpty) {
+              PendingsController.to.showPendingIcon(true);
+            }
             print('::::::::::::::::::::::::::::::: $result');
             if (result != null) {
               final message = json.decode(result);

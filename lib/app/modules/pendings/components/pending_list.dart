@@ -83,6 +83,8 @@ class PendingList extends GetView<PendingsController> {
                                         controller.pendingList.remove(pending);
                                         if (controller.pendingList.isEmpty) {
                                           Get.back();
+                                        } else {
+                                          await controller.addPending();
                                         }
                                       }
                                     },

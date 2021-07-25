@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:majorica/app/components/badge.dart';
+import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/modules/pendings/controllers/pendings_controller.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/app_util.dart';
@@ -41,19 +42,24 @@ class GlobalPending extends StatelessWidget {
                   right: AppUtil.isLtr ? 0.0 : null,
                   left: !AppUtil.isLtr ? 0.0 : null,
                   child: SafeArea(
-                    child: Badge(
-                      top: 0.0,
-                      title:
-                          PendingsController.to.pendingList.length.toString(),
-                      child: IconButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.PENDINGS);
-                          PendingsController.to.showPendingIcon(false);
-                        },
-                        icon: const Icon(
-                          Icons.bookmark,
-                          color: ColorUtil.darkBlue,
-                          size: 34.0,
+                    child: GlobalCard(
+                      color: ColorUtil.whiteColor,
+                      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                      borderRadius: BorderRadius.circular(100),
+                      child: Badge(
+                        top: 0.0,
+                        title:
+                            PendingsController.to.pendingList.length.toString(),
+                        child: IconButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.PENDINGS);
+                            PendingsController.to.showPendingIcon(false);
+                          },
+                          icon: const Icon(
+                            Icons.bookmark,
+                            color: ColorUtil.darkBlue,
+                            size: 34.0,
+                          ),
                         ),
                       ),
                     ),
