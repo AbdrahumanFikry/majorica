@@ -8,6 +8,7 @@ import 'package:majorica/app/components/app_text_field.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/components/net_image.dart';
+import 'package:majorica/app/modules/pendings/controllers/pendings_controller.dart';
 import 'package:majorica/app/modules/root/controllers/root_controller.dart';
 import 'package:majorica/app/routes/app_pages.dart';
 import 'package:majorica/app/utilities/app_util.dart';
@@ -69,6 +70,7 @@ class HomeView extends GetView<HomeController> {
                             horizontal: 20.0,
                           ),
                           onTap: () async {
+                            PendingsController.to.showPendingIcon(false);
                             final range = await Get.dialog<DateTimeRange>(
                               Theme(
                                 data: ThemeData(
@@ -107,12 +109,14 @@ class HomeView extends GetView<HomeController> {
                                   fieldEndHintText: S.of(context).endDate,
                                   fieldStartLabelText: S.of(context).startDate,
                                   fieldEndLabelText: S.of(context).endDate,
-                                  // initialDateRange: controller.range.value,
                                   initialEntryMode:
                                       DatePickerEntryMode.calendarOnly,
                                 ),
                               ),
                             );
+                            if (PendingsController.to.pendingList.isNotEmpty) {
+                              PendingsController.to.showPendingIcon(true);
+                            }
                             if (range != null) {
                               controller.range(range);
                               Get.toNamed(
@@ -175,10 +179,10 @@ class HomeView extends GetView<HomeController> {
                                     vertical: 10.0,
                                   ),
                                   title: S.of(context).payDebt,
+                                  isBusy: controller.payBalanceLoading.value,
                                   onTap: () async => AppUtil.showAlertDialog(
                                     enableCancel: true,
                                     title: S.of(context).payDebt,
-                                    loading: controller.payBalanceLoading,
                                     onConfirm: controller.payBalance,
                                     child: Form(
                                       key: controller.payBalanceFormKey,

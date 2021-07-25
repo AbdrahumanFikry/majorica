@@ -4,9 +4,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/global_pending.dart';
+import 'package:majorica/app/services/analytics_service.dart';
 import 'app/components/app_builder.dart';
 import 'app/modules/pendings/bindings/pendings_binding.dart';
 import 'app/routes/app_pages.dart';
+import 'app/services/init_binding.dart';
 import 'app/utilities/app_util.dart';
 import 'generated/l10n.dart';
 
@@ -26,6 +28,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Get.put<AnalyticsService>(AnalyticsService());
     return ScreenUtilInit(
       designSize: const Size(1080, 1920),
       builder: () => GestureDetector(
@@ -38,7 +41,8 @@ class MyApp extends StatelessWidget {
             theme: AppUtil.appLightTheme,
             getPages: AppPages.routes,
             initialRoute: Routes.SPLASH,
-            initialBinding: PendingsBinding(),
+            initialBinding: InitBinding(),
+            navigatorObservers: [AnalyticsService.to.getAnalyticsObserver()],
             builder: (context, child) => GlobalPending(
               child: child ?? SizedBox(height: Get.height, width: Get.width),
             ),

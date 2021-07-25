@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/routes/app_pages.dart';
+import 'package:majorica/app/services/analytics_service.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/services/cache_service.dart';
 import 'package:majorica/app/services/notification_service.dart';

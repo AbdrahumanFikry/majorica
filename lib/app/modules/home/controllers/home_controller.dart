@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/home_data.dart';
@@ -7,6 +9,8 @@ import 'package:majorica/app/utilities/mixins/api_mixin.dart';
 import 'package:majorica/app/utilities/mixins/busy_mixin.dart';
 import 'package:majorica/app/utilities/path_util.dart';
 import 'package:majorica/generated/l10n.dart';
+
+import '../../payment_view.dart';
 
 class HomeController extends GetxController with BusyMixin, ApiMixin {
   TextEditingController payAmount = TextEditingController();
@@ -111,21 +115,41 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
       formData.save();
       try {
         payBalanceLoading(true);
-        if (int.tryParse(payAmount.text)! < 100) throw S.current.minPayBalance;
-        final sessionID = AuthService.to.currentUser.value!.sessionID;
-        final response = await post(
-          ApiUtil.payBalance,
-          body: {
-            "sessionID": sessionID,
-            "payAmount": payAmount.text,
-          },
-        );
-        if (response['success'] == true) {
-          fetchHomeData();
+        if (int.tryParse(payAmount.text)! < 100) {
           payAmount.clear();
           Get.back();
+          throw S.current.minPayBalance;
+        } else {
+          Get.back();
+          final sessionID = AuthService.to.currentUser.value!.sessionID;
+          final response = await post(
+            ApiUtil.payBalance,
+            body: {
+              "sessionID": sessionID,
+              "payAmount": payAmount.text,
+            },
+          );
+          if (response['paymentToken'] != null) {
+            payAmount.clear();
+            final result = await Get.to(
+              () => Payment(
+                paymentToken: response['paymentToken'],
+              ),
+            );
+            print('::::::::::::::::::::::::::::::: $result');
+            if (result != null) {
+              final message = json.decode(result);
+              AppUtil.showAlertDialog(
+                contentText: message['success'] == true
+                    ? S.current.paymentDoneSuccessfully
+                    : message['error'],
+                confirmText: S.current.done,
+              );
+            }
+            fetchHomeData();
+          }
+          payBalanceLoading(false);
         }
-        payBalanceLoading(false);
       } catch (error) {
         payBalanceLoading(false);
         endBusyError(error, showDialog: true);

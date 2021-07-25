@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/pending.dart';
-import 'package:majorica/app/modules/pendings/views/payment_view.dart';
+import 'package:majorica/app/modules/payment_view.dart';
 import 'package:majorica/app/modules/pendings/views/success_page_view.dart';
 import 'package:majorica/app/services/auth_service.dart';
 import 'package:majorica/app/utilities/app_util.dart';

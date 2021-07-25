@@ -181,81 +181,79 @@ class AppUtil {
           borderRadius: borderRadius10,
         ),
         content: SingleChildScrollView(
-          child: Obx(
-            () => Column(
-              textDirection:
-                  AppUtil.isLtr ? TextDirection.ltr : TextDirection.rtl,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (enableCancel)
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: IconButton(
-                      splashRadius: 100.sp,
-                      onPressed: () => Get.back(result: false),
-                      icon: Icon(
-                        CupertinoIcons.clear,
-                        color: ColorUtil.errorColor,
-                        size: 90.sp,
-                      ),
+          child: Column(
+            textDirection:
+                AppUtil.isLtr ? TextDirection.ltr : TextDirection.rtl,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (enableCancel)
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: IconButton(
+                    splashRadius: 100.sp,
+                    onPressed: () => Get.back(result: false),
+                    icon: Icon(
+                      CupertinoIcons.clear,
+                      color: ColorUtil.errorColor,
+                      size: 90.sp,
                     ),
                   ),
+                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 15.0,
+                ),
+                child: Text(
+                  title ?? S.current.alert,
+                  textAlign: TextAlign.center,
+                  style: textStyle(
+                    color: ColorUtil.primaryColor,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              if (loading?.value != null && loading?.value == true)
+                Loading()
+              else
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15.0,
-                  ),
-                  child: Text(
-                    title ?? S.current.alert,
-                    textAlign: TextAlign.center,
-                    style: textStyle(
-                      color: ColorUtil.primaryColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-                if (loading?.value != null && loading?.value == true)
-                  Loading()
-                else
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: child ??
-                        Text(
-                          contentText ?? '-',
-                          style: const TextStyle(
-                            color: ColorUtil.blackColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16.0,
-                            height: 1.5,
-                          ),
-                          maxLines: 10,
-                          softWrap: true,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: child ??
+                      Text(
+                        contentText ?? '-',
+                        style: const TextStyle(
+                          color: ColorUtil.blackColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.0,
+                          height: 1.5,
                         ),
-                  ),
-                const SizedBox(
-                  height: 10.0,
+                        maxLines: 10,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                 ),
-                AppButton(
-                  elevation: 0.0,
-                  backgroundColor: ColorUtil.primaryColor,
-                  borderRadius: borderRadius10,
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 30.0,
-                  ),
-                  title: confirmText ?? S.current.confirm,
-                  onTap: () {
-                    if (onConfirm != null) {
-                      onConfirm.call();
-                    } else {
-                      Get.back(result: true);
-                    }
-                  },
+              const SizedBox(
+                height: 10.0,
+              ),
+              AppButton(
+                elevation: 0.0,
+                backgroundColor: ColorUtil.primaryColor,
+                borderRadius: borderRadius10,
+                margin: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 30.0,
                 ),
-              ],
-            ),
+                title: confirmText ?? S.current.confirm,
+                onTap: () {
+                  if (onConfirm != null) {
+                    onConfirm.call();
+                  } else {
+                    Get.back(result: true);
+                  }
+                },
+              ),
+            ],
           ),
         ),
         buttonPadding: EdgeInsets.zero,

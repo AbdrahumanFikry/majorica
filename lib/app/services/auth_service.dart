@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/data/models/user.dart';
 import 'package:majorica/app/routes/app_pages.dart';
+import 'package:majorica/app/services/analytics_service.dart';
 import 'package:majorica/app/utilities/mixins/api_mixin.dart';
 import 'package:majorica/app/utilities/mixins/busy_mixin.dart';
 import 'package:majorica/app/utilities/path_util.dart';
@@ -344,6 +345,8 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         } else {
           currentUser(event.value);
           sessionID(currentUser.value!.sessionID);
+          await AnalyticsService.to
+              .setUserProperties(userId: currentUser.value!.name);
           final token =
               currentFCMToken.value = await fcmServiceFinder!()?.getToken(
             vapidKey:

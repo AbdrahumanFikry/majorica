@@ -28,6 +28,7 @@ dependencies:
       url: git@github.com:t4ulabs/fdottedline.git
       ref: master
   file_picker: ^3.0.3
+  firebase_analytics: ^8.2.0
   firebase_core: ^1.4.0
   firebase_messaging: ^10.0.4
   flutter:
