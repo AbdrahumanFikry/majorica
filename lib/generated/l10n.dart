@@ -1919,6 +1919,26 @@ class S {
       args: [],
     );
   }
+
+  /// `أدخل المبلغ هنا`
+  String get enterAmountHere {
+    return Intl.message(
+      'أدخل المبلغ هنا',
+      name: 'enterAmountHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أقل مبلغ هو 100`
+  String get minPayBalance {
+    return Intl.message(
+      'أقل مبلغ هو 100',
+      name: 'minPayBalance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

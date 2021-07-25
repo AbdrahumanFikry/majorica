@@ -10,7 +10,9 @@ import 'package:majorica/generated/l10n.dart';
 
 class HomeController extends GetxController with BusyMixin, ApiMixin {
   TextEditingController payAmount = TextEditingController();
+  GlobalKey<FormState> payBalanceFormKey = GlobalKey<FormState>();
   final payAvailable = false.obs;
+  final payBalanceLoading = false.obs;
   final range = Rx<DateTimeRange>(
     DateTimeRange(
       start: DateTime.now(),
@@ -104,22 +106,30 @@ class HomeController extends GetxController with BusyMixin, ApiMixin {
   }
 
   Future<void> payBalance() async {
-    try {
-      startBusyWithId('payBalance');
-      final sessionID = AuthService.to.currentUser.value!.sessionID;
-      final response = await post(
-        ApiUtil.payBalance,
-        body: {
-          "sessionID": sessionID,
-          "payAmount": payAmount.text,
-        },
-      );
-      if (response['success'] == true) {
-        fetchHomeData();
+    final formData = payBalanceFormKey.currentState;
+    if (formData!.validate()) {
+      formData.save();
+      try {
+        payBalanceLoading(true);
+        if (int.tryParse(payAmount.text)! < 100) throw S.current.minPayBalance;
+        final sessionID = AuthService.to.currentUser.value!.sessionID;
+        final response = await post(
+          ApiUtil.payBalance,
+          body: {
+            "sessionID": sessionID,
+            "payAmount": payAmount.text,
+          },
+        );
+        if (response['success'] == true) {
+          fetchHomeData();
+          payAmount.clear();
+          Get.back();
+        }
+        payBalanceLoading(false);
+      } catch (error) {
+        payBalanceLoading(false);
+        endBusyError(error, showDialog: true);
       }
-      endBusySuccess();
-    } catch (error) {
-      endBusyError(error, showDialog: true);
     }
   }
 }

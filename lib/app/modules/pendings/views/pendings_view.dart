@@ -61,9 +61,10 @@ class PendingsView extends GetView<PendingsController> {
                     AppTextField(
                       controller.payAmount,
                       underLine: false,
-                      readOnly: controller.couponApplied.value,
-                      hintText: S.of(context).enterDiscountCoupon,
+                      readOnly: controller.isBusy.value,
+                      hintText: S.of(context).amount,
                       hintColor: ColorUtil.mediumGrey,
+                      keyBoardType: TextInputType.number,
                       suffixWidget: Text(
                         S.of(context).egp,
                         style: AppUtil.textStyle(

@@ -112,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "endDateValidation": MessageLookupByLibrary.simpleMessage(
             "تاريخ الإنتهاء يجب أن يكون بعد تاريخ البدء وليس العكس"),
         "enter": MessageLookupByLibrary.simpleMessage("دخول"),
+        "enterAmountHere":
+            MessageLookupByLibrary.simpleMessage("أدخل المبلغ هنا"),
         "enterCode": MessageLookupByLibrary.simpleMessage("أدخل الكود"),
         "enterDiscountCoupon":
             MessageLookupByLibrary.simpleMessage("أدخل كوبون الخصم"),
@@ -168,6 +170,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxParticipantsNum":
             MessageLookupByLibrary.simpleMessage("أقصى عدد للأفراد"),
         "messages": MessageLookupByLibrary.simpleMessage("الرسائل"),
+        "minPayBalance":
+            MessageLookupByLibrary.simpleMessage("أقل مبلغ هو 100"),
         "more": MessageLookupByLibrary.simpleMessage("المزيد"),
         "moreDetails": MessageLookupByLibrary.simpleMessage("مزيد من التفاصيل"),
         "name": MessageLookupByLibrary.simpleMessage("الإسم"),

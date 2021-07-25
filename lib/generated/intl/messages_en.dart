@@ -113,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "endDateValidation": MessageLookupByLibrary.simpleMessage(
             "End date must be after start date not reversed"),
         "enter": MessageLookupByLibrary.simpleMessage("Enter"),
+        "enterAmountHere":
+            MessageLookupByLibrary.simpleMessage("Enter amount here"),
         "enterCode": MessageLookupByLibrary.simpleMessage("Enter code"),
         "enterDiscountCoupon":
             MessageLookupByLibrary.simpleMessage("Enter discount coupon"),
@@ -170,6 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxParticipantsNum":
             MessageLookupByLibrary.simpleMessage("Max participants number"),
         "messages": MessageLookupByLibrary.simpleMessage("Messages"),
+        "minPayBalance":
+            MessageLookupByLibrary.simpleMessage("Minimum amount is 100"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "moreDetails": MessageLookupByLibrary.simpleMessage("More details"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),

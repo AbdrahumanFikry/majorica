@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/animated_list_handler.dart';
+import 'package:majorica/app/components/app_button.dart';
+import 'package:majorica/app/components/app_text_field.dart';
 import 'package:majorica/app/components/global_card.dart';
 import 'package:majorica/app/components/global_scaffold.dart';
 import 'package:majorica/app/components/net_image.dart';
@@ -70,18 +72,17 @@ class HomeView extends GetView<HomeController> {
                             final range = await Get.dialog<DateTimeRange>(
                               Theme(
                                 data: ThemeData(
+                                  textTheme: TextTheme(
+                                    button: AppUtil.textStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   textButtonTheme: TextButtonThemeData(
                                     style: ButtonStyle(
                                       fixedSize:
                                           MaterialStateProperty.all<Size>(
                                         const Size(150.0, 150.0),
-                                      ),
-                                      textStyle:
-                                          MaterialStateProperty.all<TextStyle>(
-                                        AppUtil.textStyle(
-                                          fontSize: 22.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
                                       ),
                                       minimumSize:
                                           MaterialStateProperty.all<Size>(
@@ -168,16 +169,35 @@ class HomeView extends GetView<HomeController> {
                             child: AnimatedListHandler(
                               children: [
                                 // if (controller.payAvailable.value)
-                                GlobalCard(
-                                  color: ColorUtil.whiteColor,
-                                  margin: EdgeInsets.symmetric(
+                                AppButton(
+                                  margin: const EdgeInsets.symmetric(
                                     horizontal: 20.0,
                                     vertical: 10.0,
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      S.of(context).payDebt,
+                                  title: S.of(context).payDebt,
+                                  onTap: () async => AppUtil.showAlertDialog(
+                                    enableCancel: true,
+                                    title: S.of(context).payDebt,
+                                    loading: controller.payBalanceLoading,
+                                    onConfirm: controller.payBalance,
+                                    child: Form(
+                                      key: controller.payBalanceFormKey,
+                                      child: AppTextField(
+                                        controller.payAmount,
+                                        underLine: false,
+                                        readOnly: controller.isBusy.value,
+                                        hintText: S.of(context).enterAmountHere,
+                                        hintColor: ColorUtil.mediumGrey,
+                                        keyBoardType: TextInputType.number,
+                                        margin: const EdgeInsets.all(20.0),
+                                        suffixWidget: Text(
+                                          S.of(context).egp,
+                                          style: AppUtil.textStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: ColorUtil.primaryColor,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

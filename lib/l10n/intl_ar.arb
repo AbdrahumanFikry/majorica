@@ -185,5 +185,7 @@
   "networkName": "إسم الشبكه",
   "connect": "توصيل",
   "removeDoc": "إزاله هذا المستند",
-  "payDebt": "ادفع المديونيه"
+  "payDebt": "ادفع المديونيه",
+  "enterAmountHere": "أدخل المبلغ هنا",
+  "minPayBalance": "أقل مبلغ هو 100"
 }

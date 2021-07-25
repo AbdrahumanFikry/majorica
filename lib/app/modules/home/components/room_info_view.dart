@@ -84,7 +84,7 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                           ),
                         ),
                       const SizedBox(
-                        width: 10.0,
+                        width: 5.0,
                       ),
                       if (widget.roomInfo?.status != null)
                         Expanded(
@@ -103,21 +103,23 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                         ),
                       if (widget.roomInfo?.requestable != true) ...[
                         const SizedBox(
-                          width: 10.0,
+                          width: 5.0,
                         ),
-                        Text(
-                          '${S.of(context).resNum} : ${widget.roomInfo!.iD!}',
-                          style: AppUtil.textStyle(
-                            fontSize: 44.sp,
-                            fontWeight: FontWeight.bold,
-                            color: ColorUtil.errorColor,
+                        Expanded(
+                          child: Text(
+                            '${S.of(context).resNum} : ${widget.roomInfo!.iD!}',
+                            style: AppUtil.textStyle(
+                              fontSize: 44.sp,
+                              fontWeight: FontWeight.bold,
+                              color: ColorUtil.errorColor,
+                            ),
                           ),
                         ),
                       ],
                       if (widget.roomInfo?.dND == true)
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 5.0,
+                            horizontal: 2.5,
                           ),
                           child: Icon(
                             CupertinoIcons.moon_fill,
@@ -128,7 +130,7 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                       if (widget.roomInfo?.requestable == true)
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 5.0,
+                            horizontal: 2.5,
                           ),
                           child: Icon(
                             containerState == ContainerState.Expanded

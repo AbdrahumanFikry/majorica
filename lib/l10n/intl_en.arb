@@ -185,5 +185,7 @@
   "networkName": "Network name",
   "connect": "Connect",
   "removeDoc": "Remove this document",
-  "payDebt": "Pay the debt"
+  "payDebt": "Pay the debt",
+  "enterAmountHere": "Enter amount here",
+  "minPayBalance": "Minimum amount is 100"
 }
