@@ -84,7 +84,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
           changePassword(false);
           forgetPassword(false);
           numChecked(false);
-          await loadApp();
+          await loadApp(localSession: response['sessionID']);
           Get.offAllNamed(Routes.ROOT);
         }
         endBusySuccess();
@@ -186,7 +186,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         sessionID(response['sessionID']);
         currentUser(null);
         otp.clear();
-        await loadApp();
+        await loadApp(localSession: response['sessionID']);
         Get.offAllNamed(Routes.ROOT);
       }
     } catch (error) {
@@ -234,7 +234,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
             name.clear();
             password.clear();
             confirmedPassword.clear();
-            await loadApp();
+            await loadApp(localSession: response['SessionID']);
             Get.offAllNamed(Routes.ROOT);
           }
           endBusySuccess();
@@ -299,12 +299,13 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         },
       );
       if (response['sessionID'] != null) {
+        sessionID(response['sessionID']);
         accountId.clear();
         password.clear();
         confirmedPassword.clear();
         phone.clear();
         otp.clear();
-        await loadApp();
+        await loadApp(localSession: response['sessionID']);
         endBusySuccess();
         Get.offAllNamed(Routes.ROOT);
       }

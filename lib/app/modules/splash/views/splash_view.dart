@@ -21,9 +21,7 @@ class SplashView extends GetView<SplashController> {
           child: child,
         );
       },
-      initFunction: () async {
-        return controller.initFunction(context);
-      },
+      initFunction: () async => controller.initFunction(context),
       logoBuilder: () {
         return Center(
           child: Image.asset(
