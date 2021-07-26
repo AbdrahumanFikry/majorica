@@ -110,7 +110,7 @@ class AppTextField extends StatelessWidget {
               prefixIcon: prefixWidget == null
                   ? null
                   : SizedBox(
-                      width: 200.sp,
+                      width: 250.sp,
                       child: Center(
                         child: prefixWidget,
                       ),

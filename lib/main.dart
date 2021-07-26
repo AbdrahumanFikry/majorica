@@ -13,7 +13,7 @@ import 'generated/l10n.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
             title: 'Majorica',
             debugShowCheckedModeBanner: false,
             defaultTransition: Transition.native,
+            color: Colors.white,
             theme: AppUtil.appLightTheme,
             getPages: AppPages.routes,
             initialRoute: Routes.SPLASH,

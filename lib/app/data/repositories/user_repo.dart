@@ -17,6 +17,7 @@ class UserRepo extends ActiveRepo<String, User> {
 
   Future<bool> initAuthLogic() async {
     final info = firstOrNull;
+    print('::::::::::::::::::::::::::::$info');
     if (info == null) {
       return false;
     } else {

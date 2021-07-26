@@ -113,6 +113,7 @@ class _RoomInfoViewState extends State<RoomInfoView> {
                               fontWeight: FontWeight.bold,
                               color: ColorUtil.errorColor,
                             ),
+                            textAlign: TextAlign.end,
                           ),
                         ),
                       ],

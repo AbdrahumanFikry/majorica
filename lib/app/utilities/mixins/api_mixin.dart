@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getX;
 import 'package:majorica/app/routes/app_pages.dart';
+import 'package:majorica/app/services/auth_service.dart';
+import 'package:majorica/app/services/cache_service.dart';
 import 'package:majorica/generated/l10n.dart';
 
 import '../app_util.dart';
@@ -82,6 +84,9 @@ mixin ApiMixin {
     switch (error.code) {
       case 600:
         errorMsg = S.current.unAuthorized;
+        AuthService.to.currentUser(null);
+        AuthService.to.sessionID(null);
+        await CacheService.to.userRepo.clear();
         getX.Get.offAllNamed(Routes.ACCOUNT);
         break;
       default:

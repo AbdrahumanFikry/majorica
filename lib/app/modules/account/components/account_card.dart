@@ -28,7 +28,7 @@ class AccountCard extends StatelessWidget {
             color: Colors.transparent,
             padding: const EdgeInsets.symmetric(
               horizontal: 20.0,
-              vertical: 10.0,
+              vertical: 5.0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +71,7 @@ class AccountCard extends StatelessWidget {
                 Icon(
                   iconData,
                   color: ColorUtil.mediumGrey,
-                  size: 75.sp,
+                  size: 70.sp,
                 ),
               ],
             ),

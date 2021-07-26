@@ -261,7 +261,7 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         );
         await CacheService.to.userRepo.updateUserCache(
           response['user'],
-          sessionID.value,
+          localSession ?? sessionID.value,
         );
       }
     } catch (error) {
@@ -342,7 +342,8 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
       (event) async {
         print('New update in user info');
         if (event == null) {
-          currentUser.value = null;
+          currentUser(null);
+          sessionID(null);
         } else {
           currentUser(event.value);
           sessionID(currentUser.value!.sessionID);
@@ -368,5 +369,12 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
       },
     );
     super.onReady();
+  }
+
+  @override
+  void onClose() {
+    currentUser(null);
+    currentFCMToken(null);
+    super.onClose();
   }
 }

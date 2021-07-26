@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:majorica/app/components/animated_list_handler.dart';
@@ -76,8 +77,8 @@ class HomeView extends GetView<HomeController> {
                                 data: ThemeData(
                                   textTheme: TextTheme(
                                     button: AppUtil.textStyle(
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   textButtonTheme: TextButtonThemeData(
@@ -97,20 +98,29 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   primaryColor: ColorUtil.primaryColor,
                                 ),
-                                child: DateRangePickerDialog(
-                                  // context: context,
-                                  firstDate: DateTime.now(),
-                                  lastDate: DateTime(DateTime.now().year + 1),
-                                  helpText: S.of(context).choosePeriod,
-                                  cancelText: S.of(context).cancel,
-                                  confirmText: S.of(context).confirm,
-                                  saveText: S.of(context).confirm,
-                                  fieldStartHintText: S.of(context).startDate,
-                                  fieldEndHintText: S.of(context).endDate,
-                                  fieldStartLabelText: S.of(context).startDate,
-                                  fieldEndLabelText: S.of(context).endDate,
-                                  initialEntryMode:
-                                      DatePickerEntryMode.calendarOnly,
+                                child: Localizations(
+                                  locale: AppUtil.currentLocale,
+                                  delegates: const [
+                                    S.delegate,
+                                    GlobalCupertinoLocalizations.delegate,
+                                    GlobalMaterialLocalizations.delegate,
+                                    GlobalWidgetsLocalizations.delegate,
+                                  ],
+                                  child: DateRangePickerDialog(
+                                    firstDate: DateTime.now(),
+                                    lastDate: DateTime(DateTime.now().year + 1),
+                                    helpText: S.of(context).choosePeriod,
+                                    cancelText: S.of(context).cancel,
+                                    confirmText: S.of(context).confirm,
+                                    saveText: S.of(context).confirm,
+                                    fieldStartHintText: S.of(context).startDate,
+                                    fieldEndHintText: S.of(context).endDate,
+                                    fieldStartLabelText:
+                                        S.of(context).startDate,
+                                    fieldEndLabelText: S.of(context).endDate,
+                                    initialEntryMode:
+                                        DatePickerEntryMode.calendarOnly,
+                                  ),
                                 ),
                               ),
                             );
