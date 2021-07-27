@@ -25,13 +25,10 @@ class RootController extends GetxController {
           }
         }
       },
-    ).onDone(() {
-      if (appData.value == null) {
-        AuthService.to.loadApp(
-          localSession: AuthService.to.currentUser.value!.sessionID,
-        );
-      }
-    });
+    );
+    AuthService.to.loadApp(
+      localSession: AuthService.to.currentUser.value!.sessionID,
+    );
     super.onReady();
   }
 }

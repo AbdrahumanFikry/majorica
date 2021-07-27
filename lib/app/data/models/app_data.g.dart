@@ -19,19 +19,22 @@ class AppDataAdapter extends TypeAdapter<AppData> {
     return AppData()
       ..appSettings = fields[2] as AppSettings?
       ..roomGroups = (fields[3] as List?)?.cast<RoomGroup>()
-      ..roomPackages = (fields[4] as List?)?.cast<RoomPackage>();
+      ..roomPackages = (fields[4] as List?)?.cast<RoomPackage>()
+      ..hash = fields[5] as String;
   }
 
   @override
   void write(BinaryWriter writer, AppData obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(2)
       ..write(obj.appSettings)
       ..writeByte(3)
       ..write(obj.roomGroups)
       ..writeByte(4)
-      ..write(obj.roomPackages);
+      ..write(obj.roomPackages)
+      ..writeByte(5)
+      ..write(obj.hash);
   }
 
   @override

@@ -19,4 +19,7 @@ class AppData extends HiveObject {
 
   @HiveField(4)
   late List<RoomPackage>? roomPackages;
+
+  @HiveField(5)
+  late String hash;
 }

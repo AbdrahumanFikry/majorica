@@ -10,11 +10,15 @@ class AppDataRepo extends ActiveRepo<String, AppData> {
   String get boxName => 'appData';
 
   Future<void> updateAppDataCache(Map<String, dynamic> response) async {
-    final appData = AppData()
-      ..appSettings = _mapAppSettings(response['appSettings'])
-      ..roomPackages = _mapRoomPackages(response['roomPackages'])
-      ..roomGroups = _mapRoomGroups(response['roomGroups']);
-    await assignAll({'data': appData});
+    final local = firstOrNull;
+    if (local == null || response['hash'] != local.value.hash) {
+      final appData = AppData()
+        ..appSettings = _mapAppSettings(response['appSettings'])
+        ..roomPackages = _mapRoomPackages(response['roomPackages'])
+        ..roomGroups = _mapRoomGroups(response['roomGroups'])
+        ..hash = response['hash'];
+      await assignAll({'data': appData});
+    }
   }
 
   AppSettings? _mapAppSettings(Map<String, dynamic>? json) {
@@ -35,8 +39,8 @@ class AppDataRepo extends ActiveRepo<String, AppData> {
       }
       if (json['contactus'] != null) {
         appSettings.contactUs = <String>[];
-        json['contactus'].forEach((num) {
-          appSettings.contactUs!.add(num);
+        json['contactus'].forEach((con) {
+          appSettings.contactUs!.add(con);
         });
       }
       return appSettings;

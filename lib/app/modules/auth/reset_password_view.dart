@@ -120,7 +120,7 @@ class ResetPasswordView extends GetView<AuthService> {
                         horizontal: 30.0,
                         vertical: 10.0,
                       ),
-                      title: S.of(context).enter,
+                      title: S.of(context).confirm,
                       onTap: controller.resetPassword,
                     ),
                   ],

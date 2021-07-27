@@ -78,18 +78,18 @@ class HomeView extends GetView<HomeController> {
                                   textTheme: TextTheme(
                                     button: AppUtil.textStyle(
                                       fontSize: 18.0,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   textButtonTheme: TextButtonThemeData(
                                     style: ButtonStyle(
                                       fixedSize:
                                           MaterialStateProperty.all<Size>(
-                                        const Size(150.0, 150.0),
+                                        const Size(100.0, 100.0),
                                       ),
                                       minimumSize:
                                           MaterialStateProperty.all<Size>(
-                                        const Size(150.0, 150.0),
+                                        const Size(100.0, 100.0),
                                       ),
                                     ),
                                   ),
@@ -98,29 +98,19 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   primaryColor: ColorUtil.primaryColor,
                                 ),
-                                child: Localizations(
-                                  locale: AppUtil.currentLocale,
-                                  delegates: const [
-                                    S.delegate,
-                                    GlobalCupertinoLocalizations.delegate,
-                                    GlobalMaterialLocalizations.delegate,
-                                    GlobalWidgetsLocalizations.delegate,
-                                  ],
-                                  child: DateRangePickerDialog(
-                                    firstDate: DateTime.now(),
-                                    lastDate: DateTime(DateTime.now().year + 1),
-                                    helpText: S.of(context).choosePeriod,
-                                    cancelText: S.of(context).cancel,
-                                    confirmText: S.of(context).confirm,
-                                    saveText: S.of(context).confirm,
-                                    fieldStartHintText: S.of(context).startDate,
-                                    fieldEndHintText: S.of(context).endDate,
-                                    fieldStartLabelText:
-                                        S.of(context).startDate,
-                                    fieldEndLabelText: S.of(context).endDate,
-                                    initialEntryMode:
-                                        DatePickerEntryMode.calendarOnly,
-                                  ),
+                                child: DateRangePickerDialog(
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime(DateTime.now().year + 1),
+                                  helpText: S.of(context).choosePeriod,
+                                  cancelText: S.of(context).cancel,
+                                  confirmText: S.of(context).confirm,
+                                  saveText: S.of(context).confirm,
+                                  fieldStartHintText: S.of(context).startDate,
+                                  fieldEndHintText: S.of(context).endDate,
+                                  fieldStartLabelText: S.of(context).startDate,
+                                  fieldEndLabelText: S.of(context).endDate,
+                                  initialEntryMode:
+                                      DatePickerEntryMode.calendarOnly,
                                 ),
                               ),
                             );

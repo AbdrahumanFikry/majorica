@@ -24,9 +24,28 @@ class SplashView extends GetView<SplashController> {
       initFunction: () async => controller.initFunction(context),
       logoBuilder: () {
         return Center(
-          child: Image.asset(
-            PathUtil.appIcon,
-            height: 600.sp,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                PathUtil.appIcon,
+                height: 600.sp,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                'MAJORICA\nMARINA\nHOTEL',
+                style: AppUtil.textStyle(
+                  fontFamily: 'PlayfairDisplay',
+                  fontSize: 70.sp,
+                  letterSpacing: 2.5,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         );
       },

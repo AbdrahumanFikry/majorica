@@ -79,6 +79,12 @@ flutter:
         - asset: assets/fonts/Cairo-SemiBold.ttf
         - asset: assets/fonts/Cairo-Bold.ttf
 
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-SemiBold.ttf
+
+
+
 
 
 flutter_intl:

@@ -64,132 +64,138 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: margin ?? const EdgeInsets.symmetric(vertical: 2.5),
-          child: TextFormField(
-            controller: controller,
-            onChanged: onChanged,
-            validator: validator,
-            readOnly: readOnly,
-            textAlign: textAlignment,
-            initialValue: initialValue,
-            textInputAction: TextInputAction.done,
-            cursorColor: ColorUtil.primaryColor,
-            keyboardType: keyBoardType,
-            maxLines: maxLines,
-            obscureText: hidePassword,
-            onFieldSubmitted: onFieldSubmitted?.call,
-            onSaved: onSaved?.call,
-            style: TextStyle(
-              color: textColor ?? ColorUtil.blackColor,
-              fontSize: fontSize,
-              fontWeight: FontWeight.w500,
-            ),
-            focusNode: focusNode,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: underLine ? Colors.transparent : ColorUtil.lightGrey,
-              labelText: labelText,
-              labelStyle: AppUtil.textStyle(
-                fontSize: 15.0,
-                color: borderColor ?? ColorUtil.primaryColor,
-                fontWeight: FontWeight.w600,
-              ),
-              hintText: hintText,
-              hintStyle: TextStyle(
-                fontSize: 12.0,
-                color: hintColor ?? ColorUtil.lightGrey,
+    return Directionality(
+      textDirection: AppUtil.isLtr ? TextDirection.ltr : TextDirection.ltr,
+      child: Stack(
+        children: [
+          Padding(
+            padding: margin ?? const EdgeInsets.symmetric(vertical: 2.5),
+            child: TextFormField(
+              controller: controller,
+              textDirection:
+                  AppUtil.isLtr ? TextDirection.ltr : TextDirection.ltr,
+              onChanged: onChanged,
+              validator: validator,
+              readOnly: readOnly,
+              textAlign: textAlignment,
+              initialValue: initialValue,
+              textInputAction: TextInputAction.done,
+              cursorColor: ColorUtil.primaryColor,
+              keyboardType: keyBoardType,
+              maxLines: maxLines,
+              obscureText: hidePassword,
+              onFieldSubmitted: onFieldSubmitted?.call,
+              onSaved: onSaved?.call,
+              style: TextStyle(
+                color: textColor ?? ColorUtil.blackColor,
+                fontSize: fontSize,
                 fontWeight: FontWeight.w500,
               ),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: maxLines > 1 ? 10.0 : 0.0,
-                horizontal: 15.0,
-              ),
-              prefixIcon: prefixWidget == null
-                  ? null
-                  : SizedBox(
-                      width: 250.sp,
-                      child: Center(
-                        child: prefixWidget,
+              focusNode: focusNode,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: underLine ? Colors.transparent : ColorUtil.lightGrey,
+                labelText: labelText,
+                labelStyle: AppUtil.textStyle(
+                  fontSize: 15.0,
+                  color: borderColor ?? ColorUtil.primaryColor,
+                  fontWeight: FontWeight.w600,
+                ),
+                hintText: hintText,
+                hintStyle: TextStyle(
+                  fontSize: 12.0,
+                  color: hintColor ?? ColorUtil.lightGrey,
+                  fontWeight: FontWeight.w500,
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: maxLines > 1 ? 10.0 : 0.0,
+                  horizontal: 15.0,
+                ),
+                prefixIcon: prefixWidget == null
+                    ? null
+                    : SizedBox(
+                        width: 250.sp,
+                        child: Center(
+                          child: prefixWidget,
+                        ),
                       ),
-                    ),
-              suffix: suffixWidget == null && !isPassword
-                  ? null
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: suffixWidget ??
-                          (isPassword
-                              ? GestureDetector(
-                                  onTap: changeObscuring,
-                                  child: Icon(
-                                    !hidePassword
-                                        ? Icons.visibility_off_outlined
-                                        : Icons.visibility_outlined,
-                                    size: 16.0,
-                                    color: borderColor ?? ColorUtil.darkBlue,
-                                  ),
-                                )
-                              : null),
-                    ),
-              alignLabelWithHint: true,
-              enabledBorder: underLine
-                  ? AppUtil.underLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    )
-                  : AppUtil.outLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    ),
-              disabledBorder: underLine
-                  ? AppUtil.underLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    )
-                  : AppUtil.outLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    ),
-              focusedBorder: underLine
-                  ? AppUtil.underLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    )
-                  : AppUtil.outLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    ),
-              border: underLine
-                  ? AppUtil.underLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    )
-                  : AppUtil.outLineInputBorder(
-                      color: borderColor,
-                      borderRadius: borderRadius,
-                    ),
-              errorBorder: underLine
-                  ? AppUtil.errorUnderLineInputBorder(
-                      borderRadius: borderRadius)
-                  : AppUtil.errorOutLineInputBorder(borderRadius: borderRadius),
-              errorStyle: AppUtil.textStyle(
-                color: ColorUtil.errorColor,
+                suffix: suffixWidget == null && !isPassword
+                    ? null
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: suffixWidget ??
+                            (isPassword
+                                ? GestureDetector(
+                                    onTap: changeObscuring,
+                                    child: Icon(
+                                      !hidePassword
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.visibility_outlined,
+                                      size: 16.0,
+                                      color: borderColor ?? ColorUtil.darkBlue,
+                                    ),
+                                  )
+                                : null),
+                      ),
+                alignLabelWithHint: true,
+                enabledBorder: underLine
+                    ? AppUtil.underLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      )
+                    : AppUtil.outLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      ),
+                disabledBorder: underLine
+                    ? AppUtil.underLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      )
+                    : AppUtil.outLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      ),
+                focusedBorder: underLine
+                    ? AppUtil.underLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      )
+                    : AppUtil.outLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      ),
+                border: underLine
+                    ? AppUtil.underLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      )
+                    : AppUtil.outLineInputBorder(
+                        color: borderColor,
+                        borderRadius: borderRadius,
+                      ),
+                errorBorder: underLine
+                    ? AppUtil.errorUnderLineInputBorder(
+                        borderRadius: borderRadius)
+                    : AppUtil.errorOutLineInputBorder(
+                        borderRadius: borderRadius),
+                errorStyle: AppUtil.textStyle(
+                  color: ColorUtil.errorColor,
+                ),
               ),
             ),
           ),
-        ),
-        if (onTap != null)
-          Positioned.fill(
-            child: GestureDetector(
-              onTap: onTap,
-              child: Container(
-                color: Colors.transparent,
+          if (onTap != null)
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  color: Colors.transparent,
+                ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }
