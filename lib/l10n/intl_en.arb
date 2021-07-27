@@ -1,7 +1,7 @@
 {
   "confirm": "Confirm",
   "areYouSure": "Are you sure",
-  "nationalId": "National id",
+  "nationalId": "National ID",
   "hasMinLength": "Please insert {length} digit as least",
   "resetPasswordDesc": "Please enter your new password to reset it",
   "passwordsDoNotMatch": "Passwords do not match !",
@@ -28,7 +28,7 @@
   "selectLanguageTitle": "Choose your language",
   "alreadyHaveAcc": "already have account?",
   "donNotHaveAcc": "Don/'t  have account?",
-  "language": "language",
+  "language": "Language",
   "clearCache": "Clear cache",
   "explore": "Explore",
   "signIn": "Sign In",
@@ -61,7 +61,7 @@
   "more": "More",
   "filter": "Filter",
   "send": "Send",
-  "email": "E-mail",
+  "email": "E-Mail",
   "address": "Address",
   "governorate": "Governorate",
   "moreDetails": "More details",
@@ -174,7 +174,7 @@
   "documents": "Documents",
   "addDocument": "Add Document",
   "services": "Extra Services",
-  "requestedService": "You requested {service} ,one of our employees will contact you soon",
+  "requestedService": "We received your request ({service}).",
   "username": "Username",
   "dND": "Do Not Disturb",
   "roomNum": "Room number",
@@ -188,6 +188,6 @@
   "payDebt": "Pay the outstanding",
   "outStandingBalance": "Outstanding balance",
   "enterAmountHere": "Enter amount here",
-  "minPayBalance": "Minimum amount is 100",
+  "minPayBalance": "Minimum amount is 100 EGP",
   "copiedToClipboard": "Copied to Clipboard"
 }

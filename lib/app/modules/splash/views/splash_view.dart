@@ -36,7 +36,7 @@ class SplashView extends GetView<SplashController> {
                 height: 10.0,
               ),
               Text(
-                'MAJORICA\nMARINA\nHOTEL',
+                'MAJORICA\nHOTEL',
                 style: AppUtil.textStyle(
                   fontFamily: 'PlayfairDisplay',
                   fontSize: 70.sp,

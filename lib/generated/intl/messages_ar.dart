@@ -25,8 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(length) => "برجاء إدخال ${length} حروف على الأقل";
 
-  static String m3(service) =>
-      "لقد طلبت ${service} أحد مواظفينا سيتواصل معك فى اقرب وقت";
+  static String m3(service) => "تم استقبال طلبكم (${service}).";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -37,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "agreeToTermsAndConditions":
             MessageLookupByLibrary.simpleMessage("أوافق علي الشروط والاحكام"),
-        "alert": MessageLookupByLibrary.simpleMessage("تنبيه"),
+        "alert": MessageLookupByLibrary.simpleMessage("اشعار"),
         "allReservations":
             MessageLookupByLibrary.simpleMessage("جميع الحجوزات"),
         "alreadyHaveAcc":
@@ -68,7 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "commercialRegister":
             MessageLookupByLibrary.simpleMessage("السجل التجارى"),
         "company": MessageLookupByLibrary.simpleMessage("الشركه"),
-        "confirm": MessageLookupByLibrary.simpleMessage("تاكيد"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "confirmAndEnter":
             MessageLookupByLibrary.simpleMessage("التأكيد و الدخول"),
         "confirmPassword":
@@ -173,7 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أقصى عدد للأفراد"),
         "messages": MessageLookupByLibrary.simpleMessage("الرسائل"),
         "minPayBalance":
-            MessageLookupByLibrary.simpleMessage("أقل مبلغ هو 100"),
+            MessageLookupByLibrary.simpleMessage("أقل مبلغ هو 100 جنيه"),
         "more": MessageLookupByLibrary.simpleMessage("المزيد"),
         "moreDetails": MessageLookupByLibrary.simpleMessage("مزيد من التفاصيل"),
         "name": MessageLookupByLibrary.simpleMessage("الإسم"),
@@ -199,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otpSendDone": MessageLookupByLibrary.simpleMessage(
             "تم ارسال كود التأكيد علي هاتفك"),
         "outStandingBalance": MessageLookupByLibrary.simpleMessage("المديونيه"),
-        "packages": MessageLookupByLibrary.simpleMessage("الحزم"),
+        "packages": MessageLookupByLibrary.simpleMessage("نوع الإقامة"),
         "paidFor": MessageLookupByLibrary.simpleMessage("مدفوع ل"),
         "participants": MessageLookupByLibrary.simpleMessage("الأفراد"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -208,7 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
             "كلمتي المرور غير متطابقتان !"),
         "past": MessageLookupByLibrary.simpleMessage("فائته"),
-        "payDebt": MessageLookupByLibrary.simpleMessage("ادفع المديونيه"),
+        "payDebt": MessageLookupByLibrary.simpleMessage("دفع المديونية"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "paymentDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الدفع"),
         "paymentDoneSuccessfully":
@@ -226,17 +225,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
         "phoneNumberNull":
             MessageLookupByLibrary.simpleMessage("من فضلك ادخل رقم الهاتف"),
-        "points": MessageLookupByLibrary.simpleMessage("نقاط"),
+        "points": MessageLookupByLibrary.simpleMessage("نقطه"),
         "pressToChooseDate":
-            MessageLookupByLibrary.simpleMessage("اضغط لاختيار المده"),
+            MessageLookupByLibrary.simpleMessage("اضغط لإختيار التاريخ"),
         "professionalData":
             MessageLookupByLibrary.simpleMessage("البيانات الاحترافية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصى"),
         "rateUsOnStore":
             MessageLookupByLibrary.simpleMessage("قيمنا فى المتجر"),
         "rear": MessageLookupByLibrary.simpleMessage("الخلف"),
-        "refID": MessageLookupByLibrary.simpleMessage("رقم المراجعه"),
-        "removeCoupon": MessageLookupByLibrary.simpleMessage("حذف الالكوبون"),
+        "refID": MessageLookupByLibrary.simpleMessage("الرقم المرجعي"),
+        "removeCoupon": MessageLookupByLibrary.simpleMessage("حذف الكوبون"),
         "removeDoc": MessageLookupByLibrary.simpleMessage("إزاله هذا المستند"),
         "requestedService": m3,
         "resNum": MessageLookupByLibrary.simpleMessage("حجز"),
@@ -245,9 +244,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفاصيل الحجز"),
         "reservations": MessageLookupByLibrary.simpleMessage("حجوزاتى"),
         "reserveNow": MessageLookupByLibrary.simpleMessage("أحجز الان"),
-        "reserveRoom": MessageLookupByLibrary.simpleMessage("أحجز غرفه"),
+        "reserveRoom": MessageLookupByLibrary.simpleMessage("حجز جديد"),
         "resetPasswordDesc": MessageLookupByLibrary.simpleMessage(
-            "من فضلك أدخل كلمة المرور الجديده لإعادة ضبتها"),
+            "من فضلك ادخل كلمة المرور الجديدة"),
         "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاوله"),
         "roomNum": MessageLookupByLibrary.simpleMessage("رقم الغرفه"),
         "rooms": MessageLookupByLibrary.simpleMessage("الغرف"),
@@ -279,7 +278,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن توافق على الشروط والأحكام الخاصة بنا لمواصله التسجيل"),
         "termsOfService": MessageLookupByLibrary.simpleMessage("شروط الخدمه"),
         "thisEmpty": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
-        "total": MessageLookupByLibrary.simpleMessage("الأجمالى"),
+        "total": MessageLookupByLibrary.simpleMessage("القيمة الإجمالية"),
         "totalBeforeCoupon":
             MessageLookupByLibrary.simpleMessage("الاجمالى قبل الكوبون"),
         "tradeName": MessageLookupByLibrary.simpleMessage("الإسم التجاري"),

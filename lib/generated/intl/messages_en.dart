@@ -25,8 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(length) => "Please insert ${length} digit as least";
 
-  static String m3(service) =>
-      "You requested ${service} ,one of our employees will contact you soon";
+  static String m3(service) => "We received your request (${service}).";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -108,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
         "egp": MessageLookupByLibrary.simpleMessage("EGP"),
         "egpPerNight": MessageLookupByLibrary.simpleMessage("EGP/night"),
-        "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "email": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "emailNull":
             MessageLookupByLibrary.simpleMessage("Please Enter your Email"),
         "endDate": MessageLookupByLibrary.simpleMessage("End date"),
@@ -164,7 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please Enter valid phone number"),
         "inviteFriends": MessageLookupByLibrary.simpleMessage("Invite friends"),
         "jobDesc": MessageLookupByLibrary.simpleMessage("Job Description"),
-        "language": MessageLookupByLibrary.simpleMessage("language"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastOperations":
             MessageLookupByLibrary.simpleMessage("Last operations"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
@@ -175,13 +174,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Max participants number"),
         "messages": MessageLookupByLibrary.simpleMessage("Messages"),
         "minPayBalance":
-            MessageLookupByLibrary.simpleMessage("Minimum amount is 100"),
+            MessageLookupByLibrary.simpleMessage("Minimum amount is 100 EGP"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "moreDetails": MessageLookupByLibrary.simpleMessage("More details"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameNull":
             MessageLookupByLibrary.simpleMessage("Please Enter your name"),
-        "nationalId": MessageLookupByLibrary.simpleMessage("National id"),
+        "nationalId": MessageLookupByLibrary.simpleMessage("National ID"),
         "networkName": MessageLookupByLibrary.simpleMessage("Network name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noChangedData":

@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `تاكيد`
+  /// `تأكيد`
   String get confirm {
     return Intl.message(
-      'تاكيد',
+      'تأكيد',
       name: 'confirm',
       desc: '',
       args: [],
@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `من فضلك أدخل كلمة المرور الجديده لإعادة ضبتها`
+  /// `من فضلك ادخل كلمة المرور الجديدة`
   String get resetPasswordDesc {
     return Intl.message(
-      'من فضلك أدخل كلمة المرور الجديده لإعادة ضبتها',
+      'من فضلك ادخل كلمة المرور الجديدة',
       name: 'resetPasswordDesc',
       desc: '',
       args: [],
@@ -500,10 +500,10 @@ class S {
     );
   }
 
-  /// `تنبيه`
+  /// `اشعار`
   String get alert {
     return Intl.message(
-      'تنبيه',
+      'اشعار',
       name: 'alert',
       desc: '',
       args: [],
@@ -1270,10 +1270,10 @@ class S {
     );
   }
 
-  /// `أحجز غرفه`
+  /// `حجز جديد`
   String get reserveRoom {
     return Intl.message(
-      'أحجز غرفه',
+      'حجز جديد',
       name: 'reserveRoom',
       desc: '',
       args: [],
@@ -1290,10 +1290,10 @@ class S {
     );
   }
 
-  /// `اضغط لاختيار المده`
+  /// `اضغط لإختيار التاريخ`
   String get pressToChooseDate {
     return Intl.message(
-      'اضغط لاختيار المده',
+      'اضغط لإختيار التاريخ',
       name: 'pressToChooseDate',
       desc: '',
       args: [],
@@ -1360,10 +1360,10 @@ class S {
     );
   }
 
-  /// `الحزم`
+  /// `نوع الإقامة`
   String get packages {
     return Intl.message(
-      'الحزم',
+      'نوع الإقامة',
       name: 'packages',
       desc: '',
       args: [],
@@ -1480,10 +1480,10 @@ class S {
     );
   }
 
-  /// `الأجمالى`
+  /// `القيمة الإجمالية`
   String get total {
     return Intl.message(
-      'الأجمالى',
+      'القيمة الإجمالية',
       name: 'total',
       desc: '',
       args: [],
@@ -1500,10 +1500,10 @@ class S {
     );
   }
 
-  /// `نقاط`
+  /// `نقطه`
   String get points {
     return Intl.message(
-      'نقاط',
+      'نقطه',
       name: 'points',
       desc: '',
       args: [],
@@ -1670,10 +1670,10 @@ class S {
     );
   }
 
-  /// `رقم المراجعه`
+  /// `الرقم المرجعي`
   String get refID {
     return Intl.message(
-      'رقم المراجعه',
+      'الرقم المرجعي',
       name: 'refID',
       desc: '',
       args: [],
@@ -1690,10 +1690,10 @@ class S {
     );
   }
 
-  /// `حذف الالكوبون`
+  /// `حذف الكوبون`
   String get removeCoupon {
     return Intl.message(
-      'حذف الالكوبون',
+      'حذف الكوبون',
       name: 'removeCoupon',
       desc: '',
       args: [],
@@ -1800,10 +1800,10 @@ class S {
     );
   }
 
-  /// `لقد طلبت {service} أحد مواظفينا سيتواصل معك فى اقرب وقت`
+  /// `تم استقبال طلبكم ({service}).`
   String requestedService(Object service) {
     return Intl.message(
-      'لقد طلبت $service أحد مواظفينا سيتواصل معك فى اقرب وقت',
+      'تم استقبال طلبكم ($service).',
       name: 'requestedService',
       desc: '',
       args: [service],
@@ -1910,10 +1910,10 @@ class S {
     );
   }
 
-  /// `ادفع المديونيه`
+  /// `دفع المديونية`
   String get payDebt {
     return Intl.message(
-      'ادفع المديونيه',
+      'دفع المديونية',
       name: 'payDebt',
       desc: '',
       args: [],
@@ -1940,10 +1940,10 @@ class S {
     );
   }
 
-  /// `أقل مبلغ هو 100`
+  /// `أقل مبلغ هو 100 جنيه`
   String get minPayBalance {
     return Intl.message(
-      'أقل مبلغ هو 100',
+      'أقل مبلغ هو 100 جنيه',
       name: 'minPayBalance',
       desc: '',
       args: [],

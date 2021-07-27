@@ -18,6 +18,7 @@ mixin ApiMixin {
     Map<String, dynamic>? header,
     int? sendTimeout,
     int? receiveTimeout,
+    bool convertJson = true,
     Function(int? count, int? total)? onSendProgress,
     Function(int? count, int? total)? onReceiveProgress,
   }) async {
@@ -30,7 +31,7 @@ mixin ApiMixin {
     return request(
       _dio.post(
         url,
-        data: json.encode(body),
+        data: convertJson ? json.encode(body) : body,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
         options: Options(
