@@ -390,10 +390,23 @@ class AppUtil {
     final dir = await getTemporaryDirectory();
     file!.writeAsBytesSync(file.readAsBytesSync().buffer.asUint8List());
     final targetPath = "${dir.absolute.path}${"/$filename"}";
+    CompressFormat compressFormat;
+    if (filename!.contains('png')) {
+      compressFormat = CompressFormat.png;
+    } else if (filename.contains('heic')) {
+      compressFormat = CompressFormat.heic;
+    } else if (filename.contains('jpeg')) {
+      compressFormat = CompressFormat.jpeg;
+    } else if (filename.contains('webp')) {
+      compressFormat = CompressFormat.webp;
+    } else {
+      return file;
+    }
     final result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
       targetPath,
       quality: 50,
+      format: compressFormat,
     );
     print(file.lengthSync());
     print(result!.lengthSync());
