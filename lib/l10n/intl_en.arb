@@ -178,7 +178,7 @@
   "username": "Username",
   "dND": "Do Not Disturb",
   "roomNum": "Room number",
-  "noRooms": "There is no room available in this period",
+  "noRooms": "No rooms available in this date range",
   "noReservations": "No reservations yet",
   "resNum": "Reservation",
   "depositedAmount": "deposited amount",

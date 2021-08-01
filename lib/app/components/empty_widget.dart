@@ -45,6 +45,7 @@ class EmptyWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: ColorUtil.errorColor,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 30.0,

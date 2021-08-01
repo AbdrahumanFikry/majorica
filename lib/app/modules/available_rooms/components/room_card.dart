@@ -45,9 +45,7 @@ class RoomCard extends StatelessWidget {
                     fit: BoxFit.contain,
                   )
                 : NetImage(
-                    room.images!.length > 1
-                        ? room.images![_random.nextInt(room.images!.length)]!
-                        : room.images!.first!,
+                    room.images!.first!,
                     height: 400.sp,
                     width: Get.width,
                   ),

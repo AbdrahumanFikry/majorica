@@ -193,7 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noReservations":
             MessageLookupByLibrary.simpleMessage("No reservations yet"),
         "noRooms": MessageLookupByLibrary.simpleMessage(
-            "There is no room available in this period"),
+            "No rooms available in this date range"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "offer": MessageLookupByLibrary.simpleMessage("Offer"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
