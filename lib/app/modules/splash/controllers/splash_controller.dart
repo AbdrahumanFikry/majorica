@@ -1,5 +1,6 @@
 import 'package:bdaya_fcm_handler/bdaya_fcm_handler.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class SplashController extends GetxController with ApiMixin {
     try {
       return Chain.capture(() async {
         await Firebase.initializeApp();
+        FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
         fcmServiceFinder = () =>
             Get.isRegistered<FCMService>() ? Get.find<FCMService>() : null;
         final RemoteMessage? msg =
