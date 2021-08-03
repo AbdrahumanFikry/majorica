@@ -70,7 +70,7 @@ class RoomDetailsController extends GetxController with BusyMixin, ApiMixin {
   }
 
   @override
-  void onReady() {
+  void onInit() {
     if (data != null) {
       final RoomGroup? roomGroup = data;
       roomData(roomGroup);
@@ -79,6 +79,6 @@ class RoomDetailsController extends GetxController with BusyMixin, ApiMixin {
       RootController.to.appData.value!.roomPackages!.toList(),
     );
     selectedPackage(roomPackagesFromCache.first);
-    super.onReady();
+    super.onInit();
   }
 }

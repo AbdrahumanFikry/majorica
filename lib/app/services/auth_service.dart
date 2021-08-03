@@ -348,23 +348,25 @@ class AuthService extends GetxService with BusyMixin, ApiMixin {
         } else {
           currentUser(event.value);
           sessionID(currentUser.value!.sessionID);
-          await AnalyticsService.to
-              .setUserProperties(userId: currentUser.value!.name);
-          final token =
-              currentFCMToken.value = await fcmServiceFinder!()?.getToken(
-            vapidKey:
-                "BOJ21GyEl9SKGIlzaPnNmxTa5qKP2Mty-GDsjq62FPu28x2FmUmXBOPNc2SBXtxm9XUuW7BJGXoun0cNK8JaStk",
-          );
-          try {
-            await post(
-              ApiUtil.updatePushToken,
-              body: {
-                "sessionID": sessionID.value,
-                "token": token,
-              },
+          if (sessionID.value.isNotEmpty) {
+            await AnalyticsService.to
+                .setUserProperties(userId: currentUser.value!.name);
+            final token =
+                currentFCMToken.value = await fcmServiceFinder!()?.getToken(
+              vapidKey:
+                  "BOJ21GyEl9SKGIlzaPnNmxTa5qKP2Mty-GDsjq62FPu28x2FmUmXBOPNc2SBXtxm9XUuW7BJGXoun0cNK8JaStk",
             );
-          } catch (e) {
-            printError(info: e.toString());
+            try {
+              await post(
+                ApiUtil.updatePushToken,
+                body: {
+                  "sessionID": sessionID.value,
+                  "token": token,
+                },
+              );
+            } catch (e) {
+              printError(info: e.toString());
+            }
           }
         }
       },

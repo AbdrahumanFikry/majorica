@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,17 +15,29 @@ import 'app/services/init_binding.dart';
 import 'app/utilities/app_util.dart';
 import 'generated/l10n.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-  SystemChrome.setPreferredOrientations(
-    [
-      DeviceOrientation.portraitUp,
-    ],
-  );
-  runApp(
-    MyApp(),
-  );
+  await Firebase.initializeApp();
+  final fireCrash = FirebaseCrashlytics.instance;
+  await fireCrash.setCrashlyticsCollectionEnabled(true);
+  runZonedGuarded(() async {
+    FlutterError.onError = fireCrash.recordFlutterError;
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+      ],
+    );
+    FlutterError.onError = (FlutterErrorDetails details) {
+      FlutterError.dumpErrorToConsole(details);
+      fireCrash.recordFlutterError(details);
+    };
+    runApp(
+      MyApp(),
+    );
+  }, (Object error, StackTrace stack) {
+    print('OnError : ${stack.toString()}');
+    fireCrash.recordError(error.toString(), stack, reason: error.toString());
+  });
 }
 
 class MyApp extends StatelessWidget {
