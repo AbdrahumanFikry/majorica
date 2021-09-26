@@ -17,6 +17,7 @@ import 'package:majorica/generated/l10n.dart';
 import '../controllers/pendings_controller.dart';
 
 class PendingsView extends GetView<PendingsController> {
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {

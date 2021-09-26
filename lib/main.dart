@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +42,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.put<AnalyticsService>(AnalyticsService());
+    Get.put<AnalyticsService>(AnalyticsService(), permanent: true);
     return ScreenUtilInit(
       designSize: const Size(1080, 1920),
       builder: () => GestureDetector(
