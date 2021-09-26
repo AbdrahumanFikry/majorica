@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>420507086321-isqebaj1qk2ccnrqbh8df4cqibkhm3r1.apps.googleusercontent.com</string>
+	<string>420507086321-27so4921999rb3l20dfob8cruat2iu9q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.420507086321-isqebaj1qk2ccnrqbh8df4cqibkhm3r1</string>
+	<string>com.googleusercontent.apps.420507086321-27so4921999rb3l20dfob8cruat2iu9q</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>420507086321-t6ft27lbuqsmqeil52g8r96gsu6ihvjf.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDm8HhW1Sm0z0-6ef2Z_J2blik2Ht89RcU</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ezelab.majorica</string>
+	<string>com.ezelab.majoricaHotelFlutter</string>
 	<key>PROJECT_ID</key>
 	<string>majorica-hotel</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:420507086321:ios:39a1bd54d93fe1cc34a850</string>
+	<string>1:420507086321:ios:92821258e865865a34a850</string>
 </dict>
 </plist>
